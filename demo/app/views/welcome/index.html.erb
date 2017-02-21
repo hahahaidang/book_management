@@ -7,31 +7,43 @@
     <div class="container div-form col-md-8 col-md-offset-2">
 
       <div class="row">
-        <div class="nav col-md-12">
+        <div class="main-nav nav col-md-12">
           <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="#">List book</a></li>
-            <li role="presentation"><a href="#">Suggest book</a></li>
-            <li role="presentation"><a href="#">Login</a></li>
-            <form class="navbar-form navbar-left">
-              <div class="nav-left form-group">
-                <input type="text" class="form-control" placeholder="Search">
-                <button type="submit" class="btn btn-default">Submit</button>
-              </div>
-            </form>
+            <li role="presentation" class="nav-home"><a href="#"><span class="home-button">Home</span></a></li>
+            <li>
+              <form class="navbar-form navbar-left">
+                <div class="search-bar form-group">
+                  <input type="text" class="form-control" placeholder="Search">
+                  <button type="submit" class="submit-button btn btn-default"><span>Search</span></button>
+                </div>
+              </form>
+            </li>
+            <li class="nav-right" role="presentation"><a href="./login/login_page">Login</a></li>
+            <!-- Singout button
+            <li class="nav-right" role="presentation"><a href="#">Signout</a></li> -->
           </ul>
+        </div>
+        <div class="col-xs-6 col-md-4 ">
+          <div class="div-nav-stack ">
+            <ul class="nav nav-stacked">
+              <li role="presentation" class="active"><a href="#">Home</a></li>
+              <li role="presentation"><a href="#">Suggest Book</a></li>
+              <li role="presentation"><a href="#">Suggested List</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="div-content col-xs-12 col-md-8">
+          <div class="content">
+            <span>Home</span>
+          </div>
 
         </div>
-        <div class="col-xs-6 col-md-4" style="background-color: red;">
-          leftnav
-        </div>
-        <div class="col-xs-12 col-md-8" style="background-color: red;">
-          content
-        </div>
-        <div class="model-footer">
-          footer
-        </div>
+
+      </div>
+      <div class="row model-footer">
+        <span>My website</span>
       </div>
     </div>
+
   </body>
 </html>
