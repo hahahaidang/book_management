@@ -10,9 +10,68 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+.container{
+  background-color: white;
+  height: 1024px;
+}
+.main-nav{
+  background-color: #00BFFF;
+}
+.nav-right{
+  float:right;
+  color: #00BFFF;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.nav-home {
+  padding-left: 10px;
+  padding-top: 5px;
+  margin-bottom: 10px;
+}
+.nav-stacked{
+  height: 1000px;
+  padding-top: 20px;
+  font-size: 27px;
+  color : #F2F2F2;
+}
+.div-nav-stack{
+  background-color: #F2F2F2 ;
+
+}
+.div-parenet-navstack{
+ padding-top: 10px;
+}
+.model-footer{
+  background-color: gray;
+}
+
+.content{
+  margin: 10px 0 0 -10px;
+  font-size: 30px;
+  background-color: #F2F2F2;
+  height: 1000px;
+}
+.model-footer{
+  margin-top: 10px;
+  background-color: #00BFFF;
+  text-align: right;
+}
+.model-footer span{
+  padding-right:  10px;
+}
+.submit-button span{
+  color: #00BFFF;
+  background-color: white;
+}
+.nav-home a{
+  color: #00BFFF;
+  background-color: white;
+  margin-left: 20px;
+  margin-right: -10px;
+}
