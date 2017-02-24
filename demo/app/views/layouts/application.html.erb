@@ -1,5 +1,6 @@
 <%= render 'layouts/header' %>
 
+
 <body>
 <div class="container div-form col-md-8 col-md-offset-2">
 
@@ -15,9 +16,19 @@
             </div>
           </form>
         </li>
-        <li id="horizon_nav_login" role="presentation" class="nav-home"><a class="nav-right" href="/login/login_page">Login</a></li>
-        <!-- Singout button
-        <li class="nav-right" role="presentation"><a href="#">Signout</a></li> -->
+        <% if session[:user] == nil %>
+            <li id='horizon_nav_login' role='presentation' class='nav-home'><a class='nav-right' href='/login/login_page'>Login</a></li>
+        <% else %>
+            <li id='horizon_nav_logout' role='presentation' class='nav-home'><a class='nav-right' href='/login/logout_page'>Logout</a></li>
+        <% end %>
+
+
+        <!--
+    <li id="horizon_nav_login" role="presentation" class="nav-home"><a class="nav-right" href="/login/login_page">Login</a></li>
+
+    Singout button
+    <li id="horizon_nav_signout" role="presentation" class="nav-home"><a class="nav-right" href="/login/signout_page">Sign out</a></li>
+    -->
       </ul>
     </div>
     <div class="div-parenet-navstack col-xs-6 col-md-4">
