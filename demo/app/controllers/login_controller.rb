@@ -10,7 +10,7 @@ class LoginController < ApplicationController
 
 
   def sign_in
-    usr = params['tf_username']
+    usr = Digest::SHA1.hexdigest(params['tf_username'])
     pass = Digest::SHA1.hexdigest(params['tf_password'])
     @action = User.new
     if @action.func_login(usr,pass) == 1

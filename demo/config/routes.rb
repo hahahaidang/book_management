@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'login/sign_in' => 'login#sign_in'
   get 'login/logout_page' => 'login#logout_page'
   get 'login/login_fail' => 'login#login_fail'
+  post 'suggest/suggest_page' => 'suggest#sugest_page'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
