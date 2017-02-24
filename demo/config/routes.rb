@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  get 'suggest/suggest_page'
+
+  root 'welcome#index'
+  get 'welcome/index' => 'welcome/index'
+  get 'login/login_page' => 'login#login_page'
+  post 'login/sign_in' => 'login#sign_in'
+  get 'login/logout_page' => 'login#logout_page'
+  get 'login/login_fail' => 'login#login_fail'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

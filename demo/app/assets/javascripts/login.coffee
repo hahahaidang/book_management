@@ -1,5 +1,5 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-addHover('horizon_nav_home');
-changeColor('vertical_nav_home');
+addHover('horizon_nav_login');
+changeColor('vertical_nav_login');

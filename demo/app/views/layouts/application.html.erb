@@ -1,14 +1,58 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Demo</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<%= render 'layouts/header' %>
 
-<%= yield %>
+
+<body>
+<div class="container div-form col-md-8 col-md-offset-2">
+
+  <div class="row">
+    <div class="main-nav nav col-md-12">
+      <ul class="nav nav-pills row">
+        <li id="horizon_nav_home" role="presentation" class="nav-home col-md-1"><a href="/welcome/index"><span class="home-button">Home</span></a></li>
+        <li class="col-md-10">
+          <form class="navbar-form navbar-left">
+            <div class="search-bar form-group">
+              <input type="text" class="form-control" placeholder="Search">
+              <button type="submit" class="submit-button btn btn-default"><span>Search</span></button>
+            </div>
+          </form>
+        </li>
+        <% if session[:user] == nil %>
+            <li id='horizon_nav_login' role='presentation' class='nav-home'><a class='nav-right' href='/login/login_page'>Login</a></li>
+        <% else %>
+            <li id='horizon_nav_logout' role='presentation' class='nav-home'><a class='nav-right' href='/login/logout_page'>Logout</a></li>
+        <% end %>
+
+
+        <!--
+    <li id="horizon_nav_login" role="presentation" class="nav-home"><a class="nav-right" href="/login/login_page">Login</a></li>
+
+    Singout button
+    <li id="horizon_nav_signout" role="presentation" class="nav-home"><a class="nav-right" href="/login/signout_page">Sign out</a></li>
+    -->
+      </ul>
+    </div>
+    <div class="div-parenet-navstack col-xs-6 col-md-4">
+      <div class="div-nav-stack ">
+        <ul class="nav nav-stacked">
+          <li role="presentation"><a id = "vertical_nav_home" href="/welcome/index">Home</a></li>
+          <li role="presentation"><a id = "vertical_nav_login" href="/login/login_page">Login</a></li>
+          <li role="presentation"><a id = "vertical_nav_suggest_book" href="#">Suggest Book</a></li>
+          <li role="presentation"><a id = "vertical_nav_suggest_list" href="#">Suggested List</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="div-content col-xs-12 col-md-8">
+      <div class="content">
+        <%= yield %>
+
+      </div>
+
+    </div>
+
+  </div>
+  <%= render 'layouts/footer' %>
+
+</div>
 
 </body>
 </html>
