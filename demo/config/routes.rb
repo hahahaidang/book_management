@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'suggest/suggest_page'
 
   root 'welcome#index'
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
   post 'login/sign_in' => 'login#sign_in'
   get 'login/logout_page' => 'login#logout_page'
   get 'login/login_fail' => 'login#login_fail'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -62,4 +64,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
 end
