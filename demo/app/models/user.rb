@@ -2,12 +2,12 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
 
   has_many :request
+  has_many :book, :through => :request
 
   def createUser(username,password)
     @newUsr = User.new
-    @newUsr.user_name= Digest::SHA1.hexdigest(username)
+    @newUsr.user_name= username
     @newUsr.user_pwd= Digest::SHA1.hexdigest(password)
-    #@newUsr.user_pwd = password
     @newUsr.save()
   end
 

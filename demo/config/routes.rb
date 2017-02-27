@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
 
-  get 'suggest/suggest_page'
-
+#index
   root 'welcome#index'
   get 'welcome/index' => 'welcome/index'
+#login
   get 'login/login_page' => 'login#login_page'
   post 'login/sign_in' => 'login#sign_in'
   get 'login/logout_page' => 'login#logout_page'
   get 'login/login_fail' => 'login#login_fail'
-  post 'suggest/suggest_page' => 'suggest#sugest_page'
-
+#suggest
+  get 'suggest/suggest_page' => 'suggest#suggest_page'
+  post 'suggest/create_suggestion' => 'suggest#create_suggestion'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

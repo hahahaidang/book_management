@@ -27,4 +27,3 @@ Rails.application.config.assets.precompile += %w( suggest/suggest_page.css )
 
 
 
-

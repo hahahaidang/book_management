@@ -1,10 +1,12 @@
+<%= javascript_include_tag 'suggest'%>
+
 <div class="div-content col-xs-9">
-  <div class="content">
+  <div>
     <div class="div-suggest col-xs-12">
       <span> Suggest book</span>
 
 
-      <%= form_tag 'create_suggest', method: :post, class: 'form-horizontal main_form' do %>
+      <%= form_tag 'create_suggestion', method: :post, class: 'form-horizontal main_form' do %>
           <div class='form-group'>
             <label class='form_label col-sm-2'>Name:</label>
             <div  class ='col-sm-9'>
@@ -36,7 +38,9 @@
             </div>
           </div>
           <%= submit_tag 'Submit', class: 'btn btn-primary' %>
-      <% end %>
+          <button class="btn btn-danger" type="reset">Reset</button> <br/>
+          <span id="result"> <%= flash[:notice] %> </span>
+    <% end %>
 
 
     </div>
