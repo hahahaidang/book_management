@@ -1,11 +1,13 @@
 class SuggestController < ApplicationController
   include SuggestHelper
   def suggest_page
-
-  end
+    if session[:user] == nil
+      redirect_to '/login/login_page'
+    end
+   end
 
   def create_suggestion
-    if (session[:user] !=nil)
+    if (session[:user] != nil)
       @newBook = Book.new
       @newBook.halfInsertBook(params['tf_book_name'], params['tf_book_link'], params['tf_book_description'], params['tf_book_price'], params['tf_book_quantity'])
       userID = User.find_by_user_name(session[:user]).id
