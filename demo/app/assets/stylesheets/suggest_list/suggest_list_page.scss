@@ -1,0 +1,32 @@
+// Place all the styles related to the suggest_list controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#new{
+  font-size: 20px;
+}
+.page-button{
+  text-align: center;
+  font-size: 20px;
+}
+.func-center{
+  text-align: center;
+}
+#td_book_name{
+  max-width : 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+th{
+  text-align: center;
+}
+td{
+  text-align: center;
+}
+#red{
+  color:red;
+}
+#green{
+  color:green;
+}

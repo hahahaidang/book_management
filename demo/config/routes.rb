@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+
 #index
   root 'welcome#index'
   get 'welcome/index' => 'welcome/index'
@@ -22,6 +23,15 @@ Rails.application.routes.draw do
   get '/manage_book/management_detail_page/:id' => 'manage_book#management_detail_page'
   post '/manage_book/update' => 'manage_book#update'
   get '/manage_book/delete/:id' => 'manage_book#delete'
+
+#suggest_list
+  get 'suggest_list/suggest_list_page' => 'suggest_list/suggest_list_page'
+  get 'suggest_list/detail_suggest_list_page/:id' => 'suggest_list#detail_suggest_list_page'
+
+
+
+
+
 
 
 # The priority is based upon order of creation: first created -> highest priority.

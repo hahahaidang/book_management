@@ -28,6 +28,10 @@ Rails.application.config.assets.precompile += %w( manage_book/approve_page.css )
 Rails.application.config.assets.precompile += %w( manage_book/detail_page.css )
 Rails.application.config.assets.precompile += %w( manage_book/management_detail_page.css )
 
+#suggest_list
+Rails.application.config.assets.precompile += %w( suggest_list/suggest_list_page.css )
+Rails.application.config.assets.precompile += %w( suggest_list/detail_suggest_list_page.css )
+
 
 
 
