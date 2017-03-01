@@ -17,3 +17,7 @@ function changeColor(id){
         $(newID).css('color','#FA8258');
     })
 }
+
+function raise_alert_confirm(){
+    confirm('Do you want to delete this?');
+}

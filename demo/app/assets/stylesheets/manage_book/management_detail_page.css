@@ -1,0 +1,22 @@
+label{
+    font-size: medium;
+}
+
+.content{
+    padding-top: 5px;
+    height: 1000px;
+
+}
+span{
+    font-size: medium;
+}
+form{
+    padding-top: 30px;
+}
+.btn-success{
+    margin: 25px 0px 0px 0px;
+}
+#result{
+    font-size: medium;
+    color : green;
+}

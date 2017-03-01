@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
 #index
   root 'welcome#index'
   get 'welcome/index' => 'welcome/index'
@@ -11,8 +12,19 @@ Rails.application.routes.draw do
 #suggest
   get 'suggest/suggest_page' => 'suggest#suggest_page'
   post 'suggest/create_suggestion' => 'suggest#create_suggestion'
+#management
+  get 'manage_book/approve_page' => 'manage_book#approve_page'
+  get 'manage_book/managebook_page' => 'manage_book#managebook_page'
+  get 'manage_book/approve/:id' =>  'manage_book#approve'
+  get 'manage_book/deny/:id' =>  'manage_book#deny'
+  get 'manage_book/unapprove/:id' =>  'manage_book#unapprove'
+  get 'manage_book/detail_page/:id' => 'manage_book#detail_page'
+  get '/manage_book/management_detail_page/:id' => 'manage_book#management_detail_page'
+  post '/manage_book/update' => 'manage_book#update'
+  get '/manage_book/delete/:id' => 'manage_book#delete'
 
-  # The priority is based upon order of creation: first created -> highest priority.
+
+# The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"

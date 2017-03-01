@@ -1,4 +1,5 @@
 require 'digest/sha1'
+include LoginHelper
 class LoginController < ApplicationController
 
 

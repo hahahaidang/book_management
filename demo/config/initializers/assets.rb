@@ -19,8 +19,15 @@ Rails.application.config.assets.precompile += %w( login/login_page.css )
 Rails.application.config.assets.precompile += %w( login/login_success.css )
 Rails.application.config.assets.precompile += %w( login/login_fail.css )
 
-#suggest
+#suggestion
 Rails.application.config.assets.precompile += %w( suggest/suggest_page.css )
+
+#management
+Rails.application.config.assets.precompile += %w( manage_book/managebook_page.css )
+Rails.application.config.assets.precompile += %w( manage_book/approve_page.css )
+Rails.application.config.assets.precompile += %w( manage_book/detail_page.css )
+Rails.application.config.assets.precompile += %w( manage_book/management_detail_page.css )
+
 
 
 

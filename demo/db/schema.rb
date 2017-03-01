@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224034834) do
+ActiveRecord::Schema.define(version: 20170227085303) do
 
   create_table "books", force: :cascade do |t|
     t.text     "book_name",        limit: 65535
@@ -37,10 +37,11 @@ ActiveRecord::Schema.define(version: 20170224034834) do
   add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.text     "user_pwd",   limit: 65535
-    t.text     "user_name",  limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "user_pwd",     limit: 65535
+    t.text     "user_name",    limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.datetime "date_approve"
   end
 
   add_foreign_key "requests", "books"

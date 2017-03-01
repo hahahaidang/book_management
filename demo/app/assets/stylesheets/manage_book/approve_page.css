@@ -1,0 +1,23 @@
+
+#new{
+    font-size: 20px;
+}
+.page-button{
+    text-align: center;
+    font-size: 20px;
+}
+#td_book_name{
+    max-width : 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#td_function{
+    text-align: center;
+}
+th{
+    text-align: center;
+}
+td{
+    text-align: center;
+}
