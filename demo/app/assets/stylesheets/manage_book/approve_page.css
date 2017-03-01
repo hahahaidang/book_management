@@ -1,5 +1,5 @@
 
-#new{
+#table{
     font-size: 20px;
 }
 .page-button{
@@ -7,7 +7,7 @@
     font-size: 20px;
 }
 #td_book_name{
-    max-width : 300px;
+    max-width : 190px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -20,4 +20,5 @@ th{
 }
 td{
     text-align: center;
+    font-size: medium;
 }

@@ -4,3 +4,10 @@
     word-wrap: break-word;
     padding: 20px 0 0px 25px;
 }
+
+label{
+    font-size: medium;
+}
+span{
+    font-size: medium;
+}

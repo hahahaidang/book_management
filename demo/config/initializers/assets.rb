@@ -18,6 +18,8 @@ Rails.application.config.assets.precompile += %w( welcome/index.css )
 Rails.application.config.assets.precompile += %w( login/login_page.css )
 Rails.application.config.assets.precompile += %w( login/login_success.css )
 Rails.application.config.assets.precompile += %w( login/login_fail.css )
+Rails.application.config.assets.precompile += %w( login/logout_page.css )
+
 
 #suggestion
 Rails.application.config.assets.precompile += %w( suggest/suggest_page.css )

@@ -1,39 +1,36 @@
 <%= javascript_include_tag 'suggest'%>
 
-<div class="div-content col-xs-9">
+<div class="div-content">
   <div>
     <div class="div-suggest col-xs-12">
-      <span> Suggest book</span>
-
-
       <%= form_tag 'create_suggestion', method: :post, class: 'form-horizontal main_form' do %>
           <div class='form-group'>
-            <label class='form_label col-sm-2'>Name:</label>
-            <div  class ='col-sm-9'>
+            <label class='form_label col-xs-3'>Name</label>
+            <div  class ='col-xs-9'>
               <%= text_field_tag 'tf_book_name', nil, class: 'form-control' %>
             </div>
           </div>
           <div class = 'form-group'>
-            <label class='form_label col-sm-2'>Link:</label>
-            <div  class ='col-sm-9'>
+            <label class='form_label col-xs-3'>Link</label>
+            <div  class ='col-xs-9'>
               <%= text_field_tag 'tf_book_link', nil, class: 'form-control' %>
             </div>
           </div>
           <div class='form-group div_description'>
-            <label class='form_label col-sm-2'>Description:</label>
-            <div  class ='col-sm-9'>
+            <label class='form_label col-xs-3'>Description</label>
+            <div  class ='col-xs-9'>
               <%= text_area_tag 'tf_book_description', nil, size:'20x3', class: 'form-control' %>
             </div>
           </div>
           <div class='form-group'>
-            <label class='form_label col-sm-2'>Price:</label>
-            <div  class ='col-sm-9'>
+            <label class='form_label col-xs-3'>Price</label>
+            <div  class ='col-xs-9'>
             <%= text_field_tag 'tf_book_price', nil, class: 'form-control' %>
             </div>
           </div>
           <div class='form-group'>
-            <label class='form_label col-sm-2'>Quantity:</label>
-            <div  class ='col-sm-9'>
+            <label class='form_label col-xs-3'>Quantity</label>
+            <div  class ='col-xs-9'>
              <%= text_field_tag 'tf_book_quantity', nil, class: 'form-control' %>
             </div>
           </div>

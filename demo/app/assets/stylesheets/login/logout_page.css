@@ -1,0 +1,10 @@
+.content{
+    padding-top: 5px;
+    height: 1000px;
+}
+.content .span{
+    padding-left: 20px;
+}
+span{
+    font-size: medium;
+}

@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-#new{
+#table{
   font-size: 20px;
 }
 .page-button{
@@ -14,14 +14,16 @@
   text-align: center;
 }
 #td_book_name{
-  max-width : 300px;
+  max-width : 150px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 th{
   text-align: center;
+  font-size: medium;
 }
 td{
   text-align: center;
+  font-size: medium;
 }

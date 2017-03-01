@@ -2,47 +2,47 @@
   <%= form_tag '/manage_book/update', method: :post, class: 'form-horizontal' do %>
       <div class="form-group">
         <label class="col-xs-2">Suggester</label>
-        <div class="col-xs-6">
+        <div>
           <span class="col-xs-6"><%= @suggester %></span>
         </div>
       </div>
       <div class="form-group">
         <label class="col-xs-2">BookID</label>
-        <div class='col-xs-6'>
+        <div>
           <span class='col-xs-6'><%= @book_id %> </span>
         </div>
       </div>
       <div class="form-group">
         <label class='col-xs-2'>Name</label>
         <div class='col-xs-7'>
-          <%= text_field_tag 'tf_book_name',@book_name, class: 'col-xs-7 form-control'  %>
+          <%= text_field_tag 'tf_book_name',@book_name, class: 'form-control'  %>
         </div>
       </div>
       <div class="form-group">
         <label class='col-xs-2'>Link</label>
         <div class="col-xs-7">
-          <%= text_field_tag 'tf_book_link',@book_link, class: 'col-xs-7 form-control'  %>
+          <%= text_field_tag 'tf_book_link',@book_link, class: 'form-control'  %>
         </div>
       </div>
       <div class="form-group">
         <label class='col-xs-2'>Description</label>
         <div class="col-xs-7">
-          <%= text_field_tag 'tf_book_description',@book_description, class: 'col-xs-7 form-control'  %>
+          <%= text_field_tag 'tf_book_description',@book_description, class: 'form-control'  %>
         </div>
       </div>
       <div class="form-group">
         <label class='col-xs-2'>Price</label>
         <div class="col-xs-7">
-          <%= text_field_tag 'tf_book_price',@book_price, class: 'col-xs-7 form-control'  %>
+          <%= text_field_tag 'tf_book_price',@book_price, class: 'form-control'  %>
         </div>
       </div>
       <div class="form-group">
         <label class='col-xs-2'>Quantity</label>
         <div class="col-xs-7">
-          <%= text_field_tag 'tf_book_quantity',@book_quantity, class: 'col-xs-7 form-control'  %>
+          <%= text_field_tag 'tf_book_quantity',@book_quantity, class: 'form-control'  %>
         </div>
       </div>
-      <%= text_field_tag 'tf_book_id',@book_id, class: 'col-xs-7 form-control hidden'  %>
+      <%= text_field_tag 'tf_book_id',@book_id, class: 'form-control hidden'  %>
       <span id='result'><%= flash[:notice] %> </span>
 
       <div>
