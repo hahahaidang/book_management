@@ -4,7 +4,7 @@ class CreateBooks < ActiveRecord::Migration
       t.text :book_name
       t.text :book_link
       t.text :book_description
-      t.integer :book_price
+      t.float :book_price
       t.integer :book_quantity
 
       t.timestamps null: false

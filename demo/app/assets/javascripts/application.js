@@ -18,6 +18,7 @@ function changeColor(id){
     })
 }
 
-function raise_alert_confirm(){
-    confirm('Do you want to delete this?');
+
+function raise_confirm(mes){
+    return confirm(mes);
 }

@@ -31,13 +31,10 @@
         <td><%= stt %></td>
         <td id="td_function">
             <div class=''>
-                <a class='btn btn-success' href='/manage_book/approve/<%= t.id %>'  type='button'>
+                <a class='btn btn-success' onclick='approve_request()' href='/manage_book/approve/<%= t.id %>'  type='button'>
                     <span class = 'glyphicon glyphicon-ok'></span>
                 </a>
-                <a class='btn btn-warning' href='/manage_book/unapprove/<%= t.id %>' type='button'>
-                    <span class="glyphicon glyphicon-refresh"></span>
-                </a>
-                <a class='btn btn-danger' href='/manage_book/deny/<%= t.id %>' type='button'>
+                <a class='btn btn-danger' onclick='deny_request()' href='/manage_book/deny/<%= t.id %>' type='button'>
                     <span class="glyphicon glyphicon-remove"></span>
                 </a>
             </div>

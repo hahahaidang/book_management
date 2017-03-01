@@ -19,7 +19,7 @@ class ManageBookController < ApplicationController
       @name = Request.find(id).book.book_name
       @link = Request.find(id).book.book_link
       @description = Request.find(id).book.book_description
-      @price = Request.find(id).book.book_price
+      @price = Request.find(id).book.book_price.to_f
       @quantity = Request.find(id).quantity
     else redirect_to 'welcome/index'
     end
@@ -33,7 +33,7 @@ class ManageBookController < ApplicationController
       @book_name = Book.find(id).book_name
       @book_link = Book.find(id).book_link
       @book_description = Book.find(id).book_description
-      @book_price = Book.find(id).book_price
+      @book_price = Book.find(id).book_price.to_f
       @book_quantity = Book.find(id).book_quantity
     else redirect_to 'welcome/index'
     end
@@ -69,7 +69,7 @@ class ManageBookController < ApplicationController
       name = params['tf_book_name']
       link = params['tf_book_link']
       description = params['tf_book_description']
-      price = params['tf_book_price']
+      price = params['tf_book_price'].to_f
       quantity = params['tf_book_quantity']
       func_update(id,name,link,description,price,quantity)
       redirect_to :back
