@@ -18,7 +18,8 @@ class LoginController < ApplicationController
       session[:user] = usr
       redirect_to '/welcome/index'
     else
-      redirect_to '/login/login_page'
+      redirect_to :back
+      flash[:notice] = 'Incorrect username/password!'
     end
   end
 

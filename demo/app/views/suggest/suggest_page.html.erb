@@ -7,34 +7,39 @@
           <div class='form-group'>
             <label class='form_label col-xs-3'>Name</label>
             <div  class ='col-xs-9'>
-              <%= text_field_tag 'tf_book_name', nil, class: 'form-control' %>
+              <%= text_field_tag 'tf_book_name', nil, class: 'form-control', id: 'id_tf_book_name' %>
+              <label class='error_label label' id='id_label_tf_bookname'></label>
             </div>
           </div>
           <div class = 'form-group'>
             <label class='form_label col-xs-3'>Link</label>
             <div  class ='col-xs-9'>
-              <%= text_field_tag 'tf_book_link', nil, class: 'form-control' %>
+              <%= text_field_tag 'tf_book_link', nil, class: 'form-control', id: 'id_tf_book_link' %>
+              <label class='error_label label' id='id_label_tf_booklink'></label>
             </div>
           </div>
           <div class='form-group div_description'>
             <label class='form_label col-xs-3'>Description</label>
             <div  class ='col-xs-9'>
-              <%= text_area_tag 'tf_book_description', nil, size:'20x3', class: 'form-control' %>
+              <%= text_area_tag 'tf_book_description', nil, size:'20x3', class: 'form-control', id: 'id_tf_book_description' %>
+              <label class='error_label label' id='id_label_tf_bookdescription'></label>
             </div>
           </div>
           <div class='form-group'>
             <label class='form_label col-xs-3'>Price</label>
             <div  class ='col-xs-9'>
-            <%= text_field_tag 'tf_book_price', nil, class: 'form-control' %>
+            <%= text_field_tag 'tf_book_price', nil, class: 'form-control', id: 'id_tf_book_price' %>
+            <label class='error_label label' id='id_label_tf_bookprice'></label>
             </div>
           </div>
           <div class='form-group'>
             <label class='form_label col-xs-3'>Quantity</label>
             <div  class ='col-xs-9'>
-             <%= text_field_tag 'tf_book_quantity', nil, class: 'form-control' %>
+             <%= text_field_tag 'tf_book_quantity', nil, class: 'form-control', id: 'id_tf_book_quantity' %>
+             <label class='error_label label' id='id_label_tf_bookquantity'></label>
             </div>
           </div>
-          <%= submit_tag 'Submit', class: 'btn btn-primary' %>
+          <%= submit_tag 'Submit', class: 'btn btn-primary', :onclick => 'return check_input()' %>
           <button class="btn btn-danger" type="reset">Reset</button> <br/>
           <span id="result"> <%= flash[:notice] %> </span>
     <% end %>
