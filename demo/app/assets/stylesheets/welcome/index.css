@@ -7,7 +7,22 @@
 }
 #table{
     text-align : center;
+    width: 80%;
 }
 th{
     text-align: center;
+}
+label{
+    text-align: center;
+    font-size: large;
+}
+#td_book_name{
+    max-width : 190px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+h1{
+    text-align: center;
+    margin-bottom: 50px;
 }

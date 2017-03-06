@@ -13,6 +13,8 @@ Rails.application.config.assets.precompile += %w( *.coffee )
 
 #index
 Rails.application.config.assets.precompile += %w( welcome/index.css )
+Rails.application.config.assets.precompile += %w( welcome/search_result.css )
+
 
 #login
 Rails.application.config.assets.precompile += %w( login/login_page.css )

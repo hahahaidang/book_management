@@ -1,0 +1,18 @@
+h1 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+#table{
+    text-align: center;
+    font-size: medium;
+    width: 70%;
+}
+#red{
+    color:red;
+}
+#green{
+    color:green;
+}
+th{
+    text-align: center;
+}

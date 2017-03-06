@@ -29,21 +29,22 @@
             </ul>
           </div>
           <div class="navbar-right">
-              <form class="navbar-form">
+            <%=  form_tag '/welcome/search_result', method: :get, class: 'navbar-form' do %>
                 <ul class="nav navbar-nav ">
                   <li>
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Search">
-                      <button type="submit" class="btn btn-default">Submit</button>
+                    <div class='form-group'>
+                        <%= search_field_tag 'tf_search', nil, class: 'form-control', placeholder: "Enter book's name" %>
+                        <%= submit_tag 'Search', class: 'btn btn-default' %>
                     </div>
                   </li>
                   <% if session[:user]== nil  %>
                       <li id="btn_login_logout"><a id="text-navbar" href="/login/login_page" class="navbar-brand">Login</a></li>
                   <% else %>
                       <li id="btn_login_logout"><a id="text-navbar" href="/login/logout_page" class="navbar-brand">Logout</a></li>
-                  <% end  %>
+                  <% end %>
                 </ul>
-              </form>
+            <% end  %>
+
           </div>
       </div>
 

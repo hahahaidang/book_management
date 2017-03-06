@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 #index
   root 'welcome#index'
   get 'welcome/index' => 'welcome/index'
+  get 'welcome/search_result' => 'welcome#search_result'
 #login
   get 'login/login_page' => 'login#login_page'
   post 'login/sign_in' => 'login#sign_in'

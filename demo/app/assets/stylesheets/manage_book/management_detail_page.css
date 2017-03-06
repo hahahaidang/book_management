@@ -10,13 +10,12 @@ label{
 span{
     font-size: medium;
 }
-form{
-    padding-top: 30px;
-}
-.btn-success{
-    margin: 25px 0px 0px 0px;
-}
+
 #result{
     font-size: medium;
     color : green;
+}
+h1{
+    text-align: center;
+    margin-bottom: 50px;
 }

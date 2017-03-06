@@ -28,12 +28,12 @@ class ManageBookController < ApplicationController
     if session[:user] == 'admin'
       id = params[:id]
       @suggester = Request.find(id).user.user_name
-      @book_id = Book.find(id).id
-      @book_name = Book.find(id).book_name
-      @book_link = Book.find(id).book_link
-      @book_description = Book.find(id).book_description
-      @book_price = Book.find(id).book_price.to_f
-      @book_quantity = Book.find(id).book_quantity
+      @book_id = Request.find(id).book_id
+      @book_name = Request.find(id).book.book_name
+      @book_link = Request.find(id).book.book_link
+      @book_description = Request.find(id).book.book_description
+      @book_price = Request.find(id).book.book_price.to_f
+      @book_quantity = Request.find(id).book.book_quantity
     else redirect_to 'welcome/index'
     end
   end

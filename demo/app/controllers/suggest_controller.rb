@@ -14,7 +14,8 @@ class SuggestController < ApplicationController
                               params['tf_book_price'], params['tf_book_quantity'])
       userID = User.find_by_user_name(session[:user]).id
       bookID = Book.find_by_book_name(params['tf_book_name']).id
-      quantityBook = Book.find_by_book_name(params['tf_book_name']).book_quantity
+      quantityBook = Book.find(bookID).book_quantity
+      #quantityBook = Book.find_by_book_name(params['tf_book_name']).book_quantity
       request = @newBook.request.build(book_id: bookID, user_id: userID, status: 0, quantity: quantityBook)
       request.save
       flash[:notice] = 'Insert success!'
