@@ -3,13 +3,11 @@ include ManageBookHelper
 class ManageBookController < ApplicationController
 
   def managebook_page
-    @collection = Request.paginate(:page => params[:page], :per_page => 10)
-
+    @collection = Request.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
   end
 
   def approve_page
-    @collection = Request.paginate(:page => params[:page], :per_page => 10)
-
+    @collection = Request.where('status = 0').paginate(:page => params[:page], :per_page => 10)
   end
 
 

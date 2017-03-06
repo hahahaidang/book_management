@@ -35,5 +35,7 @@
   <% end %>
   </tbody>
 </table>
-<div class="page-button"> <%= will_paginate @collection %> </div>
+<div class="page-button">
+  <%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
+</div>
 

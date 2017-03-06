@@ -1,7 +1,7 @@
 include SuggestListHelper
 class SuggestListController < ApplicationController
   def suggest_list_page
-    @collection = Request.paginate(:page => params[:page], :per_page => 10)
+    @collection = Request.order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
   end
 
 
