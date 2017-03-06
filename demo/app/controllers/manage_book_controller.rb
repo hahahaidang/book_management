@@ -9,6 +9,7 @@ class ManageBookController < ApplicationController
 
   def approve_page
     @collection = Request.paginate(:page => params[:page], :per_page => 10)
+
   end
 
 

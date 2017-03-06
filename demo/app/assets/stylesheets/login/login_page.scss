@@ -1,23 +1,15 @@
-// Place all the styles related to the login controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 
 label{
   font-size: medium;
 }
-.content{
-  padding-top: 5px;
-  min-height: 900px;
-}
+
 .content .span{
   padding-left: 20px;
 }
 #tf_password{
   margin-bottom: 20px;
 }
-.div-content{
-  max-height: 1000px;
-}
+
 .error_label{
   color: red;
   display: none;
@@ -26,4 +18,8 @@ label{
 #result{
   color:red;
   font-size: medium;
+}
+.div-login{
+  padding-top: 20px;
+  padding-bottom: 20px;
 }

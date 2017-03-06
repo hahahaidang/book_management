@@ -1,12 +1,14 @@
 //= require jquery
+//= require bootstrap
 //= require jquery_ujs
-
 
 function changeColor(id) {
     var newID = '#' + id;
     $(document).ready(function () {
         //Check all script then load
         $(newID).css('color', '#FA8258');
+        $('.dropdown-toggle').dropdown();
+
     })
 }
 
@@ -22,9 +24,3 @@ function hide_label(id_label) {
     $(id_label).css('display', 'none');
 }
 
-
-function document_ready() {
-    $(document).ready(function () {
-
-    })
-}

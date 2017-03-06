@@ -1,60 +1,57 @@
 <%= render 'layouts/header' %>
 
-
   <body>
-    <div class="container">
-      <div class="nav-container">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/welcome/index">Home</a>
-          </div>
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-default">Search</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-              <% if session[:user] == nil %>
-                <li id="horizon_nav_login"><a class="navbar-brand" href="/login/login_page">Login</a></li>
-              <% else %>
-                <li id="horizon_nav_logout"><a class="navbar-brand" href="/login/logout_page">Logout</a></li>
-              <% end %>
+
+      <div class="navbar-default row main-nav">
+          <div class="navbar-header col-xs-7">
+            <a id="text-navbar-logo" class="navbar-brand" href="/welcome/index">Book Management</a>
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a id="text-navbar" href="#" class="navbar-brand dropdown-toggle"
+                   data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Function
+                  <span class="caret"></span></a>
+                <% if session[:user]=='admin'%>
+                 <ul class="dropdown-menu">
+                  <li><a href="/suggest/suggest_page">Suggestion</a></li>
+                  <li><a href="/suggest_list/suggest_list_page">Suggested List</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li class='dropdown-header'>Admin function</li>
+                  <li><a href="/manage_book/approve_page">Approval</a></li>
+                  <li><a href="/manage_book/managebook_page">Management page</a></li>
+                 </ul>
+                <% else %>
+                  <ul class="dropdown-menu">
+                    <li><a href="/suggest/suggest_page">Suggestion</a></li>
+                    <li><a href="/suggest_list/suggest_list_page">Suggested List</a></li>
+                  </ul>
+                <% end %>
+              </li>
             </ul>
           </div>
-        </div>
+          <div class="navbar-right">
+              <form class="navbar-form">
+                <ul class="nav navbar-nav ">
+                  <li>
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Search">
+                      <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                  </li>
+                  <% if session[:user]== nil  %>
+                      <li id="btn_login_logout"><a id="text-navbar" href="/login/login_page" class="navbar-brand">Login</a></li>
+                  <% else %>
+                      <li id="btn_login_logout"><a id="text-navbar" href="/login/logout_page" class="navbar-brand">Logout</a></li>
+                  <% end  %>
+                </ul>
+              </form>
+          </div>
       </div>
+
       <div class='div-body row'>
-        <div class="div-parent-navstack col-xs-3">
-          <div class="div-nav-stack ">
-            <ul class="nav nav-stacked">
-              <li role="presentation"><a id = "vertical_nav_home" href="/welcome/index">Home</a></li>
-              <li role="presentation"><a id = "vertical_nav_login" href="/login/login_page">Login</a></li>
-              <li role="presentation"><a id = "vertical_nav_suggest_book" href="/suggest/suggest_page">Suggestion</a></li>
-              <li role="presentation"><a id = "vertical_nav_suggest_list" href="/suggest_list/suggest_list_page">Suggested List</a></li>
-
-              <% if session[:user]=='admin'%>
-                    <li role="presentation"><a id = "vertical_nav_approve" href="/manage_book/approve_page">Approve</a></li>
-                    <li role="presentation"><a id = "vertical_nav_manage"href='/manage_book/managebook_page'>Manage Book </a></li>
-              <% end %>
-
-            </ul>
-          </div>
+        <div class="div-content col-xs-12">
+            <%= yield %>
         </div>
-      <div class="div-content col-xs-9">
-        <div class="content">
-          <%= yield %>
-        </div>
-      </div>
       </div>
       <%= render 'layouts/footer' %>
-    </div>
 
   </body>

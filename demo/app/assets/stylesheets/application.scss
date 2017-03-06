@@ -13,70 +13,42 @@
  *= require_self
  */
 
-@import "bootstrap-sprockets";
 @import "bootstrap";
 
-.container{
-  background-color: white;
-  min-height: 500px;
-}
-.main-nav{
-  background-color: #00BFFF;
-}
 
-.nav-stacked{
-  min-height: 1024px;
-  padding-top: 20px;
-  font-size: 27px;
-  color : #F2F2F2;
-}
-.nav-stacked li{
-  font-size: medium;
-}
-.div-nav-stack{
-  background-color: #F2F2F2 ;
 
-}
-.div-parent-navstack{
- padding-top: 10px;
-}
-.model-footer{
-  background-color: gray;
-}
 
-.content{
-  margin: 10px 0 0 -10px;
-  font-size: 30px;
+
+.div-content{
   background-color: #F2F2F2;
-  min-height: 1024px;
-  padding-top: 10px;
+  //padding: 20px;
+  margin-top: 10px;
+  min-height: 300px;
 }
 
 .model-footer{
   margin-top: 10px;
-  background-color: #00BFFF;
+  background-color: #8258FA;
   text-align: right;
 }
 .model-footer span{
   padding-right:  10px;
+  color : white;
 }
 
-.nav-home a{
-  color: #00BFFF;
-  background-color: white;
-  margin-left: 20px;
-  margin-right: -10px;
-}
-
-.container{
-  background-color: white;
-}
-.div-body{
-  background-color: white;
-}
-.nav-container{
-  background-color: #00BFFF;
-}
-.navbar-brand{
+#text-navbar{
   color: white;
+  font-family: PT Sans Caption;
+
+}
+.main-nav{
+  background-color: #8258FA;
+}
+#text-navbar-logo{
+  color:white;
+  font-weight: 500;
+  font-family: PT Sans Caption;
+}
+#btn_login_logout{
+  margin-top: -8px;
 }
