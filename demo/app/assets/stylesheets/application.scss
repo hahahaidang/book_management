@@ -11,13 +11,9 @@
  * file per style scope.
  *
  *= require_self
+ *= require awesomplete
  */
-
 @import "bootstrap";
-
-
-
-
 
 .div-content{
   background-color: #F2F2F2;
@@ -51,4 +47,7 @@
 }
 #btn_login_logout{
   margin-top: -8px;
+}
+.awesomplete ul{
+  width: 33rem;
 }

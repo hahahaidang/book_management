@@ -7,7 +7,6 @@
         <th>#</th>
         <th>Book</th>
         <th>Link</th>
-        <th>Description</th>
         <th>Price</th>
         <th>Quantity</th>
         <th></th>
@@ -21,10 +20,9 @@
             <a href="/manage_book/management_detail_page/<%= t.id %>"><%= t.book.book_name %></a>
           </td>
           <td>
-            <a title="<%= t.book.book_link %>" href="<%= t.book.book_link %>">Link</a>
+            <a title="<%= t.book_link %>" href="<%= t.book_link %>">Link</a>
           </td>
-          <td><%= t.book.book_description %></td>
-          <td><%= t.book.book_price %> $</td>
+          <td><%= t.book_price %> $</td>
           <td><%= t.book.book_quantity %></td>
           <td>
             <div class="func-center">

@@ -2,17 +2,11 @@ label{
     font-size: medium;
 }
 
-.content{
-    padding-top: 5px;
-    height: 1000px;
 
-}
 span{
     font-size: medium;
 }
-form{
-    padding-top: 30px;
-}
+
 .btn-success{
     margin: 25px 0px 0px 0px;
 }
@@ -31,4 +25,8 @@ form{
 }
 #green{
     color : green;
+}
+h1{
+    text-align: center;
+    margin-bottom: 50px;
 }

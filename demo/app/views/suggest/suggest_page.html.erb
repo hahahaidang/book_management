@@ -1,11 +1,12 @@
 <%= javascript_include_tag 'suggest'%>
+<h1>SUGGEST A BOOK</h1>
 <div class="col-xs-12">
   <div class="div-suggest col-xs-offset-4 col-xs-5">
     <%= form_tag 'create_suggestion', method: :post, class: 'form-horizontal main_form' do %>
         <div class='form-group'>
           <label class='form_label col-xs-3'>Name</label>
           <div  class ='col-xs-9'>
-            <%= text_field_tag 'tf_book_name', nil, class: 'form-control', id: 'id_tf_book_name' %>
+            <%= text_field_tag 'tf_book_name', nil, class: 'form-control', id: 'id_tf_book_name', autocomplete: 'off' %>
             <label class='error_label label' id='id_label_tf_bookname'></label>
           </div>
         </div>
@@ -14,13 +15,6 @@
           <div  class ='col-xs-9'>
             <%= text_field_tag 'tf_book_link', nil, class: 'form-control', id: 'id_tf_book_link' %>
             <label class='error_label label' id='id_label_tf_booklink'></label>
-          </div>
-        </div>
-        <div class='form-group div_description'>
-          <label class='form_label col-xs-3'>Description</label>
-          <div  class ='col-xs-9'>
-            <%= text_area_tag 'tf_book_description', nil, size:'20x3', class: 'form-control', id: 'id_tf_book_description' %>
-            <label class='error_label label' id='id_label_tf_bookdescription'></label>
           </div>
         </div>
         <div class='form-group'>
@@ -37,7 +31,6 @@
            <label class='error_label label' id='id_label_tf_bookquantity'></label>
           </div>
         </div>
-
 
         <div class='form-group'>
           <div class="col-xs-3"></div>

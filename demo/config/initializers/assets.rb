@@ -37,6 +37,8 @@ Rails.application.config.assets.precompile += %w( suggest_list/suggest_list_page
 Rails.application.config.assets.precompile += %w( suggest_list/detail_suggest_list_page.css )
 
 
+#test
+Rails.application.config.assets.precompile += %w( test/test_page.css )
 
 
 

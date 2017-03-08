@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+#test
+  get 'test/test_page' => 'test#test_page'
+  get 'test/ajax' => 'test#ajax'
+  get 'test/list_book' => 'test#list_book'
 
 #index
   root 'welcome#index'
@@ -14,6 +18,7 @@ Rails.application.routes.draw do
 #suggest
   get 'suggest/suggest_page' => 'suggest#suggest_page'
   post 'suggest/create_suggestion' => 'suggest#create_suggestion'
+  post 'suggest/list_book' => 'suggest#list_book'
 #management
   get 'manage_book/approve_page' => 'manage_book#approve_page'
   get 'manage_book/managebook_page' => 'manage_book#managebook_page'
@@ -24,7 +29,6 @@ Rails.application.routes.draw do
   get '/manage_book/management_detail_page/:id' => 'manage_book#management_detail_page'
   post '/manage_book/update' => 'manage_book#update'
   get '/manage_book/delete/:id' => 'manage_book#delete'
-
 #suggest_list
   get 'suggest_list/suggest_list_page' => 'suggest_list/suggest_list_page'
   get 'suggest_list/detail_suggest_list_page/:id' => 'suggest_list#detail_suggest_list_page'

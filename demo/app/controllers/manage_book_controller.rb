@@ -16,9 +16,8 @@ class ManageBookController < ApplicationController
       id = params[:id]
       @user = Request.find(id).user.user_name
       @name = Request.find(id).book.book_name
-      @link = Request.find(id).book.book_link
-      @description = Request.find(id).book.book_description
-      @price = Request.find(id).book.book_price.to_f
+      @link = Request.find(id).book_link
+      @price = Request.find(id).book_price.to_f
       @quantity = Request.find(id).quantity
     else redirect_to 'welcome/index'
     end
@@ -27,12 +26,12 @@ class ManageBookController < ApplicationController
   def management_detail_page
     if session[:user] == 'admin'
       id = params[:id]
+      @request_id = id
       @suggester = Request.find(id).user.user_name
       @book_id = Request.find(id).book_id
       @book_name = Request.find(id).book.book_name
-      @book_link = Request.find(id).book.book_link
-      @book_description = Request.find(id).book.book_description
-      @book_price = Request.find(id).book.book_price.to_f
+      @book_link = Request.find(id).book_link
+      @book_price = Request.find(id).book_price.to_f
       @book_quantity = Request.find(id).book.book_quantity
     else redirect_to 'welcome/index'
     end
@@ -64,13 +63,14 @@ class ManageBookController < ApplicationController
 
   def update
     if session[:user] == 'admin'
-      id = params['tf_book_id']
+      #get id from hidden form
+      request_id = params['tf_request_id']
+
       name = params['tf_book_name']
       link = params['tf_book_link']
-      description = params['tf_book_description']
       price = params['tf_book_price'].to_f
       quantity = params['tf_book_quantity']
-      func_update(id,name,link,description,price,quantity)
+      func_update(request_id,name,link,price,quantity)
       redirect_to :back
       flash[:notice] = 'Updated!'
     else redirect_to 'welcome/index'
@@ -86,13 +86,6 @@ class ManageBookController < ApplicationController
     end
   end
 
-  def unapprove
-    if session[:user] == 'admin'
-      id = params[:id]
-      func_unapprove(id)
-      redirect_to :back
-    else redirect_to 'welcome/index'
-    end
-  end
+
 
 end

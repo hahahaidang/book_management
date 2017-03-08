@@ -1,2 +1,2 @@
-changeColor('vertical_nav_approve')
+changeColor('vertical_nav_approve');
 

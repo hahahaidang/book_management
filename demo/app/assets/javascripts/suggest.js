@@ -1,19 +1,15 @@
-
-changeColor('vertical_nav_suggest_book');
-
+changeColor(123);
+awesomplete_insert_book()
 function check_input(){
     var flag = 0;
     if (check_tf_name('id_tf_book_name','id_label_tf_bookname')){
-        if(check_tf_link_description('id_tf_book_link','id_label_tf_booklink')){
-            if(check_tf_link_description('id_tf_book_description','id_label_tf_bookdescription')){
-                if(check_tf_price('id_tf_book_price','id_label_tf_bookprice')){
-                   if(check_tf_quantity('id_tf_book_quantity','id_label_tf_bookquantity')){
-                       flag=1;
-                   }
-                }
+            if(check_tf_price('id_tf_book_price','id_label_tf_bookprice')){
+               if(check_tf_quantity('id_tf_book_quantity','id_label_tf_bookquantity')){
+                   flag=1;
+               }
             }
         }
-    }
+
     if (flag ==1){
         return true;
 
@@ -40,20 +36,7 @@ function check_tf_name(id_tf, id_lb) {
 
 }
 
-function check_tf_link_description(id_tf, id_lb) {
-    var newid_tf = '#' + id_tf;
-    var newid_lb = '#' + id_lb;
-    var tf_vl = $(newid_tf).val();
-    var tf_length = tf_vl.length;
-    if (tf_length > 255) {
-        show_warning_lable(newid_lb, 'Value is too long!');
-        return false;
-    } else {
-        hide_label(newid_lb);
-        return true;
-    }
 
-}
 function check_tf_price(id_tf, id_lb) {
     var newid_tf = '#' + id_tf;
     var newid_lb = '#' + id_lb;
@@ -92,4 +75,27 @@ function check_tf_quantity(id_tf, id_lb) {
             return true;
         }
 }
-//
+
+
+function awesomplete_insert_book() {
+    $.ajax({
+        url: '/suggest/list_book',
+        method: 'POST',
+        datatype: 'json'
+    })
+        .done(function (msg) {})
+        .success(function (data_response) {
+            var list_book = data_response.map(function(index){
+                return index.book_name;
+            });
+            new Awesomplete (document.querySelector('#id_tf_book_name'),{list: list_book});
+        })
+        .fail(function (jqXHR, textStatus) {
+            alert("Request failed: " + textStatus);
+        });
+
+
+
+
+}
+
