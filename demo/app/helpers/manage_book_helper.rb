@@ -13,32 +13,18 @@ module ManageBookHelper
     @action.save
   end
 
-  def func_unapprove(id)
-    @action = Request.find(id)
-    @action.status = 0
-    @action.date_approve= ''
-    @action.save
-  end
+  def func_update(book_id, name, quantity)
 
-  def func_update(request_id, name, link, price, quantity)
-
-    @request = Request.find(request_id)
-    @request.book_price = price
-    @request.quantity = quantity
-    @request.book_link = link
-    @request.book.book_name = name
-    bookID = Request.find(request_id).book_id
-    @book = Book.find(bookID)
-    @book.book_name = name
-
+    @request = Book.find(book_id)
+    @request.book_name = name
+    @request.book_quantity = quantity
     @request.save
-    @book.save
   end
 
-  def func_delete(id)
-    @actionRequest = Request.find_by_book_id(id)
+  def func_delete(book_id)
+    @actionRequest = Request.find_by_book_id(book_id)
     @actionRequest.destroy
-    @actionBook = Book.find(id)
+    @actionBook = Book.find(book_id)
     @actionBook.destroy
   end
 end

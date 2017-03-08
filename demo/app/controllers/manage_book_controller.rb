@@ -3,7 +3,7 @@ include ManageBookHelper
 class ManageBookController < ApplicationController
 
   def managebook_page
-    @collection = Request.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+    @collection = Book.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
   end
 
   def approve_page
@@ -26,13 +26,9 @@ class ManageBookController < ApplicationController
   def management_detail_page
     if session[:user] == 'admin'
       id = params[:id]
-      @request_id = id
-      @suggester = Request.find(id).user.user_name
-      @book_id = Request.find(id).book_id
-      @book_name = Request.find(id).book.book_name
-      @book_link = Request.find(id).book_link
-      @book_price = Request.find(id).book_price.to_f
-      @book_quantity = Request.find(id).book.book_quantity
+      @book_id = id
+      @book_name = Book.find(id).book_name
+      @book_quantity = Book.find(id).book_quantity
     else redirect_to 'welcome/index'
     end
   end
@@ -64,13 +60,11 @@ class ManageBookController < ApplicationController
   def update
     if session[:user] == 'admin'
       #get id from hidden form
-      request_id = params['tf_request_id']
 
+      book_id = params['tf_book_id']
       name = params['tf_book_name']
-      link = params['tf_book_link']
-      price = params['tf_book_price'].to_f
       quantity = params['tf_book_quantity']
-      func_update(request_id,name,link,price,quantity)
+      func_update(book_id,name,quantity)
       redirect_to :back
       flash[:notice] = 'Updated!'
     else redirect_to 'welcome/index'

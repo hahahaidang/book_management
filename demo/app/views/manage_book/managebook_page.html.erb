@@ -6,8 +6,6 @@
       <tr>
         <th>#</th>
         <th>Book</th>
-        <th>Link</th>
-        <th>Price</th>
         <th>Quantity</th>
         <th></th>
       </tr>
@@ -15,18 +13,14 @@
     <tbody>
       <% @collection.each do |t| %>
         <tr>
-          <td><%= t.book.id %></td>
-          <td title="<%=t.book.book_name%>" id="td_book_name">
-            <a href="/manage_book/management_detail_page/<%= t.id %>"><%= t.book.book_name %></a>
+          <td><%= t.id %></td>
+          <td title="<%=t.book_name%>" id="td_book_name">
+            <a href="/manage_book/management_detail_page/<%= t.id %>"><%= t.book_name %></a>
           </td>
-          <td>
-            <a title="<%= t.book_link %>" href="<%= t.book_link %>">Link</a>
-          </td>
-          <td><%= t.book_price %> $</td>
-          <td><%= t.book.book_quantity %></td>
+          <td><%= t.book_quantity %></td>
           <td>
             <div class="func-center">
-              <a href='/manage_book/delete/<%= t.book.id %>'  onclick='delete_book()' type='button'>
+              <a href='/manage_book/delete/<%= t.id %>'  onclick='delete_book()' type='button'>
                 <span class="glyphicon glyphicon-remove text-danger"></span>
               </a>
 
