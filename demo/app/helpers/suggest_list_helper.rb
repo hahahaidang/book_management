@@ -6,7 +6,6 @@ module SuggestListHelper
     @book_price = Request.find(id).book_price
     @book_quantity = Request.find(id).quantity
     @book_status = parse_status(Request.find(id).status)
-    #@book_status = Request.status
     @date_approve = Request.find(id).date_approve
   end
 

@@ -1,15 +1,18 @@
 module ManageBookHelper
   def func_approve(id)
-    @action = Request.find(id)
-    @action.status = 1
-    @action.date_approve = Date.current
-    @action.save
+    book_id = Request.find(id).book_id
+    @request = Request.find(id)
+    @request.status = 1
+    @request.date_approve = Date.current
+    @book = Book.find(book_id)
+    @book.book_quantity += @request.quantity
+    @book.save
+    @request.save
   end
 
   def func_deny(id)
     @action = Request.find(id)
     @action.status = 2
-    @action.date_approve = ''
     @action.save
   end
 

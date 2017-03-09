@@ -48,6 +48,23 @@
 #btn_login_logout{
   margin-top: -8px;
 }
+
 .awesomplete ul{
-  width: 33rem;
+  width: 245px;
+}
+.row{
+  margin: 0;
+}
+
+#lb_username{
+  color : white;
+  margin-top: -9px;
+  margin-right: -15px;
+  font-size: medium;
+}
+#lb_username:hover{
+    color: orange;
+}
+.div-content{
+  min-height: 500px;
 }

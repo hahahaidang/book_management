@@ -1,4 +1,4 @@
-<%= javascript_include_tag 'suggest_list'%>
+
 <h1>SUGGESTED LIST</h1>
 <div class="col-lg-offset-2">
   <table class = 'table table-striped table-bordered' id="table">
@@ -31,7 +31,11 @@
               <% end %>
           <% end %>
           <td id="<%if stt == 'Approved'%>green<%elsif stt == 'Denied'%>red<%else%><% end %>"><%= stt %></td>
-          <td><%= t.date_approve %></td>
+          <% if t.date_approve.to_i*1000 == 0  %>
+              <td></td>
+          <% else %>
+            <td class="time"><%= t.date_approve.to_i*1000 %></td>
+          <% end %>
         </tr>
     <% end %>
     </tbody>
@@ -40,4 +44,5 @@
 <div class="page-button">
   <%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
 </div>
+<%= javascript_include_tag 'suggest_list'%>
 

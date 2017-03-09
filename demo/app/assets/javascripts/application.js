@@ -2,13 +2,28 @@
 //= require bootstrap
 //= require jquery_ujs
 //= require awesomplete
+//= require moment
 
 
-function changeColor(id) {
-    var newID = '#' + id;
+function convertDate(){
+     // $('.time').forEach(function(element){
+     //     digit = parseInt($('.time').html());
+     //     result = moment(digit).format('lll');
+     //     $('.time').html(result);
+     // })
+    $('.time').each(function(index, element){
+        digit = parseInt($(element).html());
+        result = moment(digit).format('lll');
+        $(element).html(result);
+
+    })
+
+
+}
+
+function init() {
     $(document).ready(function () {
         //Check all script then load
-        $(newID).css('color', '#FA8258');
         $('.dropdown-toggle').dropdown();
         get_bookname('#tf_search');
 

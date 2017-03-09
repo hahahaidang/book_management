@@ -1,4 +1,3 @@
-<%= javascript_include_tag 'suggest_list'%>
 <h1>DETAIL PAGE</h1>
 <div class="col-xs-offset-3 div-content">
     <div class='content_detail'>
@@ -26,9 +25,12 @@
             <label class='col-xs-2'>Status</label>
             <span class='col-xs-6' id="<%if @book_status == 'Approved'%>green<%elsif @book_status == 'Denied'%>red<%else%><% end %>"><%= @book_status %></span>
         </div>
-        <div class="row">
-            <label class='col-xs-2'>Date approve</label>
-            <span class='col-xs-6 '><%= @date_approve %></span>
-        </div>
+        <% if @book_status == 'Approved' %>
+          <div class="row">
+              <label class='col-xs-2'>Date approve</label>
+              <span class='col-xs-6 time '><%= @date_approve.to_i*1000 %></span>
+          </div>
+        <% end  %>
     </div>
 </div>
+<%= javascript_include_tag 'suggest_list'%>

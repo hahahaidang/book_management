@@ -1,5 +1,9 @@
-<%= javascript_include_tag 'welcome'%>
-<h1>APPROVED TODAY</h1>
+
+<% if session[:user]=='admin'%>
+    <h1>Suggested today</h1>
+<% else %>
+    <h1>APPROVED TODAY</h1>
+<% end %>
 <div class="col-xs-offset-2">
   <table class = 'table table-striped table-bordered' id="table">
     <thead class = 'thead-default'>
@@ -8,7 +12,11 @@
       <th>Book</th>
       <th>Quantity</th>
       <th>Status</th>
-      <th>Date approve</th>
+      <% if session[:user]=='admin'  %>
+          <th>Date suggest</th>
+      <% else  %>
+          <th>Date approve</th>
+      <% end %>
     </tr>
     </thead>
     <tbody>
@@ -19,9 +27,13 @@
           <td><%= t.quantity %></td>
           <% if t.status == 1  %>
             <% stt =  'Approved'  %>
+            <td id = 'green'><%= stt %></td>
+            <td class="time"><%= t.date_approve.to_i*1000 %></td>
           <% end %>
-          <td id = 'green'><%= stt %></td>
-          <td><%= t.date_approve %></td>
+          <% if t.status == 0  %>
+              <td>Pending</td>
+            <td class="time"><%= t.created_at.to_i*1000 %></td>
+          <% end %>
         </tr>
     <% end %>
     </tbody>
@@ -30,3 +42,4 @@
 <div class="page-button">
   <%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
 </div>
+<%= javascript_include_tag 'welcome'%>

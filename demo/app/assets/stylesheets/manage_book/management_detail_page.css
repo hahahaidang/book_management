@@ -19,3 +19,9 @@ h1{
     text-align: center;
     margin-bottom: 50px;
 }
+.error_label{
+    color: red;
+    display: none;
+    font-size: 12px;
+    padding-bottom: 10px;
+}

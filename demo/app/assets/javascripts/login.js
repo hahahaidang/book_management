@@ -1,5 +1,4 @@
-changeColor('vertical_nav_login');
-
+init();
 
 function check_input(){
     var flag = 0;
@@ -22,10 +21,10 @@ function check_input_tf_username(id_tf, id_lb) {
         if (tf_vl == "") {
             show_warning_lable(newid_lb, 'This field can not be blank!');
             return false;
-        } else if (tf_length <= 4) {
+        } else if (tf_length <= 3) {
             show_warning_lable(newid_lb, 'Username is too short!');
             return false;
-        } else if (tf_length >= 16) {
+        } else if (tf_length >= 17) {
             show_warning_lable(newid_lb, 'Username is too long!');
             return false;
         } else{

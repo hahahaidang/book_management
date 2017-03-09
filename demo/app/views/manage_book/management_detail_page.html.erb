@@ -1,4 +1,3 @@
-<%= javascript_include_tag 'management_detail'%>
 
 <h1>DETAIL PAGE</h1>
 <div class="col-xs-12 col-xs-offset-4">
@@ -13,13 +12,14 @@
         <label class='col-xs-1'>Name</label>
         <div class='col-xs-4'>
           <%= text_area_tag 'tf_book_name', @book_name, size:'20x4', class: 'form-control'%>
-
+          <label class='error_label label' id='id_label_tf_bookname'></label>
         </div>
       </div>
       <div class="form-group">
         <label class='col-xs-1'>Quantity</label>
         <div class="col-xs-4">
           <%= text_field_tag 'tf_book_quantity',@book_quantity, class: 'form-control'  %>
+          <label class='error_label label' id='id_label_tf_bookquantity'></label>
         </div>
       </div>
       <%= text_field_tag 'tf_book_id',@book_id, class: 'form-control hidden'  %>
@@ -32,10 +32,11 @@
       <div class='form-group'>
         <div class="col-xs-1"></div>
         <div class='col-xs-4'>
-          <%= submit_tag 'Update', class:'btn btn-success' %>
+          <%= submit_tag 'Update', class:'btn btn-success', onclick: 'return check_input_update()'  %>
         </div>
       </div>
 
   <% end %>
 </div>
 
+<%= javascript_include_tag 'management_detail'%>

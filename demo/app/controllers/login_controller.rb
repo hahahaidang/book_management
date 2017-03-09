@@ -19,7 +19,7 @@ class LoginController < ApplicationController
       redirect_to '/welcome/index'
     else
       redirect_to :back
-      flash[:notice] = 'Incorrect username/password!'
+      flash[:notice] = 'Incorrect username or password!'
     end
   end
 
@@ -29,5 +29,6 @@ class LoginController < ApplicationController
 
   def logout_page
     session[:user] = nil
+    #redirect_to '/login/login_page'
   end
 end

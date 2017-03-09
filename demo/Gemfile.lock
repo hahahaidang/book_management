@@ -76,6 +76,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    momentjs-rails (2.17.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     mysql2 (0.3.21)
     nokogiri (1.7.0.1)
@@ -137,7 +139,7 @@ GEM
     turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (3.1.4)
+    uglifier (3.1.5)
       execjs (>= 0.3.0, < 3)
     web-console (2.3.0)
       activemodel (>= 4.0)
@@ -158,6 +160,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
+  momentjs-rails
   mysql2 (~> 0.3.13)
   rails (= 4.2.0)
   sass-rails (~> 5.0)

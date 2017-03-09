@@ -10,16 +10,13 @@ module SuggestHelper
     @requestObject.book_price = bookPrice
     @requestObject.save
     @bookObject = Book.find(bookID)
-    @bookObject.book_quantity += quantity_on_request
     @bookObject.save
-    @bookObject = Book.find(bookID)
-    @bookObject.book_quantity += quantity_on_request
-    @bookObject.save
+
   end
   def insert_new_book(bookName,quantity_on_request,userID,bookLink,bookPrice)
     @newBook = Book.new
     @newBook.book_name = bookName
-    @newBook.book_quantity = quantity_on_request
+    @newBook.book_quantity = 0
     @newBook.save
     bookID = Book.find_by_book_name(bookName).id
     request = @newBook.request.build(book_id: bookID, user_id: userID, status: 0,
