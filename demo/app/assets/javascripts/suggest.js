@@ -1,6 +1,7 @@
 init();
 awesomplete_insert_book();
 fade_error_label('result');
+active_label('lb_suggest');
 
 
 function check_input() {

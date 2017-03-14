@@ -1,5 +1,11 @@
 init();
 fade_error_label('result');
+
+
+function return_management_page(){
+    window.location.href='/manage_book/managebook_page';
+}
+
 function check_input_update() {
     flag = 0;
     if (check_tf_name('tf_book_name', 'id_label_tf_bookname')) {

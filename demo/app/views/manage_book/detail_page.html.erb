@@ -21,6 +21,10 @@
         <label class='col-xs-2'>Quantity</label>
         <span class='col-xs-7 '><%= t.quantity %></span>
     </div>
+  <div class="row">
+    <div class='col-xs-2'></div>
+    <input class='btn back-btn' action="action" type="button" value="Back" onclick="history.go(-1);" />
+  </div>
 </div>
 <% end  %>
 <%= javascript_include_tag 'detail'%>

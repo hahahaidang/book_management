@@ -28,3 +28,7 @@ h1{
 #red{
     color: red;
 }
+.btn-back{
+    margin-left: 10px;
+    width: 12%;
+}

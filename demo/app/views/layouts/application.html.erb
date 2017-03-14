@@ -5,37 +5,32 @@
   <div class="row">
     <div class="navbar-header col-xs-7">
       <a id="text-navbar-logo" class="navbar-brand" href="/welcome/index">Book Management</a>
+      <!--guest-->
       <% if session[:user].nil? %>
           <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a id="text-navbar" href="/suggest_list/suggest_list_page" class="navbar-brand lb_suggest_list" role="button">Suggested
+              <a id="text-navbar" href="/suggest_list/suggest_list_page" class="navbar-brand lb_suggest_list" role="button">Suggestion
                 List</a>
-            </li>
           </ul>
       <% else %>
           <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a id="text-navbar" href="#" class="navbar-brand dropdown-toggle"
-                 data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Feature
-                <span class="caret"></span></a>
-              <% if session[:user]=='admin' %>
+            <a id="text-navbar" href="/suggest/suggest_page" class="navbar-brand lb_suggest" role="button">Suggest book</a>
+            <a id="text-navbar" href="/suggest_list/suggest_list_page" class="navbar-brand lb_suggest_list" role="button">Suggestion
+              List</a>
+          <% if session[:user]=='admin' %>
+                <li class="dropdown">
+                  <a id="text-navbar" href="#" class="navbar-brand dropdown-toggle"
+                     data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin
+                    <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/suggest/suggest_page">Suggestion</a></li>
-                    <li><a href="/suggest_list/suggest_list_page">Suggested list</a></li>
+                    <li class="dropdown-header">Admin feature</li>
                     <li role="separator" class="divider"></li>
-                    <li class='dropdown-header'>Admin function</li>
                     <li><a href="/manage_book/approve_page">Approval</a></li>
                     <li><a href="/manage_book/managebook_page">Management page</a></li>
                   </ul>
-              <% else %>
-                  <ul class="dropdown-menu">
-                    <li><a href="/suggest/suggest_page">Suggestion</a></li>
-                    <li><a href="/suggest_list/suggest_list_page">Suggested list</a></li>
-                  </ul>
+                </li>
               <% end %>
-            </li>
           </ul>
-      <% end %>
+    <% end %>
 
     </div>
     <div class="navbar-right">
@@ -51,7 +46,7 @@
                 <li id="btn_login_logout"><a id="text-navbar" href="/login/login_page" class="navbar-brand">Login</a>
                 </li>
             <% else %>
-                <li id="lb_username" class="navbar-brand">Welcome [<%= session[:user] %>]</li>
+                <li id="lb_username" class="navbar-brand">[<%= session[:user] %>]</li>
                 <li id="btn_login_logout"><a id="text-navbar" href="/login/logout_page" class="navbar-brand">Logout</a>
                 </li>
             <% end %>

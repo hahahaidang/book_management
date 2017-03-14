@@ -7,9 +7,6 @@ span{
     font-size: medium;
 }
 
-.btn-success{
-    margin: 25px 0px 0px 0px;
-}
 #result{
     font-size: medium;
     color : green;
@@ -29,4 +26,8 @@ span{
 h1{
     text-align: center;
     margin-bottom: 50px;
+}
+.back-btn{
+    margin: 20px 0 0 10px;
+    width: 5%;
 }

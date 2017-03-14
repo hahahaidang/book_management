@@ -4,13 +4,16 @@
 //= require awesomplete
 //= require moment
 
-function fade_error_label(id_lb){
+function fade_error_label(id_lb) {
+    //fade error label after 2000ms
     var newid_lb = '#' + id_lb;
     $(newid_lb).delay(2000).fadeOut('fast');
 }
 function convertDate() {
     $('.time').each(function (index, element) {
+        //parse datetime to integer
         digit = parseInt($(element).html());
+        //using momentjs to convert by format
         result = moment(digit).format('lll');
         $(element).html(result);
     })
@@ -21,10 +24,7 @@ function init() {
         //Check all script then load
         $('.dropdown-toggle').dropdown();
         get_bookname('#tf_search');
-        default_size();
         resize_screen();
-
-
     })
 }
 
@@ -60,18 +60,29 @@ function get_bookname(id_tf) {
         });
 
 }
-function default_size(){
+
+function set_height_default(){
+    //Default height after load
     var totalHeight = $(window).height();
-    var newHeight = totalHeight-90;
-    $('.div-content').height(newHeight);
+    var heightHeader = $('.navbar-header').height();
+    var heightFooter = $('.model-footer').height();
+    var newHeight = totalHeight - heightFooter - heightHeader-20; //20 is margin of header and footer
+    $('.div-content').css("min-height", function () {
+        return newHeight;
+    });
 }
 
-function resize_screen(){
+function resize_screen() {
+    //Default height after load
+    set_height_default();
+
+    //after resize event then resize
     $(window).resize(function () {
-        var totalHeight = $(window).height();
-        var newHeight = totalHeight-90;
-        $('.div-content').height(newHeight);
+        set_height_default();
     })
+}
 
-
+function active_label(class_label) {
+    var newClass = '.' + class_label;
+    $(newClass).css('border-bottom', '6px solid #f2f2f2');
 }

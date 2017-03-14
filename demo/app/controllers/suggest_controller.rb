@@ -53,20 +53,6 @@ class SuggestController < ApplicationController
         end
       end
 
-      # if check_input_controller(bookName, bookLink, bookPrice,quantity_on_request)
-      #   #insert book exist
-      #   if Book.find_by_book_name(bookName)
-      #     bookID = Book.find_by_book_name(bookName).id
-      #     insert_exists_book(bookID, userID, quantity_on_request, bookLink, bookPrice)
-      #     flash[:notice] = 'Insert success!'
-      #   else
-      #     #insert new book
-      #     insert_new_book(bookName, quantity_on_request, userID, bookLink, bookPrice)
-      #     flash[:notice] = 'Insert success!'
-      #   end
-      # else
-      #   flash[:warn] = 'Invalid input'
-      # end
       redirect_to :back
     else
       redirect_to login_page_path
