@@ -1,18 +1,18 @@
-<%= javascript_include_tag 'login' %>
 <div class="div-login col-xs-offset-5 col-xs-3">
   <%= form_tag('sign_in', method: :post) do %>
       <div class="form-group">
         <label for="lbUsr">Username:</label>
-        <%= text_field_tag 'tf_username', nil, placeholder: 'Enter username', class: 'form-control form-inline', id: 'id_tf_username' %>
+        <%= text_field_tag 'tf_username', nil, placeholder: 'Enter username', class: 'form-control form-inline', id: 'id_tf_username'%>
         <label class='error_label label' id='id_label_tf_username'></label>
       </div>
       <div class="form-group">
         <label for="lbPass">Password:</label>
-        <%= password_field_tag 'tf_password', nil, placeholder: 'Enter password', class: 'form-control', id: 'id_tf_password' %>
+        <%= password_field_tag 'tf_password', nil, placeholder: 'Enter password', class: 'form-control', id: 'id_tf_password', autocomplete: 'off' %>
         <label class='error_label label' id='id_label_tf_password'></label>
       </div>
+      <label id='result'><%= flash[:notice] %></label><br>
       <%= submit_tag 'Sign in', class: 'btn btn-primary', onclick: 'return check_input()' %>
       <br/><br/>
-      <span id='result'><%= flash[:notice] %></span>
   <% end %>
 </div>
+<%= javascript_include_tag 'login' %>

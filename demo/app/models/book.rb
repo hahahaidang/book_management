@@ -3,8 +3,7 @@ class Book < ActiveRecord::Base
   has_many :user, through: :request
 
   validates :book_name, length: {maximum: 255}, presence: true
-  validates :book_quantity, numericality: {only_integer: true}, presence:true;
-
+  validates :book_quantity, numericality: {only_integer: true}, presence:true
 
 
 end

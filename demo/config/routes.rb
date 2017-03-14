@@ -8,30 +8,31 @@ Rails.application.routes.draw do
 
 #index
   root 'welcome#index'
-  get 'welcome/index' => 'welcome/index'
-  get 'welcome/search_result' => 'welcome#search_result'
+  match 'welcome/index', via: [:get], controller: :welcome, action: :index, as: 'index_page'
+  match 'welcome/search_result', via: [:get], controller: :welcome, action: :search_result, as: 'search_result_page'
 #login
-  get 'login/login_page' => 'login#login_page'
-  post 'login/sign_in' => 'login#sign_in'
-  get 'login/logout_page' => 'login#logout_page'
-  get 'login/login_fail' => 'login#login_fail'
+  match 'login/login_page', via: [:get], controller: :login, action: :login_page, as: 'login_page'
+  match 'login/sign_in', via: [:post], controller: :login, action: :sign_in
+  match 'login/logout_page', via: [:get], controller: :login, action: :logout_page, as: 'logout_page'
 #suggest
-  get 'suggest/suggest_page' => 'suggest#suggest_page'
-  post 'suggest/create_suggestion' => 'suggest#create_suggestion'
-  post 'suggest/list_book' => 'suggest#list_book'
+  match 'suggest/suggest_page', via: [:get], controller: :suggest, action: :suggest_page, as: 'suggest_page'
+  match 'suggest/create_suggestion', via: [:post], controller: :suggest, action: :create_suggestion
+  match 'suggest/list_book', via: [:post], controller: :suggest, action: :list_book
 #management
-  get 'manage_book/approve_page' => 'manage_book#approve_page'
-  get 'manage_book/managebook_page' => 'manage_book#managebook_page'
-  get 'manage_book/approve/:id' =>  'manage_book#approve'
-  get 'manage_book/deny/:id' =>  'manage_book#deny'
-  get 'manage_book/unapprove/:id' =>  'manage_book#unapprove'
-  get 'manage_book/detail_page/:id' => 'manage_book#detail_page'
-  get '/manage_book/management_detail_page/:id' => 'manage_book#management_detail_page'
-  post '/manage_book/update' => 'manage_book#update'
-  get '/manage_book/delete/:id' => 'manage_book#delete'
+  match 'manage_book/approve_page', via: [:get], controller: :manage_book, action: :approve_page, as:'approve_page'
+  match 'manage_book/managebook_page', via: [:get], controller: :manage_book, action: :managebook_page, as:'managebook_page'
+  match 'manage_book/approve/:id', via: [:get], controller: :manage_book, action: :approve
+  match 'manage_book/deny/:id', via: [:get], controller: :manage_book, action: :deny
+  match 'manage_book/unapprove/:id', via: [:get], controller: :manage_book, action: :unapprove
+  match 'manage_book/detail_page/:id', via: [:get], controller: :manage_book, action: :detail_page, as:'detail_page'
+  match 'manage_book/management_detail_page/:id', via: [:get], controller: :manage_book, action: :management_detail_page, as:'management_detail_page'
+  match 'manage_book/update', via: [:post], controller: :manage_book, action: :update
+  match 'manage_book/delete/:id', via: [:get], controller: :manage_book, action: :delete
+
 #suggest_list
-  get 'suggest_list/suggest_list_page' => 'suggest_list/suggest_list_page'
-  get 'suggest_list/detail_suggest_list_page/:id' => 'suggest_list#detail_suggest_list_page'
+  match 'suggest_list/suggest_list_page', via: [:get], controller: :suggest_list, action: :suggest_list_page, as: 'suggest_list_page'
+  match 'suggest_list/detail_suggest_list_page/:id', via: [:get], controller: :suggest_list, action: :detail_suggest_list_page, as: 'detail_suggest_list_page'
+
 
 
 

@@ -4,21 +4,16 @@
 //= require awesomplete
 //= require moment
 
-
-function convertDate(){
-     // $('.time').forEach(function(element){
-     //     digit = parseInt($('.time').html());
-     //     result = moment(digit).format('lll');
-     //     $('.time').html(result);
-     // })
-    $('.time').each(function(index, element){
+function fade_error_label(id_lb){
+    var newid_lb = '#' + id_lb;
+    $(newid_lb).delay(2000).fadeOut('fast');
+}
+function convertDate() {
+    $('.time').each(function (index, element) {
         digit = parseInt($(element).html());
         result = moment(digit).format('lll');
         $(element).html(result);
-
     })
-
-
 }
 
 function init() {
@@ -26,6 +21,8 @@ function init() {
         //Check all script then load
         $('.dropdown-toggle').dropdown();
         get_bookname('#tf_search');
+        default_size();
+        resize_screen();
 
 
     })
@@ -44,21 +41,37 @@ function hide_label(id_label) {
 }
 
 
-function get_bookname(id_tf){
+function get_bookname(id_tf) {
     $.ajax({
-        url:'/suggest/list_book',
+        url: '/suggest/list_book',
         method: 'POST',
         datatype: 'json',
     })
-        .done(function(msg){})
-        .success(function(data_response){
-            var list_book = data_response.map(function(index){
+        .done(function (msg) {
+        })
+        .success(function (data_response) {
+            var list_book = data_response.map(function (index) {
                 return index.book_name;
             });
-            new Awesomplete (document.querySelector(id_tf),{list: list_book});
+            new Awesomplete(document.querySelector(id_tf), {list: list_book, minChars: 2});
         })
-        .fail(function(jqXHR, textStatus){
-            alert('Request failed: '+textStatus);
+        .fail(function (jqXHR, textStatus) {
+            alert('Request failed: ' + textStatus);
         });
+
+}
+function default_size(){
+    var totalHeight = $(window).height();
+    var newHeight = totalHeight-90;
+    $('.div-content').height(newHeight);
+}
+
+function resize_screen(){
+    $(window).resize(function () {
+        var totalHeight = $(window).height();
+        var newHeight = totalHeight-90;
+        $('.div-content').height(newHeight);
+    })
+
 
 }

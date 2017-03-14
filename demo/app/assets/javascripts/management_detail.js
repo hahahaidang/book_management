@@ -1,4 +1,5 @@
 init();
+fade_error_label('result');
 function check_input_update() {
     flag = 0;
     if (check_tf_name('tf_book_name', 'id_label_tf_bookname')) {
@@ -10,7 +11,7 @@ function check_input_update() {
                 return true;
             else return false;
         } else {
-            $('#result').css('display','none');
+            $('#result').css('display', 'none');
             return false;
         }
     }
@@ -27,7 +28,10 @@ function check_tf_quantity(id_tf, id_lb) {
         show_warning_lable(newid_lb, 'Value is too long!');
         return false;
     } else if (tf_vl < 0 || tf_vl > 100) {
-        show_warning_lable(newid_lb, 'This value is out of range!');
+        show_warning_lable(newid_lb, 'This value must be a positive number and less than 100!');
+        return false;
+    }else if (!$.isNumeric($(newid_tf).val())){
+        show_warning_lable(newid_lb, 'This value must be a number!');
         return false;
     } else {
         hide_label(newid_lb);

@@ -1,36 +1,47 @@
-<%= javascript_include_tag 'login'%>
 <h1>SEARCH RESULT</h1>
-<div class="col-xs-offset-3">
-  <table class = 'table table-striped table-bordered' id="table">
-    <thead class="thead-default">
-      <tr>
-        <th>Suggester</th>
-        <th>Bookname</th>
-        <th>Quantity</th>
-        <th>Status</th>
-        <th>Date suggested</th>
-      </tr>
-    </thead>
-    <tbody>
+<% if !@result.blank? %>
+    <div class="col-xs-offset-3">
+      <table class='table table-striped table-bordered' id="table">
+        <thead class="thead-default">
+        <tr>
+          <th>Suggester</th>
+          <th>Bookname</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Date suggested</th>
+        </tr>
+        </thead>
+        <tbody>
 
         <% @result.each do |t| %>
-          <tr>
-            <td><%= t['user_name'] %></td>
-            <td><%= t['book_name'] %></td>
-            <td><%= t['quantity'] %></td>
-            <% if t['status'] ==0  %>
-                <% stt='Pending' %>
-            <% elsif t['status'] == 1  %>
-                <% stt='Approved'  %>
-                <% color = 'green'  %>
-            <% else %>
-                <% stt= 'Denied'   %>
-                <% color = 'red'  %>
-            <% end  %>
-            <td id=<%= color %>><%= stt %></td>
-            <td><%= t['created_at'] %></td>
-          </tr>
-      <% end %>
-    </tbody>
-  </table>
+            <tr>
+              <td><%= t['user_name'] %></td>
+              <td><%= t['book_name'] %></td>
+              <td><%= t['quantity'] %></td>
+              <% if t['status'] ==0 %>
+                  <% stt='Pending' %>
+              <% elsif t['status'] == 1 %>
+                  <% stt='Approved' %>
+                  <% color = 'green' %>
+              <% else %>
+                  <% stt= 'Denied' %>
+                  <% color = 'red' %>
+              <% end %>
+              <td id=<%= color %>><%= stt %></td>
+              <td class="time"><%= t['created_at'].to_i*1000 %></td>
+            </tr>
+        <% end %>
+<% else %>
+    <div id="notification">
+      <label id="lb_notification">Your search returned no matches.</label>
+    </div>
+<% end %>
+</tbody>
+</table>
+
 </div>
+<div class="paging-button">
+  <%= will_paginate @result, renderer: BootstrapPagination::Rails %>
+</div>
+<label id="hidden_label"><%= @value_search %></label>
+<%= javascript_include_tag 'search_result' %>

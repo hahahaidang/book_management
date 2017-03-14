@@ -16,3 +16,16 @@ h1 {
 th{
     text-align: center;
 }
+#notification{
+    text-align: center;
+}
+#lb_notification{
+    margin-top: 100px;
+    font-size: large;
+}
+.paging-button{
+    text-align: center;
+}
+#hidden_label{
+    display: none;
+}

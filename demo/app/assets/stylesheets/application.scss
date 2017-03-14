@@ -19,13 +19,12 @@
   background-color: #F2F2F2;
   //padding: 20px;
   margin-top: 10px;
-  min-height: 300px;
 }
 
 .model-footer{
   margin-top: 10px;
-  background-color: #8258FA;
-  text-align: right;
+  background-color: #e47b46;
+  text-align: center;
 }
 .model-footer span{
   padding-right:  10px;
@@ -37,14 +36,17 @@
   font-family: PT Sans Caption;
 
 }
+
 .main-nav{
-  background-color: #8258FA;
+  background-color: #e47b46;
 }
 #text-navbar-logo{
   color:white;
   font-weight: 500;
+  font-size: 25px;
   font-family: PT Sans Caption;
 }
+
 #btn_login_logout{
   margin-top: -8px;
 }
@@ -63,8 +65,17 @@
   font-size: medium;
 }
 #lb_username:hover{
-    color: orange;
+    color: black;
 }
-.div-content{
-  min-height: 500px;
+
+
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus{
+  background-color: #ab9e9e;
+}
+.lb_suggest_list{
+  font-weight: lighter !important;
+}
+.lb_suggest_list:focus{
+  background-color: #ab9e9e !important;
 }

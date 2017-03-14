@@ -1,25 +1,26 @@
-
 <h2>DETAIL PAGE</h2>
+<% @collection.each do |t| %>
 <div id='content' class="col-xs-offset-4">
     <div class="row">
         <label class='col-xs-2'>Suggester</label>
-        <span class='col-xs-7 '><%= @user %></span>
+        <span class='col-xs-7 '><%= t.user.user_name %></span>
     </div>
     <div class="row">
         <label class='col-xs-2'>Bookname</label>
-        <span class='col-xs-7 '><%= @name %></span>
+        <span class='col-xs-7 '><%= t.book.book_name %></span>
     </div>
     <div class="row">
         <label class='col-xs-2'>Link</label>
-        <span class='col-xs-7 '><a target="_blank" href='<%= @link %>'><%= @link %></a></span>
+        <span class='col-xs-7 '><a target="_blank" href='<%= t.book_link %>'><%= t.book_link %></a></span>
     </div>
     <div class="row">
         <label class='col-xs-2'>Price</label>
-        <span class='col-xs-7 '><%= @price %> $</span>
+        <span class='col-xs-7 '><%= t.book_price %> $</span>
     </div>
     <div class="row">
         <label class='col-xs-2'>Quantity</label>
-        <span class='col-xs-7 '><%= @quantity %></span>
+        <span class='col-xs-7 '><%= t.quantity %></span>
     </div>
 </div>
+<% end  %>
 <%= javascript_include_tag 'detail'%>

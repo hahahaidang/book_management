@@ -1,59 +1,71 @@
 <%= render 'layouts/header' %>
 
-  <body>
-      <div class="navbar-default main-nav">
-        <div class="row">
-          <div class="navbar-header col-xs-7">
-              <a id="text-navbar-logo" class="navbar-brand" href="/welcome/index">Book Management</a>
-              <ul class="nav navbar-nav">
-                <li class="dropdown">
-                  <a id="text-navbar" href="#" class="navbar-brand dropdown-toggle"
-                     data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Function
-                    <span class="caret"></span></a>
-                  <% if session[:user]=='admin'%>
-                   <ul class="dropdown-menu">
+<body>
+<div class="navbar-default main-nav">
+  <div class="row">
+    <div class="navbar-header col-xs-7">
+      <a id="text-navbar-logo" class="navbar-brand" href="/welcome/index">Book Management</a>
+      <% if session[:user].nil? %>
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a id="text-navbar" href="/suggest_list/suggest_list_page" class="navbar-brand lb_suggest_list" role="button">Suggested
+                List</a>
+            </li>
+          </ul>
+      <% else %>
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a id="text-navbar" href="#" class="navbar-brand dropdown-toggle"
+                 data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Feature
+                <span class="caret"></span></a>
+              <% if session[:user]=='admin' %>
+                  <ul class="dropdown-menu">
                     <li><a href="/suggest/suggest_page">Suggestion</a></li>
-                    <li><a href="/suggest_list/suggest_list_page">Suggested List</a></li>
+                    <li><a href="/suggest_list/suggest_list_page">Suggested list</a></li>
                     <li role="separator" class="divider"></li>
                     <li class='dropdown-header'>Admin function</li>
                     <li><a href="/manage_book/approve_page">Approval</a></li>
                     <li><a href="/manage_book/managebook_page">Management page</a></li>
-                   </ul>
-                  <% else %>
-                    <ul class="dropdown-menu">
-                      <li><a href="/suggest/suggest_page">Suggestion</a></li>
-                      <li><a href="/suggest_list/suggest_list_page">Suggested List</a></li>
-                    </ul>
-                  <% end %>
-                </li>
-              </ul>
-            </div>
-            <div class="navbar-right">
-              <%=  form_tag '/welcome/search_result', method: :get, class: 'navbar-form' do %>
-                  <ul class="nav navbar-nav ">
-                    <li>
-                      <div class='form-group'>
-                          <%= search_field_tag 'tf_search', nil, class: 'form-control', placeholder: "Enter book's name", autocomplete: 'off' %>
-                          <%= submit_tag 'Search', class: 'btn btn-default' %>
-                      </div>
-                    </li>
-                    <% if session[:user]== nil  %>
-                        <li id="btn_login_logout"><a id="text-navbar" href="/login/logout_page" class="navbar-brand">Login</a></li>
-                    <% else %>
-                        <li id="lb_username" class="navbar-brand">Welcome [<%= session[:user] %>]</li>
-                        <li id="btn_login_logout"><a id="text-navbar" href="/login/logout_page" class="navbar-brand">Logout</a></li>
-                    <% end %>
                   </ul>
-              <% end  %>
-            </div>
-          </div>
-      </div>
+              <% else %>
+                  <ul class="dropdown-menu">
+                    <li><a href="/suggest/suggest_page">Suggestion</a></li>
+                    <li><a href="/suggest_list/suggest_list_page">Suggested list</a></li>
+                  </ul>
+              <% end %>
+            </li>
+          </ul>
+      <% end %>
 
-      <div class='div-body row'>
-        <div class="div-content col-xs-12">
-            <%= yield %>
-        </div>
-      </div>
-      <%= render 'layouts/footer' %>
+    </div>
+    <div class="navbar-right">
+      <%= form_tag '/welcome/search_result', method: :get, class: 'navbar-form' do %>
+          <ul class="nav navbar-nav ">
+            <li>
+              <div class='form-group'>
+                <%= search_field_tag 'tf_search', nil, class: 'form-control', placeholder: "Enter book's name", autocomplete: 'off' %>
+                <%= submit_tag 'Search', class: 'btn btn-default' %>
+              </div>
+            </li>
+            <% if session[:user]== nil %>
+                <li id="btn_login_logout"><a id="text-navbar" href="/login/login_page" class="navbar-brand">Login</a>
+                </li>
+            <% else %>
+                <li id="lb_username" class="navbar-brand">Welcome [<%= session[:user] %>]</li>
+                <li id="btn_login_logout"><a id="text-navbar" href="/login/logout_page" class="navbar-brand">Logout</a>
+                </li>
+            <% end %>
+          </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-  </body>
+<div class='div-body row'>
+  <div class="div-content col-xs-12">
+    <%= yield %>
+  </div>
+</div>
+<%= render 'layouts/footer' %>
+
+</body>
