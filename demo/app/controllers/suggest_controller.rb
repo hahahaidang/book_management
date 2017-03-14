@@ -1,14 +1,14 @@
 include SuggestHelper
-
 class SuggestController < ApplicationController
+  before_action :check_permission
   def suggest_page
-    if session[:user] == nil
+    if session[:user].nil?
       redirect_to login_page_path
     end
   end
 
   def create_suggestion
-    if session[:user]
+    unless session[:user].nil?
       userID = User.find_by_user_name(session[:user]).id
       bookLink = params['tf_book_link']
       bookPrice = params['tf_book_price'].to_f
@@ -26,24 +26,24 @@ class SuggestController < ApplicationController
             if (bookPrice == 0.0)
               flash[:warn] = 'Invalid price!'
             else
-              if (bookPrice < 0) || (bookPrice > 1000)
-                flash[:warn] = 'Price must be greater than 0 and less than or equal 1000'
+              if (bookPrice < 0)
+                flash[:warn] = 'Price must be greater than or equal 0!'
               else
                 if (quantity_on_request == 0)
                   flash[:warn] ='Invalid quantity!'
                 else
-                  if (quantity_on_request < 0) || (quantity_on_request > 100)
-                    flash[:warn] = 'Quantity must be greater than 0 and less than or elqual 100'
+                  if (quantity_on_request < 0)
+                    flash[:warn] = 'Quantity must be a positive number!'
                   else
                     #insert exist
                     if Book.find_by_book_name(bookName)
                       bookID = Book.find_by_book_name(bookName).id
                       insert_exists_book(bookID, userID, quantity_on_request, bookLink, bookPrice)
-                      flash[:notice] = 'Insert success!'
+                      flash[:notice] = 'Suggest successfully!'
                     else
                       #insert new book
                       insert_new_book(bookName, quantity_on_request, userID, bookLink, bookPrice)
-                      flash[:notice] = 'Insert success!'
+                      flash[:notice] = 'Suggest successfully!'
                     end
                   end
                 end

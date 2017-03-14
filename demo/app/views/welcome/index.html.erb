@@ -1,4 +1,4 @@
-<% if session[:user]=='admin' %>
+<% if @role==1 %>
     <h1>SUGGESTION TODAY</h1>
 <% else %>
     <h1>APPROVAL TODAY</h1>
@@ -12,7 +12,7 @@
           <th>Book</th>
           <th>Quantity</th>
           <th>Status</th>
-          <% if session[:user]=='admin' %>
+          <% if @role==1 %>
               <th>Date suggest</th>
           <% else %>
               <th>Date approve</th>
@@ -37,7 +37,7 @@
             </tr>
         <% end %>
 <% else %>
-    <% if session[:user]=='admin' %>
+    <% if @role==1 %>
       <div id="notification">
         <label id="lb_notification">No suggestion today.</label>
       </div>
@@ -54,3 +54,4 @@
   <%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
 </div>
 <%= javascript_include_tag 'welcome' %>
+<%# "test: ==> " @role.to_s + " - "  + session[:user] + "--" + @admin_role.to_s %>

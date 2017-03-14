@@ -47,7 +47,7 @@ function check_tf_book_link(id_tf, id_lb) {
         show_warning_lable(newid_lb, 'This value is too long!');
         return false;
     }else if (!(tf_vl.match(regex))){
-        show_warning_lable(newid_lb, 'This value must be a link!');
+        show_warning_lable(newid_lb, 'This value must be a link! Example:http://website.com');
         return false;
     }
     else {
@@ -84,8 +84,8 @@ function check_tf_price(id_tf, id_lb) {
     } else if (tf_length > 255) {
         show_warning_lable(newid_lb, 'Value is too long!');
         return false;
-    } else if (tf_vl < 0 || tf_vl > 1000) {
-        show_warning_lable(newid_lb, 'This value must be greater than 0 and less than 1000!');
+    } else if (tf_vl < 0) {
+        show_warning_lable(newid_lb, 'This value must be greater than or equal 0!');
         return false;
     } else if (!$.isNumeric($(newid_tf).val())){
         show_warning_lable(newid_lb, 'This value must be a number!');
@@ -107,8 +107,8 @@ function check_tf_quantity(id_tf, id_lb) {
     } else if (tf_length > 255) {
         show_warning_lable(newid_lb, 'Value is too long!');
         return false;
-    } else if (tf_vl < 1 || tf_vl > 100) {
-        show_warning_lable(newid_lb, 'This value must be greater than 0 and less than 100!');
+    } else if (tf_vl < 1) {
+        show_warning_lable(newid_lb, 'This value must be a positive number!');
         return false;
     }else if (!$.isNumeric($(newid_tf).val())){
         show_warning_lable(newid_lb, 'This value must be a number!');

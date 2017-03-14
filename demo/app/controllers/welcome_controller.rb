@@ -1,11 +1,13 @@
 require 'will_paginate/array'
 
 class WelcomeController < ApplicationController
+  before_action :check_permission
+
   def index
     @page_title = 'Index page'
     beginDate = Date.current.beginning_of_day
     endDate = Date.current.end_of_day
-    if session[:user]=='admin'
+    if @role == 1
       @collection = Request.where("status = ? AND created_at >= ? AND created_at < ?", 0, beginDate, endDate)
                         .order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
 

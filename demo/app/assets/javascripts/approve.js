@@ -1,4 +1,5 @@
 init();
+active_label('btn_dropdown');
 
 
 function approve_request() {

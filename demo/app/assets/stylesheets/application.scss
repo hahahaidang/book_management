@@ -31,12 +31,18 @@
   color : white;
 }
 
-#text-navbar{
+#text-navbar, #text-navbar-suggest, #text-navbar-suggestlist{
   color: white;
   font-family: PT Sans Caption;
   font-size: 14px;
-
 }
+
+#text-navbar-suggest:hover,
+  #text-navbar-suggestlist:hover,
+    #lb_username:hover{
+  color : black;
+}
+
 
 .main-nav{
   background-color: #e47b46;
@@ -65,18 +71,18 @@
   margin-right: -15px;
   font-size: 14px;
 }
-#lb_username:hover{
-    color: black;
-}
 
 
 .lb_suggest_list{
   font-weight: lighter !important;
 }
-.lb_suggest_list:focus{
+.lb_suggest_list:focus, .lb_suggest:focus{
   background-color: #ab9e9e !important;
 }
-.lb_suggest:focus{
+.btn_dropdown:hover{
+  color:black !important;
+}
+.btn_dropdown:focus{
   background-color: #ab9e9e !important;
-
+  color: black !important;
 }

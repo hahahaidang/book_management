@@ -1,9 +1,10 @@
 include ManageBookHelper
 
 class ManageBookController < ApplicationController
+  before_action :check_permission
 
   def managebook_page
-    if session[:user]=='admin'
+    if @role == 1
       @collection = Book.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
       @page =  params[:page].to_i
 
@@ -13,7 +14,7 @@ class ManageBookController < ApplicationController
   end
 
   def approve_page
-    if session[:user] == 'admin'
+    if @role==1
       @collection = Request.where('status = 0').paginate(:page => params[:page], :per_page => 10)
     else
       redirect_to index_page_path
@@ -22,7 +23,7 @@ class ManageBookController < ApplicationController
 
 
   def detail_page
-    if session[:user] == 'admin'
+    if @role==1
       id_request = params[:id]
       if !Request.where(id:id_request).blank?
        @collection = Request.where(id:id_request)
@@ -34,7 +35,7 @@ class ManageBookController < ApplicationController
   end
 
   def management_detail_page
-    if session[:user] == 'admin'
+    if @role==1
       book_id = params[:id]
       if !Book.where(id:book_id).blank?
         @collection = Book.where(id:book_id)
@@ -47,7 +48,7 @@ class ManageBookController < ApplicationController
   end
 
   def approve
-    if session[:user] == 'admin'
+    if @role==1
       if request.get?
         id = params[:id]
       end
@@ -65,7 +66,7 @@ class ManageBookController < ApplicationController
   end
 
   def deny
-    if session[:user] == 'admin'
+    if @role==1
       if request.get?
         id = params[:id]
       end
@@ -83,7 +84,7 @@ class ManageBookController < ApplicationController
   end
 
   def update
-    if session[:user] == 'admin'
+    if @role==1
       #get id from hidden form
       book_id = params['tf_book_id']
       name = params['tf_book_name']
@@ -112,7 +113,7 @@ class ManageBookController < ApplicationController
   end
 
   def delete
-    if session[:user] == 'admin'
+    if @role==1
       id = params[:id]
       func_delete(id)
       redirect_to :back

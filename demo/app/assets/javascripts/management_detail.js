@@ -1,5 +1,6 @@
 init();
 fade_error_label('result');
+active_label('btn_dropdown');
 
 
 function return_management_page(){
@@ -33,8 +34,8 @@ function check_tf_quantity(id_tf, id_lb) {
     } else if (tf_length > 255) {
         show_warning_lable(newid_lb, 'Value is too long!');
         return false;
-    } else if (tf_vl < 0 || tf_vl > 100) {
-        show_warning_lable(newid_lb, 'This value must be a positive number and less than 100!');
+    } else if (tf_vl < 0) {
+        show_warning_lable(newid_lb, 'This value must be a positive number!');
         return false;
     }else if (!$.isNumeric($(newid_tf).val())){
         show_warning_lable(newid_lb, 'This value must be a number!');
