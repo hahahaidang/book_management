@@ -11,37 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227085303) do
+ActiveRecord::Schema.define(version: 20170316010633) do
 
   create_table "books", force: :cascade do |t|
-    t.text     "book_name",        limit: 65535
-    t.text     "book_link",        limit: 65535
-    t.text     "book_description", limit: 65535
-    t.integer  "book_price",       limit: 4
-    t.integer  "book_quantity",    limit: 4
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.text     "book_name",     limit: 65535
+    t.integer  "book_quantity", limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "requests", force: :cascade do |t|
     t.integer  "user_id",      limit: 4
     t.integer  "book_id",      limit: 4
     t.integer  "status",       limit: 4
-    t.date     "date_request"
-    t.date     "date_approve"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.integer  "quantity",     limit: 4
+    t.float    "book_price",   limit: 24
+    t.text     "book_link",    limit: 65535
+    t.datetime "date_approve"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "requests", ["book_id"], name: "index_requests_on_book_id", using: :btree
   add_index "requests", ["user_id"], name: "index_requests_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.text     "user_pwd",     limit: 65535
-    t.text     "user_name",    limit: 65535
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.datetime "date_approve"
+    t.text     "user_pwd",   limit: 65535
+    t.text     "user_name",  limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_foreign_key "requests", "books"
