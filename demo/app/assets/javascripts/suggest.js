@@ -2,7 +2,8 @@ init();
 awesomplete_insert_book();
 fade_error_label('result');
 active_label('lb_suggest');
-
+script_check('script');
+script_check('id_tf_book_name', 'id_label_tf_bookname');
 
 function check_input() {
     var flag = 0;
@@ -39,7 +40,7 @@ function check_tf_book_link(id_tf, id_lb) {
     var newid_lb = '#' + id_lb;
     var tf_vl = $(newid_tf).val();
     var tf_length = tf_vl.length;
-    var expression = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/ ;
+    var expression = /^(?:ftp|http|https):\/\/(?:[\w\.\-\+]+:{0,1}[\w\.\-\+]*@)?(?:[a-z0-9\-\.]+)(?::[0-9]+)?(?:\/|\/(?:[\w#!:\.\?\+=&%@!\-\/\(\)]+)|\?(?:[\w#!:\.\?\+=&%@!\-\/\(\)]+))?$/;
     var regex = new RegExp(expression);
 
 
@@ -60,13 +61,20 @@ function check_tf_name(id_tf, id_lb) {
     var newid_lb = '#' + id_lb;
     var tf_vl = $(newid_tf).val();
     var tf_length = tf_vl.length;
+    // var expression = /<[sS][cC][rR][iI][pP][tT][\s\S]*?>[\s\S]*?<\/[sS][cC][rR][iI][pP][tT]>/;
+    var expression = /<\/*[sS][cC][rR][iI][pP][tT][\s\S]*?>/;
+    var regex = new RegExp(expression);
+
     if ($.trim(tf_vl).length == 0) {
         show_warning_lable(newid_lb, 'This field can not be blank!');
         return false;
-    } else if (tf_length > 255) {
+    }else if (tf_length > 255) {
         show_warning_lable(newid_lb, 'Value is too long!');
         return false;
-    } else {
+    }else if (tf_vl.match(regex)){
+        show_warning_lable(newid_lb,'This value must not contains special character');
+    }
+    else {
         hide_label(newid_lb);
         return true;
     }
@@ -149,3 +157,15 @@ function awesomplete_parent(){
     $('#id_tf_book_name').parent().css('width','100%');
 }
 
+function script_check(id_tf, id_lb){
+    var newid_tf = '#' + id_tf;
+    var newid_lb = '#' + id_lb;
+
+    var tf_vl = $(newid_tf).val();
+
+    var expression = /<script[\s\S]*?>[\s\S]*?<\/script>/;
+    var regex = new RegExp(expression);
+    if (tf_vl.match(regex)){
+        show_warning_lable(newid_lb, 'String must not contains <script>')
+    }
+}

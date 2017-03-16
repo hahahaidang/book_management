@@ -13,7 +13,7 @@ class SuggestController < ApplicationController
       bookLink = params['tf_book_link']
       bookPrice = params['tf_book_price'].to_f
       quantity_on_request = params['tf_book_quantity'].to_i
-      bookName = params['tf_book_name']
+      bookName = params['tf_book_name'].strip
       if bookName.blank?
         flash[:warn] = 'Bookname must not be blank!'
       else
