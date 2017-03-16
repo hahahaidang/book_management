@@ -1,9 +1,10 @@
 module LoginHelper
 
   def createUser(username, password)
-    self.user_name= username
-    self.user_pwd= Digest::SHA1.hexdigest(password)
-    self.save
+    @action = User.new
+    @action.user_name= username
+    @action.user_pwd= Digest::SHA1.hexdigest(password)
+    @action.save
   end
 
 
