@@ -6,7 +6,7 @@ class CreateRequests < ActiveRecord::Migration
       t.integer :status
       t.integer :quantity
       t.float :book_price
-      t.text :book_link
+      t.integer :like
       t.datetime :date_approve
       t.timestamps null: false
 

@@ -1,10 +1,11 @@
 module ManageBookHelper
-  def func_approve(request_id)
+  def func_approve(request_id,admin_comment)
     if !Request.where(id:request_id).blank?
       book_id = Request.find(request_id).book_id
       @request = Request.find(request_id)
       @request.status = 1
       @request.date_approve =  Time.now.to_datetime
+      @request.admin_comment = admin_comment
       @book = Book.find(book_id)
       @book.book_quantity += @request.quantity
       @book.save!
@@ -14,10 +15,11 @@ module ManageBookHelper
     end
   end
 
-  def func_deny(request_id)
+  def func_deny(request_id, adm_comment)
     if !Request.where(id:request_id).blank?
       @action = Request.find(request_id)
       @action.status = 2
+      @action.admin_comment = adm_comment
       @action.save!
     else
       redirect_to approve_page_path

@@ -14,6 +14,8 @@ Rails.application.config.assets.precompile += %w( *.coffee )
 #index
 Rails.application.config.assets.precompile += %w( welcome/index.css )
 Rails.application.config.assets.precompile += %w( welcome/search_result.css )
+Rails.application.config.assets.precompile += %w( welcome/review_request.css )
+Rails.application.config.assets.precompile += %w( welcome/detail.css )
 
 
 #login
@@ -31,6 +33,7 @@ Rails.application.config.assets.precompile += %w( manage_book/managebook_page.cs
 Rails.application.config.assets.precompile += %w( manage_book/approve_page.css )
 Rails.application.config.assets.precompile += %w( manage_book/detail_page.css )
 Rails.application.config.assets.precompile += %w( manage_book/management_detail_page.css )
+Rails.application.config.assets.precompile += %w( manage_book/myrequest_page.css )
 
 #suggest_list
 Rails.application.config.assets.precompile += %w( suggest_list/suggest_list_page.css )

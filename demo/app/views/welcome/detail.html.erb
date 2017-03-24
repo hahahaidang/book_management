@@ -1,0 +1,171 @@
+<div class="row">
+  <% @collection.each do |t| %> <!--start each-->
+      <div class="container_detail">
+        <div class="div_image">
+          <% if t['image_link'].blank? %> <!--show image default or not-->
+              <img id='image' src="/assets/images/no_image.png">
+          <% else %>
+              <img id='image' src="<%= t['image_link'] %>">
+          <% end %> <!--end show image-->
+        </div>
+
+        <div class="main_content">
+          <div class='form-group '>
+            <h3 title="<%= t['book_name'] %>"><%= t['book_name'] %></h3>
+          </div>
+          <hr id="hrr">
+          <div class='form-group '>
+            <label class=' lb_suggester '>Suggester:</label>
+            <span><%= t['user_name'] %></span>
+          </div>
+          <div class='form-group'>
+            <label class='lb_link'>Link:</label>
+            <div class="div_link">
+              <span class="content_link" title="<%= t['book_link'] %>"><a target="_blank" href="<%= t['book_link'] %>"><%= t['book_link'] %></a></span>
+            </div>
+          </div>
+          <div class='form-group '>
+            <label class=' lb_price '>Price:</label>
+            <span><%= t['book_price'] %></span>
+          </div>
+          <div class='form-group '>
+            <label class=' lb_quantity '>Quantity:</label>
+            <span><%= t['quantity'] %></span>
+          </div>
+          <div class='form-group '>
+            <label class=' lb_status '>Status:</label>
+            <% if t['status'] == 0 %> <!--check status-->
+                <span class="content_status">Pending</span>
+                <% if @role ==1 %>
+                    <button class="btn btn-success" onclick="call_approve_modal()">Approve</button>
+                    <button class="btn btn-danger" onclick="call_cancel_modal()">Cancel</button>
+                <% end %>
+            <% else
+                 if t['status'] == 1 %>
+                    <span class="content_status" id="green">Approved</span>
+                <% else %>
+                    <span class="content_status" id="red">Canceled</span>
+                <% end %>
+            <% end %> <!--end check status-->
+          </div>
+          <div class=" form-group div_like_icon">
+            <% if @role == 0 %> <!--check role-->
+                <!--is member-->
+                <% if t['liked'] == 0 %>
+                    <!--Didnt like before-->
+                    <button class="btn btn-default btn_like" onclick="like(<%= t['id'] %>)">
+                      <span id="<%= t['id'] %>_request_like"><%= t['quantity_of_like'] %></span>
+                      <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
+                    </button>
+                <% else %>
+                    <!--Liked-->
+                    <div>
+                      <span><%= t['quantity_of_like'] %></span>
+                      <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
+                    </div>
+                <% end %>
+            <% else %>
+                <!--admin or anonymous cant like-->
+                <div>
+                  <span><%= t['quantity_of_like'] %></span>
+                  <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
+                </div>
+            <% end %> <!--end check role-->
+          </div> <!--end div_like_icon-->
+          <% if t['status'] == 1 %>
+              <label id='green' class='lb_admin_comment'><span class="glyphicon glyphicon-ok"></span>Approved by admin:</label>
+              <span><%= t['admin_comment'] %></span>
+          <% end %>
+          <% if t['status'] == 2 %>
+              <label id='red' class='lb_admin_comment'><span></span>Cancel by admin:</label>
+              <span><%= t['admin_comment'] %></span>
+          <% end %>
+          <div class="div_comment">
+            <div class="comment_div_form">
+              <h4>Comment</h4>
+              <div class='form-group '>
+              </div>
+              <% @comment.each do |t| %> <!--start load comment-->
+                  <div class="form-group comment_text_area">
+                    <% if t['user_id'].nil? %>
+                        <strong><span class="lb_comment_suggester">Anonymous</span></strong>
+                    <% else %>
+                        <strong><span class="lb_comment_suggester"><%= t['user_name'] %></span></strong>
+                    <% end %>
+                    <span class="form_control">
+                        <%= t['content'] %>
+                      </span>
+                  </div>
+              <% end %> <!--end load comment-->
+              <%= form_tag("/welcome/post_comment/#{t['id']}", method: :post) do %>
+                  <div class="form-group comment_text_area">
+                    <% if session[:user].nil? %>
+                        <label class="lb_comment_suggester">Name: Anonymous</label>
+                    <% else %>
+                        <label class="lb_comment_suggester">Name: <%= session[:user] %></label>
+                    <% end %>
+                    <%= text_area_tag 'comment_text_area', nil, rows: 2, cols: 60, class: 'form_control', placeholder: 'Add a comment' %>
+                    <div>
+                      <%= submit_tag 'Post', class: 'btn btn-default btn_post' %>
+                    </div>
+                  </div>
+
+              <% end %>
+
+            </div>
+          </div> <!--end div_comment-->
+        </div> <!--end main_content-->
+      </div> <!--end container detail-->
+      </div>
+
+
+      <div class="modal fade" id="modal_approve" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Approve request</h4>
+            </div>
+            <div class="modal-body">
+              <%= form_tag("/manage_book/approve", method: :post) do %>
+                  <div class="form-group comment_text_area">
+                    <%= text_area_tag 'text_area_comment', nil, rows: 2, cols: 77, class: 'form_control', placeholder: 'Leave a comment' %>
+                    <%= text_field_tag 'tf_request_id', nil, class: 'form-control', id: 'id_tf_request_id', value: t['id'] %>
+                  </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <%= submit_tag 'Approve Request', class: 'btn btn-success btn_modal_approve' , onclick: 'return approve_request()' %>
+                  </div>
+              <% end %>
+              </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modal_cancel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Cancel Request</h4>
+            </div>
+            <div class="modal-body">
+              <%= form_tag("/manage_book/deny", method: :post) do %>
+                  <div class="form-group comment_text_area">
+                    <%= text_area_tag 'text_area_comment', nil, rows: 2, cols: 77, class: 'form_control', placeholder: 'Leave a comment' %>
+                    <%= text_field_tag 'tf_request_id', nil, class: 'form-control', id: 'id_tf_request_id', value: t['id'] %>
+                  </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <%= submit_tag 'Cancel Request', class: 'btn btn-danger btn_modal_deny' , onclick: 'return deny_request()' %>
+                  </div>
+              <% end %>
+              </div>
+        </div>
+      </div>
+  <% end %> <!--end each-->
+
+  <%= javascript_include_tag 'welcome_detail' %>

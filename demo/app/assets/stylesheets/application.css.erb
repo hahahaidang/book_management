@@ -10,10 +10,10 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require bootstrap
  *= require_self
  *= require awesomplete
  */
-@import "bootstrap";
 
 .div-content{
   background-color: #F2F2F2;
@@ -31,15 +31,13 @@
   color : white;
 }
 
-#text-navbar, #text-navbar-suggest, #text-navbar-suggestlist{
+#text-navbar, #text-navbar-label{
   color: white;
   font-family: PT Sans Caption;
   font-size: 14px;
 }
 
-#text-navbar-suggest:hover,
-  #text-navbar-suggestlist:hover,
-    #lb_username:hover{
+#text-navbar-label:hover{
   color : black;
 }
 
@@ -70,6 +68,7 @@
   margin-top: -9px;
   margin-right: -15px;
   font-size: 14px;
+  background-color:  #e47b46;;
 }
 
 
@@ -79,10 +78,83 @@
 .lb_suggest_list:focus, .lb_suggest:focus{
   background-color: #ab9e9e !important;
 }
-.btn_dropdown:hover{
+.btn_dropdown:hover, #lb_username:hover{
   color:black !important;
 }
 .btn_dropdown:focus{
   background-color: #ab9e9e !important;
   color: black !important;
+}
+.glyphicon-home, .glyphicon-plus, .glyphicon-edit, .glyphicon-user{
+  padding-right: 5px;
+}
+.btn_user:hover, .btn_user, .orange{
+  background-color: #e47b46 ;
+}
+.btn_user{
+  background-color: #e47b46 ;
+}
+
+.orange:active, .btn-group.open , .dropdown-toggle{
+  -webkit-box-shadow : none !important;;
+  box-shadow: none !important;
+}
+.dropdown-menu{
+  margin-top: 13px;
+  background-color: white;
+}
+.orange{
+  color:white;
+}
+
+#image{
+  height: 200px;
+  width: 200px;
+}
+#main_content_form_review{
+  margin-top: 15px;
+}
+#main_content_form_review label{
+  max-width : 470px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lb_name{
+  padding-right: 33px;
+}
+.lb_link{
+  padding-right:  43px;
+}
+.lb_price{
+  padding-right:  35px;
+}
+.lb_quantity{
+  padding-right:  11px;
+}
+#div_success, #div_fail{
+  text-align: center;
+  margin-top: 30px;
+}
+#hidden_input{
+  display: none;
+}
+.div_hidden{
+  display:none;
+}
+#notification{
+  text-align: center;
+}
+#lb_notification{
+  margin-top: 100px;
+}
+.btn_next{
+  width: 8%;
+}
+
+.hidden_input{
+  display: none;
+}
+.error_label{
+  color:red;
 }

@@ -15,6 +15,7 @@ th{
 label{
     text-align: center;
     font-size: large;
+    font-size: 15px;
 }
 #td_book_name{
     max-width : 190px;
@@ -26,9 +27,77 @@ h1{
     text-align: center;
     margin-bottom: 50px;
 }
-#notification{
+
+
+
+.div_item{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: block;
+}
+
+.div_item:hover{
+    background-color: #e2e2e2;
+}
+.btn_like{
+    margin-left: 10px;
+}
+.lb_bookname{
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     text-align: center;
 }
-#lb_notification{
-    margin-top: 100px;
+.image_list{
+    text-align: center;
+}
+#like_icon{
+    color:dodgerblue;
+}
+.item_content{
+    text-align: center;
+}
+.quantity_like{
+    position: absolute;
+    font-size: 15px;
+}
+#div_item_image{
+    height: 110px;
+    width: 110px;
+}
+.page-button{
+    margin-top: 20px;
+}
+
+.div_name_most_ranking{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+.span_index_most_ranking{
+    font-size: 24px;
+}
+.div_quantity_like_most_ranking{
+    margin-top: 10px;
+    text-align: right;
+}
+.item_most_ranking{
+    height:70px;
+    border-bottom-width: 1px;
+    border-bottom-style:dotted;
+    border-bottom-color: #e0d6d6;
+    background-color: #e6e6e6;
+
+}
+.item_most_ranking{
+    padding-top: 20px;
+}
+h4{
+    color: #e47b46;
+}
+
+.btn_like:hover{
+    background-color: #a5c5e0;
 }

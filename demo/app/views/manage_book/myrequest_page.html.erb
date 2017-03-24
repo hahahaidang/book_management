@@ -1,0 +1,47 @@
+<h1>MY REQUEST</h1>
+<% if !@collection.blank? %>
+    <div class='col-xs-offset-2'>
+      <table class='table table-striped table-bordered' id="table">
+        <thead class='thead-default'>
+        <tr>
+          <th>#</th>
+          <th>Book</th>
+          <th>Quantity</th>
+          <th>Status</th>
+          <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @collection.each_with_index do |value , index|%>
+            <tr>
+              <td><%= index + 1  %></td>
+              <td id="td_book_name" title='<%= value.book.book_name %>'>
+                <a href="/welcome/detail/<%= value.id %>"><%= value.book.book_name %></a></td>
+              <td><%= value.quantity %></td>
+              <% if value.status == 0 %>
+                  <td>Pending</td>
+              <% else
+                   if value.status == 1 %>
+                      <td id="green">Approved</td>
+                  <% else %>
+                      <td id="red">Canceled</td>
+                  <% end %>
+              <% end %>
+              <td class="time">
+                <%= value.created_at.to_i*1000 %>
+              </td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+<% else %>
+    <div id="notification">
+      <label id="lb_notification">You have no request.</label>
+    </div>
+<% end %>
+<div class="page-button">
+  <%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
+</div>
+
+<%= javascript_include_tag 'myrequest' %>

@@ -1,0 +1,82 @@
+#image{
+    height: 250px;
+    width: 250px;
+}
+
+
+.div_image{
+    float: left;
+    padding-right: 20px;
+}
+.container_detail{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-left: 40px;
+    padding-right: 50px;
+}
+
+.lb_link{
+    padding-right: 46px;
+}
+.lb_price{
+    padding-right: 40px;
+}
+.lb_quantity{
+    padding-right: 18px;
+}
+.lb_suggester{
+    padding-right: 5px;
+}
+.lb_status{
+    padding-right: 31px;
+}
+.content_link a {
+    display: inline-block;
+    line-height: 1em;
+    overflow: hidden;
+    width: 400px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#hrr{
+    border-top: 1px solid #bdbdbd;
+    margin-top: 10px;
+}
+.div_link{
+    display: inline;
+    padding-top: 2px;
+}
+.div_like_icon{
+    padding-left: 115px;
+}
+
+#red{
+    color: red;
+}
+#green{
+    color:green;
+}
+#like_icon{
+    color:dodgerblue;
+
+}
+.lb_comment_suggester{
+    display: block;
+}
+.comment_text_area{
+    display: block;
+}
+.div_comment{
+    margin-top: 50px;
+}
+.btn_post{
+    display: block;
+}
+.btn_modal_approve{
+    margin-left: 20px;
+    display: inline;
+}
+#id_tf_request_id{
+    display: none;
+}

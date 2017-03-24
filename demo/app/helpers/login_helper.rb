@@ -4,7 +4,7 @@ module LoginHelper
     @action = User.new
     @action.user_name= username
     @action.user_pwd= Digest::SHA1.hexdigest(password)
-    @action.save
+    @action.save!
   end
 
 

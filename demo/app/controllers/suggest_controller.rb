@@ -8,12 +8,13 @@ class SuggestController < ApplicationController
   end
 
   def create_suggestion
-    unless session[:user].nil?
+    if @role == 0
       userID = User.find_by_user_name(session[:user]).id
       bookLink = params['tf_book_link']
       bookPrice = params['tf_book_price'].to_f
       quantity_on_request = params['tf_book_quantity'].to_i
       bookName = params['tf_book_name'].strip
+      linkImage = params['tf_link_image']
       if bookName.blank?
         flash[:warn] = 'Bookname must not be blank!'
       else
@@ -38,11 +39,11 @@ class SuggestController < ApplicationController
                     #insert exist
                     if Book.find_by_book_name(bookName)
                       bookID = Book.find_by_book_name(bookName).id
-                      insert_exists_book(bookID, userID, quantity_on_request, bookLink, bookPrice)
+                      insert_exists_book(bookID, userID, quantity_on_request, bookLink, bookPrice,linkImage)
                       flash[:notice] = 'Suggest successfully!'
                     else
                       #insert new book
-                      insert_new_book(bookName, quantity_on_request, userID, bookLink, bookPrice)
+                      insert_new_book(bookName, quantity_on_request, userID, bookLink, bookPrice,linkImage)
                       flash[:notice] = 'Suggest successfully!'
                     end
                   end
@@ -52,7 +53,6 @@ class SuggestController < ApplicationController
           end
         end
       end
-
       redirect_to :back
     else
       redirect_to login_page_path

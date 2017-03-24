@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Suggest a book</h4>
+</div>
+<div class="modal-body">
+    <%= form_tag 'create_suggestion', method: :post, class: 'main_form', id: 'create_request_form' do %>
+    <div class="div-suggest">
+        <div class='form-group'>
+            <label class='form_label'>Name</label>
+            <%= text_field_tag 'tf_book_name', nil, class: 'form-control', id: 'id_tf_book_name', autocomplete: 'off', value: params['tf_book_name']%>
+            <label class='error_label label' id='id_label_tf_bookname'></label>
+        </div>
+        <div class='form-group'>
+            <label class='form_label'>Link</label>
+            <%= text_field_tag 'tf_book_link', nil, class: 'form-control', id: 'id_tf_book_link', autocomplete: 'off', value: params['tf_book_link']%>
+            <label class='error_label label' id='id_label_tf_booklink'></label>
+        </div>
+        <div class='form-group'>
+            <label class='form_label'>Link image</label>
+            <%= text_field_tag 'tf_link_image', nil, class: 'form-control', id: 'id_tf_link_image', autocomplete: 'off', value: params['tf_link_image']%>
+            <label class='error_label label' id='id_label_linkimage'></label>
+        </div>
+        <div class='form-group'>
+            <label class='form_label'>Price</label>
+            <%= text_field_tag 'tf_book_price', nil, class: 'form-control', id: 'id_tf_book_price', type: 'number', step: 'any', autocomplete: 'off', value: params['tf_book_price']%>
+            <label class='error_label label' id='id_label_tf_bookprice'></label>
+        </div>
+        <div class='form-group'>
+            <label class='form_label'>Quantity</label>
+            <%= text_field_tag 'tf_book_quantity', nil, class: 'form-control', id: 'id_tf_book_quantity', type: 'number', step: 'any', autocomplete: 'off', value: params['tf_book_quantity']%>
+            <label class='error_label label' id='id_label_tf_bookquantity'></label>
+        </div>
+
+    </div>
+    <% end %>
+</div> <!--end modal-body-->
+<div class="modal-footer">
+    <button class="btn btn-success btn_next" type="button" onclick="call_confirm_request();">Next</button>
+    <button class="btn btn-danger button" type="reset">Reset</button>
+    <button class="btn btn-secondary button btn_cancel" type="button" onclick="cancel_request();">Cancel</button>
+</div>
+<%= javascript_include_tag 'welcome' %>

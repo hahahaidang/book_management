@@ -1,70 +1,92 @@
 <%= render 'layouts/header' %>
 
 <body>
-<div class="navbar-default main-nav">
-  <div class="row">
-    <div class="navbar-header col-xs-7">
+<nav class="navbar-default main-nav">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <a id="text-navbar-logo" class="navbar-brand" href="/welcome/index">Book Management</a>
-      <!--anonymous-->
-      <% if session[:user].nil? %>
-          <ul class="nav navbar-nav">
-            <a id="text-navbar-suggestlist" href="/suggest_list/suggest_list_page" class="navbar-brand lb_suggest_list" role="button">Suggestion
-              List</a>
-          </ul>
-      <% else
-           if @role == 0 %>
-              <ul class="nav navbar-nav">
-                <a id="text-navbar-suggest" href="/suggest/suggest_page" class="navbar-brand lb_suggest" role="button">Suggest
-                  book</a>
-                <a id="text-navbar-suggestlist" href="/suggest_list/suggest_list_page" class="navbar-brand lb_suggest_list" role="button">Suggested
-                  List</a>
-              </ul>
-          <% else
-               if @role== 1 %>
-                  <ul class="nav navbar-nav">
-                    <a id="text-navbar-suggest" href="/suggest/suggest_page" class="navbar-brand lb_suggest" role="button">Suggest
-                      book</a>
-                    <a id="text-navbar-suggestlist" href="/suggest_list/suggest_list_page" class="navbar-brand lb_suggest_list" role="button">Suggested
-                      List</a>
-                    <li class="dropdown">
-                      <a id="text-navbar" href="#" class="navbar-brand dropdown-toggle btn_dropdown"
-                         data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin
-                        <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li class="dropdown-header">Admin feature</li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="/manage_book/approve_page">Approval</a></li>
-                        <li><a href="/manage_book/managebook_page">Management page</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-              <% end %>
-          <% end %>
-      <% end %>
-
     </div>
-    <div class="navbar-right">
-      <%= form_tag '/welcome/search_result', method: :get, class: 'navbar-form' do %>
-          <ul class="nav navbar-nav ">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if session[:user].nil? %>
             <li>
-              <div class='form-group'>
-                <%= search_field_tag 'tf_search', nil, class: 'form-control', placeholder: "Enter book's name", autocomplete: 'off' %>
-                <%= submit_tag 'Search', class: 'btn btn-default' %>
-              </div>
+              <a id="text-navbar-label" class = "nav-home" href="/welcome/index"><span class="glyphicon glyphicon-home"></span>Home<span class="sr-only">(current)</span></a>
             </li>
-            <% if session[:user].nil? %>
-                <li id="btn_login_logout"><a id="text-navbar" href="/login/login_page" class="navbar-brand">Login</a>
+        <% else
+             if @role == 0 %>
+                <li>
+                  <a id="text-navbar-label" class = "nav-home" href="/welcome/index"><span class="glyphicon glyphicon-home"></span>Home<span class="sr-only">(current)</span></a>
                 </li>
-            <% else %>
-                <li id="lb_username" class="navbar-brand">[<%= session[:user] %>]</li>
-                <li id="btn_login_logout"><a id="text-navbar" href="/login/logout_page" class="navbar-brand">Logout</a>
+                <li>
+                  <a id="text-navbar-label" class = "nav-create" href='#' onclick="call_modal('modal_suggestion');"><span class="glyphicon glyphicon-plus"></span>Create<span class="sr-only">(current)</span></a>
                 </li>
+            <% else
+                 if @role == 1 %>
+                    <li>
+                      <a id="text-navbar-label" class = "nav-home" href="/manage_book/approve_page"><span class="glyphicon glyphicon-home"></span>Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li>
+                      <a id="text-navbar-label" class = "nav-management" href="/manage_book/managebook_page"><span class="glyphicon glyphicon-edit"></span>Management</a>
+                    </li>
+                    <span class="sr-only">(current)</span></a></li>
+                <% end %>
             <% end %>
-          </ul>
-      <% end %>
+        <% end %>
+      </ul>
+      <div class="navbar-right">
+        <%= form_tag '/welcome/search_result', method: :get, class: 'navbar-form' do %>
+            <ul class="nav navbar-nav ">
+              <li>
+                <div class='form-group'>
+                  <%= search_field_tag 'tf_search', nil, class: 'form-control', placeholder: "Enter book's name", autocomplete: 'off' %>
+                  <%= submit_tag 'Search', class: 'btn btn-default' %>
+                </div>
+              </li>
+              <% if session[:user].nil? %>
+                  <li id="btn_login_logout">
+                    <a id="text-navbar" href="/login/login_page" class="navbar-brand">Login</a>
+                  </li>
+                  <%else if @role==0 %>
+                      <div class="btn-group orange">
+                        <button class="btn dropdown-toggle orange" data-toggle="dropdown" >
+                          <span class="glyphicon glyphicon-user"></span>
+                          <span><%= session[:user] %></span>
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="/manage_book/myrequest_page">My request</a></li>
+                          <li><a href="<%=logout_page_path %>">Logout</a></li>
+                        </ul>
+                      </div>
+                  <% else %>
+                  <div class="btn-group orange">
+                    <button class="btn dropdown-toggle orange" data-toggle="dropdown" >
+                      <span class="glyphicon glyphicon-user"></span>
+                      <span><%= session[:user] %></span>
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a href="<%= logout_page_path %>">Logout</a></li>
+                    </ul>
+                  </div>
+                  <% end  %>
+              <% end %>
+            </ul>
+        <% end %>
+      </div>
     </div>
-  </div>
-</div>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+
 
 <div class='div-body row'>
   <div class="div-content col-xs-12">
@@ -72,5 +94,57 @@
   </div>
 </div>
 <%= render 'layouts/footer' %>
+
+
+<!--Begin of modal-->
+<div id = "modal_suggestion" class="modal modal_suggestion fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Suggest a book</h4>
+      </div>
+      <div class="modal-body">
+        <!--Suggest form-->
+        <%= form_tag 'create_suggestion', method: :post, class: 'main_form', id: 'create_request_form' do %>
+            <div class="div-suggest">
+              <div class='form-group'>
+                <label class='form_label'>Name</label>
+                <%= text_field_tag 'tf_book_name', nil, class: 'form-control', id: 'id_tf_book_name', autocomplete: 'off' %>
+                <label class='error_label label' id='id_label_tf_bookname'></label>
+              </div>
+              <div class='form-group'>
+                <label class='form_label'>Link</label>
+                <%= text_field_tag 'tf_book_link', nil, class: 'form-control', id: 'id_tf_book_link', autocomplete: 'off', value: 'http://' %>
+                <label class='error_label label' id='id_label_tf_booklink'></label>
+              </div>
+              <div class='form-group'>
+                <label class='form_label'>Link image</label>
+                <%= text_field_tag 'tf_link_image', nil, class: 'form-control', id: 'id_tf_link_image', autocomplete: 'off'%>
+                <label class='error_label label' id='id_label_linkimage'></label>
+              </div>
+              <div class='form-group'>
+                <label class='form_label'>Price</label>
+                <%= text_field_tag 'tf_book_price', nil, class: 'form-control', id: 'id_tf_book_price', type: 'number', step: 'any', autocomplete: 'off' %>
+                <label class='error_label label' id='id_label_tf_bookprice'></label>
+              </div>
+              <div class='form-group'>
+                <label class='form_label'>Quantity</label>
+                <%= text_field_tag 'tf_book_quantity', nil, class: 'form-control', id: 'id_tf_book_quantity', type: 'number', step: 'any', autocomplete: 'off' %>
+                <label class='error_label label' id='id_label_tf_bookquantity'></label>
+              </div>
+            </div>
+            </div> <!--end modal-body-->
+            <div class="modal-footer">
+              <button class="btn btn-success btn_next" type="button" onclick="check_input_form_modal()">Next</button>
+              <button class="btn btn-danger button" type="reset">Reset</button>
+              <button class="btn btn-secondary button btn_cancel" type="button" onclick="cancel_request();">Cancel</button>
+            </div>
+        <% end %>
+        </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--End of modal-->
 
 </body>

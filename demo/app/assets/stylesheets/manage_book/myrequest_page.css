@@ -1,0 +1,35 @@
+
+#table{
+    font-size: medium;
+    width : 82%;
+}
+.page-button{
+    text-align: center;
+    font-size: medium;
+}
+#td_book_name{
+    max-width : 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#td_function{
+    text-align: center;
+}
+th{
+    text-align: center;
+}
+td{
+    text-align: center;
+    font-size: medium;
+}
+h1{
+    text-align: center;
+    margin-bottom: 50px;
+}
+#green{
+    color: green;
+}
+#red{
+    color: red;
+}

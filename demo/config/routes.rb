@@ -8,8 +8,18 @@ Rails.application.routes.draw do
 
 #index
   root 'welcome#index'
-  match 'welcome/index', via: [:get], controller: :welcome, action: :index, as: 'index_page'
+  match 'welcome/index', via: [:get,:post], controller: :welcome, action: :index, as: 'index_page'
   match 'welcome/search_result', via: [:get], controller: :welcome, action: :search_result, as: 'search_result_page'
+  match 'welcome/review_request', via: [:post], controller: :welcome, action: :review_request, as: 'review_request'
+  match 'welcome/suggest_form', via: [:post], controller: :welcome, action: :suggest_form, as: 'suggest_form'
+  match 'welcome/create_request', via: [:post], controller: :welcome, action: :create_request, as: 'create_request'
+  match 'welcome/like', via: [:post], controller: :welcome, action: :like
+  match 'welcome/detail/:id', via: [:get], controller: :welcome, action: :detail
+  match 'welcome/post_comment/:id', via: [:post], controller: :welcome, action: :post_comment
+
+
+
+
 #login
   match 'login/login_page', via: [:get], controller: :login, action: :login_page, as: 'login_page'
   match 'login/sign_in', via: [:post], controller: :login, action: :sign_in
@@ -21,13 +31,16 @@ Rails.application.routes.draw do
 #management
   match 'manage_book/approve_page', via: [:get], controller: :manage_book, action: :approve_page, as:'approve_page'
   match 'manage_book/managebook_page', via: [:get], controller: :manage_book, action: :managebook_page, as:'managebook_page'
-  match 'manage_book/approve/:id', via: [:get], controller: :manage_book, action: :approve
-  match 'manage_book/deny/:id', via: [:get], controller: :manage_book, action: :deny
+  match 'manage_book/approve/', via: [:post], controller: :manage_book, action: :approve
+  match 'manage_book/deny/', via: [:post], controller: :manage_book, action: :deny
   match 'manage_book/unapprove/:id', via: [:get], controller: :manage_book, action: :unapprove
   match 'manage_book/detail_page/:id', via: [:get], controller: :manage_book, action: :detail_page, as:'detail_page'
   match 'manage_book/management_detail_page/:id', via: [:get], controller: :manage_book, action: :management_detail_page, as:'management_detail_page'
   match 'manage_book/update', via: [:post], controller: :manage_book, action: :update
   match 'manage_book/delete/:id', via: [:get], controller: :manage_book, action: :delete
+  match 'manage_book/myrequest_page', via: [:get], controller: :manage_book, action: :myrequest_page, as: 'myrequest_page'
+
+
 
 #suggest_list
   match 'suggest_list/suggest_list_page', via: [:get], controller: :suggest_list, action: :suggest_list_page, as: 'suggest_list_page'

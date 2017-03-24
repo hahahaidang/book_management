@@ -1,0 +1,53 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title">Review your form</h4>
+</div>
+<form id="review_form" method="post" class="main_form">
+<div class="modal-body">
+  <!--Suggest form-->
+  <div class="div-suggest row">
+    <div class='form-group col-xs-4'>
+      <% if params['tf_link_image'].blank?  %>
+          <img id = 'image' src="/assets/images/no_image.png">
+      <% else  %>
+          <img id = 'image' src="<%= params['tf_link_image']%>">
+      <% end  %>
+    </div>
+    <div id="main_content_form_review">
+      <div class='form-group'>
+        <label class='form_label lb_name'>Name</label>
+        <label id='id_label_tf_bookname' title="<%= params['tf_book_name'] %>"><%= params['tf_book_name'] %></label>
+      </div>
+      <div class='form-group'>
+        <label class='form_label lb_link'>Link</label>
+        <label id='id_label_tf_booklink' title="<%= params['tf_book_link'] %>"><a target="_blank" href="<%= params['tf_book_link'] %>"><%= params['tf_book_link'] %></a></label>
+      </div>
+      <div class='form-group'>
+        <label class='form_label lb_price'>Price</label>
+        <label id='id_label_tf_bookprice'><%= params['tf_book_price'] %></label>
+      </div>
+      <div class='form-group'>
+        <label class='form_label lb_quantity'>Quantity</label>
+        <label id='id_label_tf_bookquantity'><%= params['tf_book_quantity'] %></label>
+      </div>
+    </div>
+    <!--alert div-->
+    <div id="div_success" class="alert alert-success div_hidden" role="alert"></div>
+    <div id="div_fail" class="alert alert-danger div_hidden" role="alert">Fail to create suggestion</div>
+
+    <div id="hidden_input">
+            <%= text_field_tag 'tf_book_name', nil, class: 'form-control', id: 'id_tf_book_name', autocomplete: 'off', value: params['tf_book_name'] %>
+            <%= text_field_tag 'tf_book_link', nil, class: 'form-control', id: 'id_tf_book_link', autocomplete: 'off', value: params['tf_book_link'] %>
+            <%= text_field_tag 'tf_link_image', nil, class: 'form-control', id: 'id_tf_link_image', autocomplete: 'off', value: params['tf_link_image'] %>
+            <%= text_field_tag 'tf_book_price', nil, class: 'form-control', id: 'id_tf_book_price', autocomplete: 'off', value: params['tf_book_price'] %>
+            <%= text_field_tag 'tf_book_quantity', nil, class: 'form-control', id: 'id_tf_book_quantity', autocomplete: 'off', value: params['tf_book_quantity'] %>
+      </div> <!--end hidden_input-->
+  </div> <!--end div-suggest-->
+</div> <!--end modal-body-->
+<div class="modal-footer">
+  <button type="button" class="btn btn-success button btn_submit" onclick="create_request();">Submit</button>
+  <button class="btn btn-secondary button" type="button" onclick="call_suggest_form();">Back</button>
+</div> <!--end modal-footer-->
+</form>
+<%= javascript_include_tag 'welcome' %>

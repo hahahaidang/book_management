@@ -4,10 +4,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   def check_permission
      @admin_role = Rails.application.secrets.admin
-     if @admin_role.include?(session[:user])
-       @role = 1
-     else
-       @role = 0
+     user = session[:user]
+     if !(user.nil?)
+       if @admin_role.include?(user)
+         #isAdmin
+         @role = 1
+       else
+         #isMember
+         @role = 0
+       end
      end
   end
 
