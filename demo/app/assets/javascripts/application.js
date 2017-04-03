@@ -147,6 +147,7 @@ function create_request(){
             })
             .error(function(msg){
                 $('#div_fail').css('display','block');
+                fade_error_label('div_fail');
             })
     }
     else{

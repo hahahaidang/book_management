@@ -183,55 +183,31 @@ class WelcomeController < ApplicationController
       bookName = params['tf_book_name'].strip
       linkImage = params['tf_link_image']
 
-      # if book.blank?
-      #   flash[:warn] = 'Bookname must not be blank!'
-      #   return false
-      # end
-
-
-
-
-
-
-
-
-
       if bookName.blank?
-        flash[:warn] = 'Bookname must not be blank!'
-      else
-        if (bookName.length > 255)
-          flash[:warn] = 'Bookname is too long!'
-        else
-          if (bookLink.length > 400)
-            flash[:warn] = 'Booklink is too long!'
-          else
-            if (bookPrice == 0.0)
-              flash[:warn] = 'Invalid price!'
-            else
-              if (bookPrice < 0)
-                flash[:warn] = 'Price must be greater than or equal 0!'
-              else
-                if (quantity_on_request == 0)
-                  flash[:warn] ='Invalid quantity!'
-                else
-                  if (quantity_on_request < 0)
-                    flash[:warn] = 'Quantity must be a positive number!'
-                  else
-                    #insert exist
-                    if Book.find_by_book_name(bookName)
-                      bookID = Book.find_by_book_name(bookName).id
-                      insert_exists_book(bookID, userID, quantity_on_request, bookLink, bookPrice,linkImage)
-                    else
-                      #insert new book
-                      insert_new_book(bookName, quantity_on_request, userID, bookLink, bookPrice,linkImage)
-                    end
-                  end
-                end
-              end
-            end
-          end
-        end
+        #bookname is blank
+        return render status:500
       end
+      if bookLink.length > 400
+        #booklink > 400 characters
+        return render status:500
+      end
+      if bookPrice == 0.0 || bookPrice < 0
+        #bookprice invalid
+        return render status:500
+      end
+     if quantity_on_request <= 0
+        #quantity invalid
+        return render status:500
+      end
+      #insert exist
+      if Book.find_by_book_name(bookName)
+        bookID = Book.find_by_book_name(bookName).id
+        insert_exists_book(bookID, userID, quantity_on_request, bookLink, bookPrice,linkImage)
+      else
+        #insert new book
+        insert_new_book(bookName, quantity_on_request, userID, bookLink, bookPrice,linkImage)
+      end
+
       return render text: "Suggest successfully!"
     else
       redirect_to login_page_path
