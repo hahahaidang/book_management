@@ -13,6 +13,23 @@ class ManageBookController < ApplicationController
     end
   end
 
+  def cancel_request
+    if @role == 0
+      userID = User.find_by_user_name(session[:user]).id
+      requestID = params[:id]
+      if !(@request = Request.where('user_id = ? AND id= ? ',userID,requestID)).blank?
+        #if found request belongs to this member
+        Request.destroy(requestID)
+        redirect_to :back
+      else
+        #if request is not belongs to this memnber
+        redirect_to index_page_path
+      end
+    else
+      #if is not member
+      redirect_to index_page_path
+    end
+  end
 
   def managebook_page
     if @role == 1
@@ -53,8 +70,7 @@ class ManageBookController < ApplicationController
       comment = params['text_area_comment']
       # get comment from tf in modal
       if Request.find(id).status == 0
-        @action = Request.new
-        @action.func_approve(id,comment)
+        func_approve(id,comment)
         redirect_to :back
       else
         redirect_to approve_page_path
@@ -71,8 +87,7 @@ class ManageBookController < ApplicationController
       comment = params['text_area_comment']
       # get comment from tf in modal
       if Request.find(id).status == 0
-        @action = Request.new
-        @action.func_deny(id,comment)
+        func_deny(id,comment)
         redirect_to :back
       else
         redirect_to approve_page_path

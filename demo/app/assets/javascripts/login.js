@@ -24,7 +24,7 @@ function check_input_tf_username(id_tf, id_lb) {
         fade_error_label('id_label_tf_username');
         return false;
     }
-    if (tf_length <= 3) {
+    if (tf_length < 4) {
         show_warning_lable(newid_lb, 'Username is too short!');
         fade_error_label('id_label_tf_username');
         return false;

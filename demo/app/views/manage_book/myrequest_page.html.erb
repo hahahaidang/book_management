@@ -9,6 +9,7 @@
           <th>Quantity</th>
           <th>Status</th>
           <th>Date</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
@@ -30,6 +31,14 @@
               <td class="time">
                 <%= value.created_at.to_i*1000 %>
               </td>
+              <% if value.status == 0  %>
+                <!--Only request's status is pending-->
+                <td>
+                  <a href="/manage_book/cancel_request/<%= value.id %>" title="Cancel your request"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+              <% else  %>
+                <td></td>
+              <% end %>
             </tr>
         <% end %>
         </tbody>

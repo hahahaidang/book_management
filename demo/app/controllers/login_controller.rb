@@ -19,8 +19,8 @@ class LoginController < ApplicationController
       flash[:notice] = 'Username must not be blank!'
       redirect_to :back
     end
-    if (usr.length < 5) || (usr.length > 16)
-      flash[:notice] = 'Username must greater than 5 and less than 16!'
+    if (usr.length < 4) || (usr.length > 16)
+      flash[:notice] = 'Username must greater than 3 and less than 16!'
       redirect_to :back
     end
     if params['tf_password'].blank?
@@ -33,6 +33,7 @@ class LoginController < ApplicationController
         #admin will be redirected to approve page
         redirect_to approve_page_path
       else
+        #member is redirect to index page
         redirect_to index_page_path
       end
     else
