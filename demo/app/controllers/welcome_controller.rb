@@ -37,9 +37,22 @@ class WelcomeController < ApplicationController
     end
     content = params['comment_text_area'];
     requestID = params[:id];
-    if func_post_cmt(userID,requestID,content)
+
+    if content.blank?
+      #if content is nil
+      flash[:warn] = 'Comment must not be blank!'
       redirect_to :back
-      return @result = content
+      return false
+    end
+    if content.length > 255
+      #value is greater than 255
+      flash[:warn] = 'Comment must less than 255'
+      redirect_to :back
+      return false
+    end
+    if func_post_cmt(userID,requestID,content)
+      #if post comment successlfully
+      redirect_to :back
     end
   end
 
@@ -47,7 +60,7 @@ class WelcomeController < ApplicationController
     #function search
     @value_search = params['tf_search']
     para = "%#{params['tf_search']}%"
-    @result = Request.paginate_by_sql ['select r.quantity, r.status, r.created_at, u.user_name, b.book_name
+    @result = Request.paginate_by_sql ['select r.id, r.quantity, r.status, r.created_at, u.user_name, b.book_name
           from requests r, books b, users u
           where b.book_name like ? AND r.book_id=b.id and r.user_id = u.id', para], :page => params[:page], :per_page => 10
   end

@@ -106,7 +106,9 @@
                     <% end %>
                     <%= text_area_tag 'comment_text_area', nil, rows: 2, cols: 60, class: 'form_control', placeholder: 'Add a comment' %>
                     <div>
-                      <%= submit_tag 'Post', class: 'btn btn-default btn_post' %>
+                      <label id="lb_comment" class="error_label"></label>
+                      <span id="red"><%= flash[:warn] %></span>
+                      <%= submit_tag 'Post', class: 'btn btn-default btn_post', onclick:  "return check_tf_comment('comment_text_area','lb_comment')"%>
                     </div>
                   </div>
 

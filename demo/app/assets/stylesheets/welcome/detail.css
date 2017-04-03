@@ -80,3 +80,7 @@
 #id_tf_request_id{
     display: none;
 }
+.error_label{
+    display: none;
+    color : red;
+}
