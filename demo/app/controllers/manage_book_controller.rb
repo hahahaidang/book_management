@@ -6,8 +6,13 @@ class ManageBookController < ApplicationController
   def myrequest_page
     if @role == 0
       #only member can get in myrequest_page
+      if params[:status].nil?
+        inputStatus = 0
+      else
+        inputStatus = params[:status]
+      end
       userID = User.find_by_user_name(session[:user]).id
-      @collection = Request.where(id = userID).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
+      @collection = Request.where('user_id = ? AND status = ? ',userID, inputStatus).order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
     else
       redirect_to index_page_path
     end
@@ -33,6 +38,7 @@ class ManageBookController < ApplicationController
 
   def managebook_page
     if @role == 1
+      #is admin
       @collection = Book.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
       @page =  params[:page].to_i
     else
@@ -42,6 +48,7 @@ class ManageBookController < ApplicationController
 
   def approve_page
     if @role==1
+      #is admin
       @collection = Request.where('status = 0').order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
     else
       redirect_to index_page_path
@@ -119,6 +126,7 @@ class ManageBookController < ApplicationController
       redirect_to :back
       flash[:notice] = 'Updated!'
     else
+      #if is not admin
       redirect_to '/welcome/index'
     end
   end

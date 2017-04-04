@@ -41,15 +41,19 @@
             <% end %>
         <% end %>
       </ul>
+
       <div class="navbar-right">
         <%= form_tag '/welcome/search_result', method: :get, class: 'navbar-form' do %>
             <ul class="nav navbar-nav ">
+              <!--search bar-->
               <li>
                 <div class='form-group'>
                   <%= search_field_tag 'tf_search', nil, class: 'form-control', placeholder: "Enter book's name", autocomplete: 'off' %>
                   <%= submit_tag 'Search', class: 'btn btn-default' %>
                 </div>
               </li>
+              <!--end search bar-->
+
               <% if session[:user].nil? %>
                   <li id="btn_login_logout">
                     <a id="text-navbar" href="/login/login_page" class="navbar-brand">Login</a>

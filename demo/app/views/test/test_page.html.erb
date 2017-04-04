@@ -1,3 +1,9 @@
-<%= javascript_include_tag 'test' %>
+<%= form_tag '/test/test_page', method: 'get' do %>
+    <%= select_tag(:status, options_for_select([['Pending',0],['Approved',1],['Denied',2]])) %>
+    <%= submit_tag "Search", name: nil, class: 'btn' %>
+<% end  %>
 
-<input id="myinput"/>
+<% @request.each do |t|  %>
+  <%= t.status %>
+
+<% end  %>

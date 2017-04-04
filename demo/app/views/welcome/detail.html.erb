@@ -80,39 +80,55 @@
               <label id='red' class='lb_admin_comment'><span></span>Cancel by admin:</label>
               <span><%= t['admin_comment'] %></span>
           <% end %>
+
+          <!--Comment-->
           <div class="div_comment">
             <div class="comment_div_form">
               <h4>Comment</h4>
-              <div class='form-group '>
-              </div>
+
+              <!--if have no comment-->
+              <% if @comment.blank? %>
+                <span class="no_comment">No comment yet!</span>
+              <% end  %>
+
               <% @comment.each do |t| %> <!--start load comment-->
                   <div class="form-group comment_text_area">
                     <% if t['user_id'].nil? %>
-                        <strong><span class="lb_comment_suggester">Anonymous</span></strong>
+                        <strong>
+                          <div class="lb_comment_suggester">Anonymous</div>
+                        </strong>
                     <% else %>
-                        <strong><span class="lb_comment_suggester"><%= t['user_name'] %></span></strong>
+                        <strong>
+                          <div class="lb_comment_suggester"><%= t['user_name'] %></div>
+                        </strong>
                     <% end %>
-                    <span class="form_control">
+                    <% if @role == 1 %>
+                        <a href = '/welcome/delete_comment/<%= t['id'] %>' class="remove_comment_icon" title="Remove this" onclick="delete_comment()">x</a>
+                    <% end  %>
+                    <span class="form_control content_comment">
                         <%= t['content'] %>
                       </span>
                   </div>
               <% end %> <!--end load comment-->
-              <%= form_tag("/welcome/post_comment/#{t['id']}", method: :post) do %>
-                  <div class="form-group comment_text_area">
-                    <% if session[:user].nil? %>
-                        <label class="lb_comment_suggester">Name: Anonymous</label>
-                    <% else %>
-                        <label class="lb_comment_suggester">Name: <%= session[:user] %></label>
-                    <% end %>
-                    <%= text_area_tag 'comment_text_area', nil, rows: 2, cols: 60, class: 'form_control', placeholder: 'Add a comment' %>
-                    <div>
-                      <label id="lb_comment" class="error_label"></label>
-                      <span id="red"><%= flash[:warn] %></span>
-                      <%= submit_tag 'Post', class: 'btn btn-default btn_post', onclick:  "return check_tf_comment('comment_text_area','lb_comment')"%>
-                    </div>
-                  </div>
 
-              <% end %>
+              <!--form comment, if status is not pending-->
+              <% if t['status'] == 0 %>
+                <%= form_tag("/welcome/post_comment/#{t['id']}", method: :post) do %>
+                    <div class="form-group comment_text_area">
+                      <% if session[:user].nil? %>
+                          <label class="lb_form_comment">Name: Anonymous</label>
+                      <% else %>
+                          <label class="lb_form_comment">Name: <%= session[:user] %></label>
+                      <% end %>
+                      <%= text_area_tag 'comment_text_area', nil, rows: 2, cols: 60, class: 'form_control', placeholder: 'Add a comment' %>
+                      <div>
+                        <label id="lb_comment" class="error_label"></label>
+                        <span id="red"><%= flash[:warn] %></span>
+                        <%= submit_tag 'Post', class: 'btn btn-default btn_post', onclick:  "return check_tf_comment('comment_text_area','lb_comment')"%>
+                      </div>
+                    </div>
+                <% end %> <!--end form comment-->
+              <% end %> <!--end if-->
 
             </div>
           </div> <!--end div_comment-->

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   match 'welcome/like', via: [:post], controller: :welcome, action: :like
   match 'welcome/detail/:id', via: [:get], controller: :welcome, action: :detail, as:'welcome_detail'
   match 'welcome/post_comment/:id', via: [:post], controller: :welcome, action: :post_comment
+  match 'welcome/delete_comment/:id', via: [:get], controller: :welcome, action: :delete_comment
 
 
 

@@ -1,7 +1,7 @@
 
 #table{
     font-size: medium;
-    width : 82%;
+    width : 100%;
 }
 .page-button{
     text-align: center;
@@ -33,4 +33,11 @@ h1{
 #lb_notification{
     margin-top: 100px;
     font-size: large;
+}
+.time{
+    min-width: 100px;
+}
+.div_approve_page{
+    margin-left: 50px;
+    margin-right: 50px;
 }

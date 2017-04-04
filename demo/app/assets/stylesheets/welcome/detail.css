@@ -62,10 +62,20 @@
 
 }
 .lb_comment_suggester{
-    display: block;
+    display: inline-block;
+    color: #e47b46;
+}
+.lb_form_comment{
+    color: #e47b46;
+
 }
 .comment_text_area{
     display: block;
+    width: 450px;
+    padding: 7px 7px 7px 7px;
+    border-bottom-width: 1px;
+    border-bottom-style:dotted;
+    border-bottom-color: #e0d6d6;
 }
 .div_comment{
     margin-top: 50px;
@@ -83,4 +93,26 @@
 .error_label{
     display: none;
     color : red;
+}
+.remove_comment_icon{
+    color: black;
+    float: right;
+    display: none;
+
+}
+.remove_comment_icon:hover{
+    text-decoration: none;
+    color: red;
+
+}
+.content_comment{
+    display: block;
+    width: 420px;
+    word-wrap:break-word;
+}
+.lb_form_comment{
+    display:block;
+}
+.no_comment{
+    padding-left: 7px;
 }

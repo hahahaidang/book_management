@@ -101,3 +101,11 @@ h4{
 .btn_like:hover{
     background-color: #a5c5e0;
 }
+
+#div_list_most_ranking a{
+    color:black
+}
+#div_list_most_ranking a:hover{
+    text-decoration: none;
+    color: #e47b46;
+}

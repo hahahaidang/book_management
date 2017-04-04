@@ -1,7 +1,6 @@
 
 #table{
     font-size: medium;
-    width : 82%;
 }
 .page-button{
     text-align: center;
@@ -32,4 +31,24 @@ h1{
 }
 #red{
     color: red;
+}
+.filter_form{
+    margin-bottom: 10px;
+}
+.filter_button{
+    padding-bottom: 6px;
+    padding-top: 4px;
+    margin-left: 5px;
+    color:#e47b46;
+
+}
+.filter_button:hover{
+    color:black;
+}
+/*table{*/
+    /*margin: 0px auto;*/
+/*}*/
+.div_myrequest{
+    margin-left: 50px;
+    margin-right: 50px;
 }

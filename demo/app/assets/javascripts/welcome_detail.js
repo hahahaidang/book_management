@@ -1,5 +1,20 @@
 init();
+event_hover_comment_box();
 
+function event_hover_comment_box(){
+    $('.comment_text_area').hover(function(){
+        $('.remove_comment_icon').css('display','block');
+    },function(){
+        $('.remove_comment_icon').css('display','none');
+    });
+
+}
+function delete_comment(){
+    if (!raise_confirm("Are you sure?")){
+        event.preventDefault();
+    }
+
+}
 
 function call_approve_modal(){
     call_modal('modal_approve')
@@ -49,3 +64,4 @@ function check_tf_comment(id_tf, id_lb){
     }
     else return false;
 }
+

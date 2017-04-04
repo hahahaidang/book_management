@@ -15,15 +15,12 @@ class WelcomeController < ApplicationController
                             left join likes l
                             on l.user_id = ? and r.id = l.request_id
                             where status = 0',userID] ,:page => params[:page], :per_page => 12
-
-      #list request and rank by quantity of like, just take 10
-      @collection_most_ranking = Request.order('quantity_of_like DESC').take(10)
     else
       #admin or anonymous
-      @collection_list_suggestion = Request.where(status:0).paginate(:page => params[:page])
-      @collection_most_ranking = Request.order('quantity_of_like DESC').take(10)
+      @collection_list_suggestion = Request.where(status:0).paginate(:page => params[:page], :per_page =>12)
 
     end
+    @collection_most_ranking = Request.order('quantity_of_like DESC').take(10)
 
   end
 
@@ -50,6 +47,8 @@ class WelcomeController < ApplicationController
       redirect_to :back
       return false
     end
+
+
     if func_post_cmt(userID,requestID,content)
       #if post comment successlfully
       redirect_to :back
@@ -91,7 +90,7 @@ class WelcomeController < ApplicationController
         @likeObject.save!
 
         #### In requests table
-        countLike = Like.where("user_id = ? AND request_id = ? ", userID, requestID).count
+        countLike = Like.where("request_id = ? ", requestID).count
         @requestObject = Request.find(requestID)
         @requestObject.quantity_of_like = countLike
         @requestObject.save!
@@ -183,6 +182,8 @@ class WelcomeController < ApplicationController
       bookName = params['tf_book_name'].strip
       linkImage = params['tf_link_image']
 
+
+      #validation
       if bookName.blank?
         #bookname is blank
         return render status:500
@@ -198,7 +199,9 @@ class WelcomeController < ApplicationController
      if quantity_on_request <= 0
         #quantity invalid
         return render status:500
-      end
+     end
+
+
       #insert exist
       if Book.find_by_book_name(bookName)
         bookID = Book.find_by_book_name(bookName).id
@@ -211,6 +214,19 @@ class WelcomeController < ApplicationController
       return render text: "Suggest successfully!"
     else
       redirect_to login_page_path
+    end
+  end
+
+  def delete_comment
+    #using delete comment
+
+    #check role, only admin can use
+    if @role == 1 && !(params[:id].nil?)
+      commentID = params[:id]
+      Comment.destroy(commentID)
+      redirect_to :back
+    else
+      redirect_to index_page_path
     end
   end
 end
