@@ -55,11 +55,11 @@ function check_tf_comment(id_tf, id_lb){
         return false;
     }
     if (tf_vl.match(regex)){
-        show_warning_lable(newid_lb,'This value must not contains special character');
+        show_warning_lable(newid_lb,'This value must not contain special character');
         event.preventDefault();
         return false
     }
-    if (raise_confirm('Do you want to post?')){
+    if (raise_confirm('Would you like to post this?')){
         return true;
     }
     else return false;

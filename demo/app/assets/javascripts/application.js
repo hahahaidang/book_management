@@ -3,6 +3,8 @@
 //= require jquery_ujs
 //= require awesomplete
 //= require moment
+
+
 function return_index_page(){
     window.location.href='/welcome/index';
 }
@@ -27,6 +29,7 @@ function init() {
         $('.dropdown-toggle').dropdown();
         get_bookname('#tf_search');
         resize_screen();
+        awesomplete_insert_book();
     })
 }
 
@@ -354,26 +357,6 @@ function check_tf_quantity(id_tf, id_lb) {
 }
 
 
-function awesomplete_insert_book() {
-    $.ajax({
-            url: '/suggest/list_book',
-            method: 'POST',
-            datatype: 'json'
-        })
-        .done(function (msg) {
-        })
-        .success(function (data_response) {
-            var list_book = data_response.map(function (index) {
-                return index.book_name;
-            });
-            new Awesomplete(document.querySelector('#id_tf_book_name'), {list: list_book, minChars: 2});
-            awesomplete_parent();
-
-        })
-        .fail(function (jqXHR, textStatus) {
-            alert("Request failed: " + textStatus);
-        });
-}
 
 function awesomplete_parent(){
     $('#id_tf_book_name').parent().css('width','100%');
