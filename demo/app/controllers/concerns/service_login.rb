@@ -1,4 +1,7 @@
 module ServiceLogin
+
+  extend ActiveSupport::Concern
+
   def createUser(username, password)
     @action = User.new
     @action.user_name= username
