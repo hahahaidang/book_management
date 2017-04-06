@@ -5,8 +5,8 @@
 //= require moment
 
 
-function return_index_page(){
-    window.location.href='/welcome/index';
+function return_index_page() {
+    window.location.href = '/welcome/index';
 }
 function fade_error_label(id_lb) {
     //fade error label after 2000ms
@@ -46,32 +46,13 @@ function hide_label(id_label) {
 }
 
 
-function get_bookname(id_tf) {
-    $.ajax({
-        url: '/suggest/list_book',
-        method: 'POST',
-        datatype: 'json',
-    })
-        .done(function (msg) {
-        })
-        .success(function (data_response) {
-            var list_book = data_response.map(function (index) {
-                return index.book_name;
-            });
-            new Awesomplete(document.querySelector(id_tf), {list: list_book, minChars: 2});
-        })
-        .fail(function (jqXHR, textStatus) {
-            alert('Request failed: ' + textStatus);
-        });
 
-}
-
-function set_height_default(){
+function set_height_default() {
     //Default height after load
     var totalHeight = $(window).height();
     var heightHeader = $('.navbar-header').height();
     var heightFooter = $('.model-footer').height();
-    var newHeight = totalHeight - heightFooter - heightHeader-20; //20 is margin of header and footer
+    var newHeight = totalHeight - heightFooter - heightHeader - 20; //20 is margin of header and footer
     $('.div-content').css("min-height", function () {
         return newHeight;
     });
@@ -91,84 +72,27 @@ function active_label(class_label) {
     var newClass = '.' + class_label;
     $(newClass).css('border-bottom', '6px solid #f2f2f2');
 }
-function call_modal(id_modal){
+
+function call_modal(id_modal) {
     var id = "#" + id_modal;
     $(id).modal();
-
 }
-function call_modal_creation(){
+
+function call_modal_creation() {
     $('.modal_suggestion').modal();
 }
 
-
-function call_confirm_request(){
-    //using render confirm_request
-    $.ajax({
-            url: '/welcome/review_request',
-            method: 'POST',
-            datatype: 'html',
-            data: $('#create_request_form').serialize()
-        })
-        .done(function (msg) {
-        })
-        .success(function (msg){
-            $('.modal-content').html(msg);
-        })
-
-
-}
-
-function call_suggest_form(){
-    $.ajax({
-            url: '/welcome/suggest_form',
-            method: 'POST',
-            datatype: 'html',
-            data: $('#review_form').serialize()
-        })
-        .done(function (msg) {
-            $('.modal-content').html(msg);
-        })
-}
-
-
-
-function create_request(){
-    //using: send request to server
-    if (raise_confirm('Do you want to create this request?')) {
-        $.ajax({
-                url: '/welcome/create_request',
-                method: 'POST',
-                datatype: 'html',
-                data: $('#review_form').serialize()
-            })
-            .success(function (msg) {
-                $('#div_success').html(msg);
-                $('#div_success').css('display', 'block');
-                setTimeout(function(){
-                    window.location='/welcome/index';
-                },1000)
-            })
-            .error(function(msg){
-                $('#div_fail').css('display','block');
-                fade_error_label('div_fail');
-            })
-    }
-    else{
-        event.preventDefault();
-    }
-}
-
-function cancel_request(){
+function cancel_request() {
     var bookName = $('#id_tf_book_name').val().length;
     var bookPrice = $('#id_tf_book_price').val().length;
     var bookQuantity = $('#id_tf_book_quantity').val().length;
 
     //check if bookname, bookprice, bookquantity is blank.
-    if ((bookName == 0) && (bookPrice == 0) && (bookQuantity == 0)){
+    if ((bookName == 0) && (bookPrice == 0) && (bookQuantity == 0)) {
         return return_index_page();
     }
     // if condition is false, raise alert
-    if (raise_confirm('Your text are in editing, are you sure exit?')){
+    if (raise_confirm('Your text are in editing, are you sure exit?')) {
         //confirm = true
         return return_index_page();
     }
@@ -176,42 +100,19 @@ function cancel_request(){
     // return (raise_confirm('Your text are in editing, are you sure tu exit?')) ? return_index_page() : false;
 }
 
-function like(id){
-    var request_id = "#" + id +"_request_like";
-    $.ajax({
-            url: '/welcome/like',
-            method: 'POST',
-            datatype: 'html',
-            data: {id : id}
-        })
-        .success(function(msg){
-            $(request_id).html(msg);
-            $(request_id).parent().attr('disabled','');
-
-        })
-
-}
-
-
-
-
-
-
 // Validate for form suggest
-
-
-function check_input_form_modal(){
+function check_input_form_modal() {
     var flag = true;
-    if (!check_tf_name('id_tf_book_name', 'id_label_tf_bookname')){
+    if (!check_tf_name('id_tf_book_name', 'id_label_tf_bookname')) {
         flag = false;
     }
-    if (!check_tf_book_link('id_tf_book_link', 'id_label_tf_booklink')){
+    if (!check_tf_book_link('id_tf_book_link', 'id_label_tf_booklink')) {
         flag = false;
     }
-    if (!check_tf_link_image('id_tf_link_image','id_label_linkimage')){
+    if (!check_tf_link_image('id_tf_link_image', 'id_label_linkimage')) {
         flag = false;
     }
-    if (!check_tf_price('id_tf_book_price', 'id_label_tf_bookprice')){
+    if (!check_tf_price('id_tf_book_price', 'id_label_tf_bookprice')) {
         flag = false;
     }
     if (!check_tf_quantity('id_tf_book_quantity', 'id_label_tf_bookquantity')) {
@@ -222,15 +123,15 @@ function check_input_form_modal(){
     fade_error_label('id_label_linkimage');
     fade_error_label('id_label_tf_bookprice');
     fade_error_label('id_label_tf_bookquantity');
-    if (!flag){
+    if (!flag) {
         return false
     }
-    else{
+    else {
         call_confirm_request();
     }
 }
 
-function check_tf_link_image(id_tf,id_lb){
+function check_tf_link_image(id_tf, id_lb) {
     var newid_tf = '#' + id_tf;
     var newid_lb = '#' + id_lb;
     var tf_vl = $(newid_tf).val();
@@ -244,8 +145,8 @@ function check_tf_link_image(id_tf,id_lb){
         show_warning_lable(newid_lb, 'This value is too long!');
         return false;
     }
-    if (tf_vl.match(regexScript)){
-        show_warning_lable(newid_lb,'This value must not contains special character');
+    if (tf_vl.match(regexScript)) {
+        show_warning_lable(newid_lb, 'This value must not contains special character');
         return false
     }
     return true;
@@ -265,12 +166,12 @@ function check_tf_book_link(id_tf, id_lb) {
         show_warning_lable(newid_lb, 'This value is too long!');
         return false;
     }
-    if (!(tf_vl.match(regex))){
+    if (!(tf_vl.match(regex))) {
         show_warning_lable(newid_lb, 'This value must be a link! Example:http://website.com');
         return false;
     }
-    if (tf_vl.match(regexScript)){
-        show_warning_lable(newid_lb,'This value must not contains special character');
+    if (tf_vl.match(regexScript)) {
+        show_warning_lable(newid_lb, 'This value must not contains special character');
         return false
     }
     return true;
@@ -291,36 +192,36 @@ function check_tf_name(id_tf, id_lb) {
         show_warning_lable(newid_lb, 'Value is too long!');
         return false;
     }
-    if (tf_vl.match(regex)){
-        show_warning_lable(newid_lb,'This value must not contains special character');
+    if (tf_vl.match(regex)) {
+        show_warning_lable(newid_lb, 'This value must not contains special character');
         return false
     }
     return true;
 }
-
 
 function check_tf_price(id_tf, id_lb) {
     var newid_tf = '#' + id_tf;
     var newid_lb = '#' + id_lb;
     var tf_vl = $(newid_tf).val();
     var tf_length = tf_vl.length;
+
     if (tf_vl.length == 0) {
         show_warning_lable(newid_lb, 'This field can not be blank!');
         return false;
-    } else if (tf_length > 255) {
+    }
+    if (tf_length > 255) {
         show_warning_lable(newid_lb, 'Value is too long!');
         return false;
-    } else if (tf_vl < 0) {
+    }
+    if (tf_vl < 0) {
         show_warning_lable(newid_lb, 'This value must be greater than or equal 0!');
         return false;
-    } else if (!$.isNumeric($(newid_tf).val())){
+    }
+    if (!$.isNumeric($(newid_tf).val())) {
         show_warning_lable(newid_lb, 'This value must be a number!');
         return false;
     }
-    else {
-        hide_label(newid_lb);
-        return true;
-    }
+    return true;
 }
 function check_tf_quantity(id_tf, id_lb) {
     var newid_tf = '#' + id_tf;
@@ -341,27 +242,24 @@ function check_tf_quantity(id_tf, id_lb) {
         show_warning_lable(newid_lb, 'This value must be a positive number!');
         return false;
     }
-    if (!$.isNumeric($(newid_tf).val())){
+    if (!$.isNumeric($(newid_tf).val())) {
         show_warning_lable(newid_lb, 'This value must be a number!');
         return false;
     }
-    if (!(tf_vl % 1 === 0 )){
+    if (!(tf_vl % 1 === 0 )) {
         show_warning_lable(newid_lb, 'This value must be Integer!');
         return false
     }
-    if (tf_vl.match(regex)){
-        show_warning_lable(newid_lb,'This value must not contains special character');
+    if (tf_vl.match(regex)) {
+        show_warning_lable(newid_lb, 'This value must not contains special character');
         return false
     }
     return true
 }
 
-
-
-function awesomplete_parent(){
-    $('#id_tf_book_name').parent().css('width','100%');
+function awesomplete_parent() {
+    $('#id_tf_book_name').parent().css('width', '100%');
 }
-
 
 function awesomplete_insert_book() {
     $.ajax({
@@ -384,4 +282,90 @@ function awesomplete_insert_book() {
         });
 }
 
+function get_bookname(id_tf) {
+    $.ajax({
+            url: '/suggest/list_book',
+            method: 'POST',
+            datatype: 'json',
+        })
+        .done(function (msg) {
+        })
+        .success(function (data_response) {
+            var list_book = data_response.map(function (index) {
+                return index.book_name;
+            });
+            new Awesomplete(document.querySelector(id_tf), {list: list_book, minChars: 2});
+        })
+        .fail(function (jqXHR, textStatus) {
+            alert('Request failed: ' + textStatus);
+        });
 
+}
+
+function call_confirm_request() {
+    //using render confirm_request
+    $.ajax({
+            url: '/welcome/review_request',
+            method: 'POST',
+            datatype: 'html',
+            data: $('#create_request_form').serialize()
+        })
+        .done(function (msg) {
+        })
+        .success(function (msg) {
+            $('.modal-content').html(msg);
+        })
+}
+
+function call_suggest_form() {
+    $.ajax({
+            url: '/welcome/suggest_form',
+            method: 'POST',
+            datatype: 'html',
+            data: $('#review_form').serialize()
+        })
+        .done(function (msg) {
+            $('.modal-content').html(msg);
+        })
+}
+
+function create_request() {
+    //using: send request to server
+    if (raise_confirm('Do you want to create this request?')) {
+        $.ajax({
+                url: '/welcome/create_request',
+                method: 'POST',
+                datatype: 'html',
+                data: $('#review_form').serialize()
+            })
+            .success(function (msg) {
+                $('#div_success').html(msg);
+                $('#div_success').css('display', 'block');
+                setTimeout(function () {
+                    window.location = '/welcome/index';
+                }, 1000)
+            })
+            .error(function (msg) {
+                $('#div_fail').css('display', 'block');
+                fade_error_label('div_fail');
+            })
+    }
+    else {
+        event.preventDefault();
+    }
+}
+
+function like(id) {
+    var request_id = "#" + id + "_request_like";
+    $.ajax({
+            url: '/welcome/like',
+            method: 'POST',
+            datatype: 'html',
+            data: {id: id}
+        })
+        .success(function (msg) {
+            $(request_id).html(msg);
+            $(request_id).parent().attr('disabled', '');
+
+        })
+}

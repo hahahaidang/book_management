@@ -1,9 +1,19 @@
-<%= form_tag '/test/test_page', method: 'get' do %>
-    <%= select_tag(:status, options_for_select([['Pending',0],['Approved',1],['Denied',2]])) %>
-    <%= submit_tag "Search", name: nil, class: 'btn' %>
-<% end  %>
+<!--start form-->
+<form id="comment_form" method="post">
+    <div class="form-group comment_text_area">
+      <% if session[:user].nil? %>
+          <label class="lb_form_comment">Name: Anonymous</label>
+      <% else %>
+          <label class="lb_form_comment">Name: <%= session[:user] %></label>
+      <% end %>
+      <textarea name="comment_text_area" id="comment_text_area" rows="2" cols="60" class="form_control" placeholder="Add a comment">
+      </textarea>
+      <input>
 
-<% @request.each do |t|  %>
-  <%= t.status %>
-
-<% end  %>
+      <div>
+        <label id="lb_comment" class="error_label"></label>
+        <span id="red"><%= flash[:warn] %></span>
+        <input type="button" name="commit" value="Post" class="btn btn-default btn_post" onclick="return check_tf_comment('comment_text_area','lb_comment')">      </div>
+    </div>
+</form> <!--end form-->
+<%= javascript_include_tag 'welcome_detail' %>

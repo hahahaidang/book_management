@@ -1,0 +1,23 @@
+<% @comment.each do |c| %> <!--start load comment-->
+    <div class="form-group comment_text_area">
+      <% if c['user_id'].nil? %>
+          <strong>
+            <div class="lb_comment_suggester">Anonymous</div>
+          </strong>
+      <% else %>
+          <strong>
+            <div class="lb_comment_suggester"><%= c['user_name'] %></div>
+          </strong>
+      <% end %>
+      <% if @role == 1 %>
+          <form method="post">
+            <button type="button" href = '/welcome/delete_comment' class="remove_comment_icon" title="Remove this" onclick="delete_comment(<%= c['id'] %>)">
+              x
+            </button>
+          </form>
+      <% end  %>
+      <span class="form_control content_comment">
+        <%= c['content'] %>
+      </span>
+    </div>
+<% end %> <!--end load comment-->

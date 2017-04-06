@@ -15,12 +15,12 @@
 
         <% @result.each do |t| %>
             <tr>
-              <td><%= t['user_name'] %></td>
-              <td><a href="/welcome/detail/<%= t['id'] %>"><%= t['book_name'] %></a></td>
-              <td><%= t['quantity'] %></td>
-              <% if t['status'] ==0 %>
+              <td><%= t.user.user_name %></td>
+              <td><a href="/welcome/detail/<%= t.id %>"><%= t.book.book_name %></a></td>
+              <td><%= t.quantity %></td>
+              <% if t.status ==0 %>
                   <% stt='Pending' %>
-              <% elsif t['status'] == 1 %>
+              <% elsif t.status == 1 %>
                   <% stt='Approved' %>
                   <% color = 'green' %>
               <% else %>
@@ -28,7 +28,7 @@
                   <% color = 'red' %>
               <% end %>
               <td id=<%= color %>><%= stt %></td>
-              <td class="time"><%= t['created_at'].to_i*1000 %></td>
+              <td class="time"><%= t.created_at.to_i*1000 %></td>
             </tr>
         <% end %>
 <% else %>

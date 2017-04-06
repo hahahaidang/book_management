@@ -47,21 +47,50 @@ function check_tf_comment(id_tf, id_lb){
     if ($.trim(tf_vl).length == 0) {
         show_warning_lable(newid_lb, 'This field can not be blank!');
         event.preventDefault();
-        return false;
     }
     if (tf_length > 255) {
         show_warning_lable(newid_lb, 'Value is too long!');
         event.preventDefault();
-        return false;
     }
     if (tf_vl.match(regex)){
         show_warning_lable(newid_lb,'This value must not contain special character');
         event.preventDefault();
-        return false
     }
-    if (raise_confirm('Would you like to post this?')){
-        return true;
-    }
-    else return false;
+    //if (raise_confirm('Would you like to post this?')){
+    //    return true;
+    //}
+    //else return false;
 }
 
+function post_comment(){
+    check_tf_comment('comment_text_area','lb_comment');
+    $.ajax({
+        url: '/welcome/post_comment',
+        method: 'POST',
+        datatype: 'html',
+        data: $('#comment_form').serialize()
+    })
+        .success(function(msg){
+            $('.div_load_comment').html(msg);
+            $('#comment_text_area').val('');
+            event_hover_comment_box();
+        })
+        .fail(function(msg){
+            show_warning_lable('lb_comment','Error, can not post this comment!');
+        })
+}
+
+function delete_comment(commentID){
+    $.ajax({
+        url: '/welcome/delete_comment',
+        method: 'POST',
+        datatype: 'html',
+        data: {comment_id: commentID}
+    })
+        .success(function(msg){
+            $('.div_load_comment').html(msg);
+            event_hover_comment_box();
+        })
+        .fail(function(msg){
+        })
+}

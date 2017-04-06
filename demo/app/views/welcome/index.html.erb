@@ -3,7 +3,7 @@
   <h4><span class="glyphicon glyphicon-th-list"></span> Suggestion list</h4>
     <% @collection_list_suggestion.each do |t| %>
       <div class="col-xs-3">
-        <div class="div_item">
+        <div class="div_item" >
           <div class='image_list'>
             <% if t.image_link.blank?  %>
                 <a href="/welcome/detail/<%= t.id %>" >

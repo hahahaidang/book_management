@@ -5,14 +5,10 @@ class ApplicationController < ActionController::Base
   def check_permission
      @admin_role = Rails.application.secrets.admin
      user = session[:user]
-     if !(user.nil?)
-       if @admin_role.include?(user)
-         #isAdmin
-         @role = 1
-       else
-         #isMember
-         @role = 0
-       end
+     unless user.nil?
+       #if session user is not nil
+       #admin: role = 1, member role = 0
+       @admin_role.include?(user) ? @role = 1 : @role = 0
      end
   end
 

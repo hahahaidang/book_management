@@ -98,6 +98,9 @@
     color: black;
     float: right;
     display: none;
+    border: none;
+    background: none;
+    margin-top: -17px;
 
 }
 .remove_comment_icon:hover{
@@ -107,7 +110,7 @@
 }
 .content_comment{
     display: block;
-    width: 420px;
+    width: 400px;
     word-wrap:break-word;
 }
 .lb_form_comment{

@@ -18,7 +18,7 @@
                   <td><%= index %></td>
             <% else %>
             <!-- From 2nd page -->
-                <% index = index+1*10 %>
+                <% index = index+(@page-1)*10 %>
                 <tr>
                   <td><%= index %></td>
             <% end%>

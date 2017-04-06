@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'test/ajax' => 'test#ajax'
   get 'test/list_book' => 'test#list_book'
 
-#index
+#welcome
   root 'welcome#index'
   match 'welcome/index', via: [:get,:post], controller: :welcome, action: :index, as: 'index_page'
   match 'welcome/search_result', via: [:get], controller: :welcome, action: :search_result, as: 'search_result_page'
@@ -15,20 +15,19 @@ Rails.application.routes.draw do
   match 'welcome/create_request', via: [:post], controller: :welcome, action: :create_request, as: 'create_request'
   match 'welcome/like', via: [:post], controller: :welcome, action: :like
   match 'welcome/detail/:id', via: [:get], controller: :welcome, action: :detail, as:'welcome_detail'
-  match 'welcome/post_comment/:id', via: [:post], controller: :welcome, action: :post_comment
-  match 'welcome/delete_comment/:id', via: [:get], controller: :welcome, action: :delete_comment
-
-
-
+  match 'welcome/delete_comment', via: [:post], controller: :welcome, action: :delete_comment
+  match 'welcome/post_comment', via: [:post], controller: :welcome, action: :post_comment, as:'new_post_comment'
 
 #login
   match 'login/login_page', via: [:get], controller: :login, action: :login_page, as: 'login_page'
   match 'login/sign_in', via: [:post], controller: :login, action: :sign_in
   match 'login/logout_page', via: [:get], controller: :login, action: :logout_page, as: 'logout_page'
+
 #suggest
   match 'suggest/suggest_page', via: [:get], controller: :suggest, action: :suggest_page, as: 'suggest_page'
   match 'suggest/create_suggestion', via: [:post], controller: :suggest, action: :create_suggestion
   match 'suggest/list_book', via: [:post], controller: :suggest, action: :list_book
+
 #management
   match 'manage_book/approve_page', via: [:get], controller: :manage_book, action: :approve_page, as:'approve_page'
   match 'manage_book/managebook_page', via: [:get], controller: :manage_book, action: :managebook_page, as:'managebook_page'
@@ -41,7 +40,6 @@ Rails.application.routes.draw do
   match 'manage_book/delete/:id', via: [:get], controller: :manage_book, action: :delete
   match 'manage_book/myrequest_page', via: [:get], controller: :manage_book, action: :myrequest_page, as: 'myrequest_page'
   match 'manage_book/cancel_request/:id', via: [:get], controller: :manage_book, action: :cancel_request
-
 
 #suggest_list
   match 'suggest_list/suggest_list_page', via: [:get], controller: :suggest_list, action: :suggest_list_page, as: 'suggest_list_page'

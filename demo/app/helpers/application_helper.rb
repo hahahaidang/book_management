@@ -22,6 +22,5 @@ module ApplicationHelper
     exists
   end
 
-
 end
 
