@@ -81,3 +81,6 @@ h1{
 .delete_button{
     float:right;
 }
+.dropdown_menu_mobile{
+    margin-top: 13px;
+}
