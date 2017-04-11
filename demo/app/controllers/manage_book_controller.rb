@@ -49,9 +49,14 @@ class ManageBookController < ApplicationController
 
 
   def management_detail_page
+    #is admin
     if @role==1
       book_id = params[:id]
-      @collection = func_load_management_detail(book_id)
+      if func_load_management_detail(book_id).blank?
+        redirect_to managebook_page_path
+      else
+        @collection = func_load_management_detail(book_id)
+      end
 
     else
       redirect_to index_page_path
@@ -109,15 +114,11 @@ class ManageBookController < ApplicationController
       book_id = params['tf_book_id']
       name = params['tf_book_name']
       quantity = params['tf_book_quantity'].to_i
-
-      if func_update(book_id, name, quantity)
-        redirect_to :back
-        flash[:notice] = 'Updated!'
-      end
+      return render nothing:true, status:200 if func_update(book_id, name, quantity)
 
     else
       #is not admin
-      redirect_to '/welcome/index'
+      redirect_to index_page_path
     end
   end
 
@@ -129,17 +130,15 @@ class ManageBookController < ApplicationController
 
     else
       #is not admin
-      redirect_to '/welcome/index'
+      redirect_to index_page_path
     end
   end
 
-  #unuse
-  def detail_page
-    if @role==1
-      id_request = params[:id]
-      !(Request.where(id:id_request).blank?) ? @collection = Request.where(id:id_request) : (redirect_to approve_page_path)
-
-
+  def modal_detail
+    if @role == 1 && !params[:book_id].blank?
+      bookID = params[:book_id]
+      @collection = Book.where(id:bookID)
+      return render layout:false, template: "manage_book/modal_detail"
     else
       redirect_to index_page_path
     end
@@ -151,17 +150,8 @@ class ManageBookController < ApplicationController
     quantity = params['tf_book_quantity'].to_i
 
     #validation
-    if name.blank?
-      flash[:warn] = 'Bookname must not be blank!'
-      redirect_to :back
-    end
-    if (name.length > 255)
-      flash[:warn] = 'Bookname is too long'
-      redirect_to :back
-    end
-    if (quantity <0)
-      flash[:warn] = 'Invalid quantity'
-      redirect_to :back
-    end
+    return render status:500 if name.blank?
+    return render status:500 if name.length > 255
+    return render status:500 if quantity < 0 || quantity.blank?
   end
 end

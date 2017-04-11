@@ -1,5 +1,5 @@
 init();
-convertDate();
+convertDateDDMMYYYY();
 set_value_searchBar();
 function set_value_searchBar(){
     var value = $("#hidden_label").html();

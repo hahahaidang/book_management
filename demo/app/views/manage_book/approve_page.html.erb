@@ -1,6 +1,62 @@
 <h1>PENDING LIST</h1>
 <% if !@collection.blank? %>
-    <div class='div_approve_page'>
+    <div class="visible-xs">
+      <div class='search_form form-group'>
+        <%= form_tag '/manage_book/approve_page', method: 'get' do %>
+            <span>Search by</span>
+            <%= select_tag(:search_type, options_for_select([['Suggester', 0], ['Bookname', 1]])) %>
+            <%= text_field_tag 'tf_search_admin', nil %>
+            <button type="submit" class="glyphicon glyphicon-search search_button"></button>
+        <% end %>
+      </div>
+      <% @collection.each do |t|  %>
+          <div class="div_item col-xs-6">
+            <div class='image_list'>
+              <% if t.image_link.blank? %>
+                  <a href="/welcome/detail/<%= t.id %>">
+                    <img id='div_item_image' src="/assets/images/no_image.png">
+                  </a>
+              <% else %>
+                  <a href="/welcome/detail/<%= t.id %>">
+                    <img id='div_item_image' src="<%= t.image_link %>">
+                  </a>
+              <% end %>
+            </div>
+            <div class="item_content">
+              <div class="item_bookname">
+              <% if t.status == 0 %>
+                  <label class="lb_bookname" title="<%= t.book.book_name %>">
+                    <%= t.book.book_name %>
+                  </label>
+              <% end %>
+              <% if t.status == 1 %>
+                  <label class="lb_bookname" id="green" title="<%= t.book.book_name %>">
+                    <%= t.book.book_name %>
+                  </label>
+              <% end %>
+              <% if t.status == 2 %>
+                  <label class="lb_bookname" id="red" title="<%= t.book.book_name %>">
+                    <%= t.book.book_name %>
+                  </label>
+              <% end %>
+              </div>
+              <div class="">
+                <span>
+                  Suggester: <%= t.user.user_name %>
+                </span> <br>
+                <span>Date:</span>
+                <span class="time">
+                  <%= t.created_at.to_i*1000 %>
+                </span>
+              </div>
+            </div>
+          </div><!--end div_item-->
+      <% end  %>
+    </div>
+
+
+
+    <div class='div_approve_page hidden-xs'>
       <div class='search_form form-group'>
         <%= form_tag '/manage_book/approve_page', method: 'get' do %>
             <span>Search by</span>

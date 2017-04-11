@@ -1,6 +1,6 @@
 init();
-convertDate();
-active_label('nav-home');
+convertDateDDMMYYYY();
+active_label('nav-approval');
 
 function approve_request() {
     if (raise_confirm('Do you want to approve this?'))

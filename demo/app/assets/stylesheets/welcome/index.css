@@ -1,3 +1,4 @@
+
 #green{
     color:green;
 }
@@ -109,4 +110,21 @@ h4{
 #div_list_most_ranking a:hover{
     text-decoration: none;
     color: #e47b46;
+}
+.glyphicon-th-list{
+    padding-right: 5px;
+}
+
+.btn_mobile_search{
+    margin-left: -20px;
+    min-width: 80px;
+}
+.search_xs_sm{
+    margin-top: 10px;
+}
+.tf_search_xs_sm{
+    width: 100% !important;
+}
+.div_tf_search_mobile{
+    margin-left: -10px;
 }

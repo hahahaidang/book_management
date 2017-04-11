@@ -21,7 +21,7 @@ class SuggestController < ApplicationController
         if (bookName.length > 255)
           flash[:warn] = 'Bookname is too long!'
         else
-          if (bookLink.length > 255)
+          if (bookLink.length > 600)
             flash[:warn] = 'Booklink is too long!'
           else
             if (bookPrice == 0.0)

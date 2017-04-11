@@ -38,12 +38,8 @@ h1{
     min-width: 100px;
 }
 .div_approve_page{
-    margin-left: 50px;
-    margin-right: 50px;
 }
-.search_form{
-    float:right;
-}
+
 .search_button{
     padding-bottom: 6px;
     padding-top: 4px;
@@ -54,6 +50,36 @@ h1{
     color:black;
 
 }
-.search_form{
-    margin-bottom: 15px;
+
+.item_bookname{
+    margin-bottom: -10px;
+}
+
+
+
+.div_item{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: block;
+    min-height: 220px;
+}
+.div_item:hover{
+    background-color: #e2e2e2;
+}
+.image_list{
+    text-align: center;
+}
+#div_item_image{
+    height: 110px;
+    width: 110px;
+}
+.item_content{
+    text-align: center;
+}
+.lb_bookname{
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
 }

@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   validates :user_pwd, length: { maximum:128 }, presence:true
 
 
-
+  def self.user_like(name)
+    self.where('user_name like ?', "#{name}%")
+  end
 
 end

@@ -117,7 +117,7 @@ class WelcomeController < ApplicationController
       #validation
       #bookname is blank
       return render status:500 if params['tf_book_name'].strip.blank?
-      return render status:500 if params['tf_book_link'].length > 400
+      return render status:500 if params['tf_book_link'].length > 600
       return render status:500 if bookPrice == 0.0 || bookPrice < 0
       return render status:500 if params['tf_book_quantity'].to_i <= 0
     end

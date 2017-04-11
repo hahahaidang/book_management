@@ -1,90 +1,146 @@
 <%= render 'layouts/header' %>
 
 <body>
-<nav class="navbar-default main-nav">
+<nav class="navbar-default main-nav navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a id="text-navbar-logo" class="navbar-brand" href="/welcome/index">Book Management</a>
-    </div>
+      <a id="text-navbar-logo" class="navbar-brand" >Book Management</a>
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <% if session[:user].nil? %>
-            <li>
-              <a id="text-navbar-label" class = "nav-home" href="/welcome/index"><span class="glyphicon glyphicon-home"></span>Home<span class="sr-only">(current)</span></a>
-            </li>
-        <% else
-             if @role == 0 %>
-                <li>
-                  <a id="text-navbar-label" class = "nav-home" href="/welcome/index"><span class="glyphicon glyphicon-home"></span>Home<span class="sr-only">(current)</span></a>
-                </li>
-                <li>
-                  <a id="text-navbar-label" class = "nav-create" href='#' onclick="call_modal('modal_suggestion');"><span class="glyphicon glyphicon-plus"></span>Create<span class="sr-only">(current)</span></a>
-                </li>
-            <% else
-                 if @role == 1 %>
-                    <li>
-                      <a id="text-navbar-label" class = "nav-home" href="/manage_book/approve_page"><span class="glyphicon glyphicon-home"></span>Home<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li>
-                      <a id="text-navbar-label" class = "nav-management" href="/manage_book/managebook_page"><span class="glyphicon glyphicon-edit"></span>Management</a>
-                    </li>
-                    <span class="sr-only">(current)</span></a></li>
-                <% end %>
-            <% end %>
-        <% end %>
-      </ul>
-
-      <div class="navbar-right">
-        <%= form_tag '/welcome/search_result', method: :get, class: 'navbar-form' do %>
-            <ul class="nav navbar-nav ">
-              <!--search bar-->
+    <div>
+      <div class="hidden-xs hidden-sm">
+        <ul class="nav navbar-nav">
+          <% if session[:user].nil? %>
               <li>
-                <div class='form-group'>
-                  <%= search_field_tag 'tf_search', nil, class: 'form-control', placeholder: "Enter book's name", autocomplete: 'off' %>
-                  <%= submit_tag 'Search', class: 'btn btn-default' %>
-                </div>
+                <a id="text-navbar-label" class = "nav-home" href="/welcome/index"><span class="glyphicon glyphicon-home"></span>Home</a>
               </li>
-              <!--end search bar-->
-
-              <% if session[:user].nil? %>
-                  <li id="btn_login_logout">
-                    <a id="text-navbar" href="/login/login_page" class="navbar-brand">Login</a>
+          <% else
+               if @role == 0 %>
+                  <li>
+                    <a id="text-navbar-label" class = "nav-home" href="/welcome/index"><span class="glyphicon glyphicon-home"></span>Home</a>
                   </li>
-                  <%else if @role==0 %>
-                      <div class="btn-group orange">
-                        <button class="btn dropdown-toggle orange" data-toggle="dropdown" >
-                          <span class="glyphicon glyphicon-user"></span>
-                          <span><%= session[:user] %></span>
-                          <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li><a href="/manage_book/myrequest_page">My request</a></li>
-                          <li><a href="<%=logout_page_path %>">Logout</a></li>
-                        </ul>
-                      </div>
-                  <% else %>
-                  <div class="btn-group orange">
-                    <button class="btn dropdown-toggle orange" data-toggle="dropdown" >
+                  <li>
+                    <a id="text-navbar-label" class = "nav-create" href='#' onclick="call_modal('modal_suggestion');"><span class="glyphicon glyphicon-plus"></span>Create</a>
+                  </li>
+              <% else
+                   if @role == 1 %>
+                      <li>
+                        <a id="text-navbar-label" class = "nav-home" href="/welcome/index"><span class="glyphicon glyphicon-home"></span>Home</a>
+                      </li>
+                      <li>
+                        <a id="text-navbar-label" class = "nav-approval" href="/manage_book/approve_page"><span class="glyphicon glyphicon glyphicon-ok"></span>Approval</a>
+                      </li>
+                      <li>
+                        <a id="text-navbar-label" class = "nav-management" href="/manage_book/managebook_page"><span class="glyphicon glyphicon-edit"></span>Management</a>
+                      </li>
+                  <% end %>
+              <% end %>
+          <% end %>
+        </ul>
+      </div>
+      <div class="navbar-right">
+        <div class="hidden-xs hidden-sm">
+          <%= form_tag '/welcome/search_result', method: :get, class: 'navbar-form' do %>
+              <ul class="nav navbar-nav">
+                <!--search bar-->
+                <li>
+                  <div class='form-group hidden-xs'>
+                    <%= search_field_tag 'tf_search', nil, class: 'form-control', placeholder: "Enter book's name", autocomplete: 'off' %>
+                    <%= submit_tag 'Search', class: 'btn btn-default' %>
+                  </div>
+                </li>
+                <!--end search bar-->
+                <% if session[:user].nil? %>
+                    <li id="btn_login_logout">
+                      <a id="text-navbar" href="/login/login_page" class="navbar-brand">Login</a>
+                    </li>
+                    <%else if @role == 0 %>
+                        <div class="btn-group orange">
+                          <button class="btn dropdown-toggle orange" data-toggle="dropdown" >
+                            <span class="glyphicon glyphicon-user"></span>
+                            <span><%= session[:user] %></span>
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu dropdown_menu_desktop">
+                            <li>
+                              <a href="/manage_book/myrequest_page"><span class="glyphicon glyphicon-folder-open"></span>My request</a>
+                            </li>
+                            <li>
+                              <a href="<%=logout_page_path %>"><span class="glyphicon glyphicon-log-out"></span>Logout</a>
+                            </li>
+                          </ul>
+                        </div>
+                    <% else %>
+                    <div class="btn-group orange">
+                      <button class="btn dropdown-toggle orange" data-toggle="dropdown" >
+                        <span class="glyphicon glyphicon-user"></span>
+                        <span><%= session[:user] %></span>
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu dropdown_menu_desktop">
+                        <li><a href="<%= logout_page_path %>">Logout</a></li>
+                      </ul>
+                    </div>
+                    <% end  %>
+                <% end %>
+              </ul>
+          <% end %>
+        </div>
+
+        <div class="btn-group visible-xs visible-sm nav-xs-sm nav_right_mobile">
+          <div class="menu_mobile">
+            <button class="btn button_menu_mobile dropdown-toggle orange glyphicon glyphicon-align-justify" data-toggle="dropdown" onclick="expand_dropdown_button()">
+            </button>
+            <ul class="dropdown-menu dropdown_menu_mobile">
+              <% if session[:user].nil?  %>
+                  <li>
+                    <a class = "nav-mobile" href="/welcome/index"><span class="glyphicon glyphicon-home"></span>Home</a>
+                  </li>
+                  <li id="btn_login_logout">
+                    <a class="nav-mobile" href="/login/login_page" ><span class="glyphicon glyphicon-log-in"></span>Login</a>
+                  </li>
+              <% end %>
+              <% if @role == 1  %>
+                  <li class="user_name">
                       <span class="glyphicon glyphicon-user"></span>
                       <span><%= session[:user] %></span>
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a href="<%= logout_page_path %>">Logout</a></li>
-                    </ul>
-                  </div>
-                  <% end  %>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                    <a class = "nav-mobile" href="/welcome/index"><span class="glyphicon glyphicon-home"></span>Home</a>
+                  </li>
+                  <li>
+                    <a class = "nav-mobile" href="/manage_book/approve_page"><span class="glyphicon glyphicon glyphicon-ok"></span>Approval</a>
+                  </li>
+                  <li>
+                    <a href="/manage_book/managebook_page"><span class="glyphicon glyphicon-edit"></span>Management</a>
+                  </li>
+                  <li>
+                    <a href="<%=logout_page_path %>"><span class="glyphicon glyphicon-log-out"></span>Logout</a>
+                  </li>
               <% end %>
+
+              <% if @role == 0  %>
+                  <li class="user_name">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <span><%= session[:user] %></span>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                    <a class = "nav-mobile" href="/welcome/index"><span class="glyphicon glyphicon-home"></span>Home</a>
+                  </li>
+                  <li>
+                    <a id="text-navbar-label" class = "nav-create" href='#' onclick="call_modal('modal_suggestion');"><span class="glyphicon glyphicon-plus"></span>Create</a>
+                  </li>
+                  <li>
+                    <a href="/manage_book/myrequest_page"><span class="glyphicon glyphicon-folder-open"></span>My request</a>
+                  </li>
+                  <li>
+                    <a href="<%=logout_page_path %>"><span class="glyphicon glyphicon-log-out"></span>Logout</a>
+                  </li>
+              <% end  %>
             </ul>
-        <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div><!-- /.navbar-collapse -->
@@ -93,9 +149,11 @@
 
 
 <div class='div-body row'>
-  <div class="div-content col-xs-12">
+  <div class="div_blur" onclick="hide_div_blur()"></div>
+  <div class="div-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <%= yield %>
   </div>
+
 </div>
 <%= render 'layouts/footer' %>
 

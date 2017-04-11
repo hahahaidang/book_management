@@ -60,7 +60,7 @@ function check_tf_book_link(id_tf, id_lb) {
     var regexScript = new RegExp(expressionScript);
 
 
-    if (tf_length > 400) {
+    if (tf_length > 600) {
         show_warning_lable(newid_lb, 'This value is too long!');
         return false;
     }

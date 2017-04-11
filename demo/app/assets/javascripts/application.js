@@ -5,6 +5,9 @@
 //= require moment
 
 
+
+
+
 function return_index_page() {
     window.location.href = '/welcome/index';
 }
@@ -22,6 +25,15 @@ function convertDate() {
         $(element).html(result);
     })
 }
+function convertDateDDMMYYYY(){
+    $('.time').each(function (index, element) {
+        //parse datetime to integer
+        digit = parseInt($(element).html());
+        //using momentjs to convert by format
+        result = moment(digit).format('l');
+        $(element).html(result);
+    })
+}
 
 function init() {
     $(document).ready(function () {
@@ -30,6 +42,7 @@ function init() {
         get_bookname('#tf_search');
         resize_screen();
         awesomplete_insert_book();
+        set_height_default();
     })
 }
 
@@ -45,17 +58,31 @@ function hide_label(id_label) {
     $(id_label).css('display', 'none');
 }
 
+function expand_dropdown_button(){
+    $('.div_blur').css('z-index', '1');
+    $('.div-content').css('z-index', '-1');
+    $('.div_blur').css('display', 'block');
 
+}
+
+function hide_div_blur(){
+    $('.div_blur').css('display', 'none');
+    $('.div_blur').css('z-index', '-1');
+    $('.div-content').css('z-index', '1');
+
+}
 
 function set_height_default() {
     //Default height after load
     var totalHeight = $(window).height();
+    var totalWidth = $(window).width();
     var heightHeader = $('.navbar-header').height();
     var heightFooter = $('.model-footer').height();
     var newHeight = totalHeight - heightFooter - heightHeader - 20; //20 is margin of header and footer
-    $('.div-content').css("min-height", function () {
-        return newHeight;
-    });
+    $('.div-content').css("min-height", newHeight);
+    $('.div_blur').css('min-height', totalHeight);
+    $('.div_blur').css('min-width', totalWidth);
+
 }
 
 function resize_screen() {
@@ -75,12 +102,11 @@ function active_label(class_label) {
 
 function call_modal(id_modal) {
     var id = "#" + id_modal;
+    $('.div_blur').css('display','none');
     $(id).modal();
 }
 
-function call_modal_creation() {
-    $('.modal_suggestion').modal();
-}
+
 
 function cancel_request() {
     var bookName = $('#id_tf_book_name').val().length;
@@ -123,12 +149,13 @@ function check_input_form_modal() {
     fade_error_label('id_label_linkimage');
     fade_error_label('id_label_tf_bookprice');
     fade_error_label('id_label_tf_bookquantity');
-    if (!flag) {
-        return false
-    }
-    else {
+    if (flag){
         call_confirm_request();
     }
+    else{
+        return flag;
+    }
+
 }
 
 function check_tf_link_image(id_tf, id_lb) {
@@ -162,7 +189,7 @@ function check_tf_book_link(id_tf, id_lb) {
     var regexScript = new RegExp(expressionScript);
 
 
-    if (tf_length > 400) {
+    if (tf_length > 600) {
         show_warning_lable(newid_lb, 'This value is too long!');
         return false;
     }

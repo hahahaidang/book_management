@@ -1,21 +1,45 @@
 <div class="row">
   <% @collection.each do |t| %> <!--start each-->
       <div class="container_detail">
-        <div class="div_image">
+        <div class="div_image col-xs-12 col-sm-5 col-md-5 col-lg-3">
           <% if t['image_link'].blank? %> <!--show image default or not-->
               <img id='image' src="/assets/images/no_image.png">
           <% else %>
               <img id='image' src="<%= t['image_link'] %>">
           <% end %> <!--end show image-->
+          <div class=" form-group div_like_icon">
+            <% if @role == 0 %> <!--check role-->
+                <!--is member-->
+                <% if t['liked'] == 0 %>
+                    <!--Didnt like before-->
+                    <button class="btn btn-default btn_like" onclick="like(<%= t['id'] %>)">
+                      <span id="<%= t['id'] %>_request_like"><%= t['quantity_of_like'] %></span>
+                      <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
+                    </button>
+                <% else %>
+                    <!--Liked-->
+                    <div>
+                      <span><%= t['quantity_of_like'] %></span>
+                      <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
+                    </div>
+                <% end %>
+            <% else %>
+                <!--admin or anonymous cant like-->
+                <div>
+                  <span><%= t['quantity_of_like'] %></span>
+                  <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
+                </div>
+            <% end %> <!--end check role-->
+          </div> <!--end div_like_icon-->
         </div>
 
-        <div class="main_content">
-          <div class='form-group '>
+        <div class="main_content col-xs-12 col-sm-7 col-md-7 col-lg-9">
+          <div class='form-group'>
             <h3 title="<%= t['book_name'] %>"><%= t['book_name'] %></h3>
           </div>
           <hr id="hrr">
           <div class='form-group '>
-            <label class=' lb_suggester '>Suggester:</label>
+            <label class='lb_suggester'>Suggester:</label>
             <span><%= t['user_name'] %></span>
           </div>
           <div class='form-group'>
@@ -48,30 +72,6 @@
                 <% end %>
             <% end %> <!--end check status-->
           </div>
-          <div class=" form-group div_like_icon">
-            <% if @role == 0 %> <!--check role-->
-                <!--is member-->
-                <% if t['liked'] == 0 %>
-                    <!--Didnt like before-->
-                    <button class="btn btn-default btn_like" onclick="like(<%= t['id'] %>)">
-                      <span id="<%= t['id'] %>_request_like"><%= t['quantity_of_like'] %></span>
-                      <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
-                    </button>
-                <% else %>
-                    <!--Liked-->
-                    <div>
-                      <span><%= t['quantity_of_like'] %></span>
-                      <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
-                    </div>
-                <% end %>
-            <% else %>
-                <!--admin or anonymous cant like-->
-                <div>
-                  <span><%= t['quantity_of_like'] %></span>
-                  <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
-                </div>
-            <% end %> <!--end check role-->
-          </div> <!--end div_like_icon-->
           <% if t['status'] == 1 %>
               <label id='green' class='lb_admin_comment'><span class="glyphicon glyphicon-ok"></span>Approved by admin:</label>
               <span><%= t['admin_comment'] %></span>
@@ -80,63 +80,69 @@
               <label id='red' class='lb_admin_comment'><span></span>Cancel by admin:</label>
               <span><%= t['admin_comment'] %></span>
           <% end %>
+        </div> <!--end main_content-->
 
-          <!--Comment-->
-          <div class="div_comment">
-            <div class="comment_div_form">
-              <!--if have no comment-->
-              <% if (t['status'] == 0) || (t['status'] > 0 && !@comment.blank?) %>
+        <!--Comment-->
+        <div class="div_comment col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="comment_div_form">
+            <!--if have no comment-->
+            <% if (t['status'] == 0) || (t['status'] > 0 && !@comment.blank?) %>
                 <h4>Comment</h4>
-              <% end %>
-              <div class="div_load_comment">
-                <% @comment.each do |c| %> <!--start load comment-->
-                    <div class="form-group comment_text_area">
-                      <% if c['user_id'].nil? %>
-                          <strong>
-                            <div class="lb_comment_suggester">Anonymous</div>
-                          </strong>
-                      <% else %>
-                          <strong>
-                            <div class="lb_comment_suggester"><%= c['user_name'] %></div>
-                          </strong>
-                      <% end %>
-                      <% if @role == 1 %>
-                          <form method="post">
-                             <button type="button"  class="remove_comment_icon" title="Remove this" onclick="delete_comment(<%= c['id'] %>)">
-                               x
-                             </button>
-                          </form>
-                      <% end  %>
-                      <span class="form_control content_comment">
+            <% end %>
+            <div class="div_load_comment">
+              <% @comment.each do |c| %> <!--start load comment-->
+                  <div class="form-group comment_text_area">
+                    <% if c['user_id'].nil? %>
+                        <strong>
+                          <div class="lb_comment_suggester">Anonymous</div>
+                        </strong>
+                    <% else %>
+                        <strong>
+                          <div class="lb_comment_suggester"><%= c['user_name'] %></div>
+                        </strong>
+                    <% end %>
+                    <% if @role == 1 %>
+                        <form method="post">
+                          <button type="button"  class="remove_comment_icon" title="Remove this" onclick="delete_comment(<%= c['id'] %>)">
+                            x
+                          </button>
+                        </form>
+                    <% end  %>
+                    <span class="form_control content_comment">
                           <%= c['content'] %>
                         </span>
-                    </div>
-                <% end %> <!--end load comment-->
-              </div>
-              <div class="div_form_comment">
-                <!--form comment, if status is not pending-->
-                <% if t['status'] == 0 %>
-                  <!--start form-->
-                    <form id="comment_form" method="post">
-                      <div class="form-group ">
-                        <% if session[:user].nil? %>
-                            <label class="lb_form_comment">Name: Anonymous</label>
-                        <% else %>
-                            <label class="lb_form_comment">Name: <%= session[:user] %></label>
-                        <% end %>
-                        <textarea name="comment_text_area" id="comment_text_area" rows="2" cols="60" class="form_control" placeholder="Add a comment"></textarea>
-                        <input name="hidden_id_request" id="hidden_id_request" class="error_label" value="<%= t['id'] %>">
-                        <div>
-                          <label id="lb_comment" class="error_label"></label>
-                          <input type="button" name="commit" value="Post" class="btn btn-default btn_post" onclick="post_comment()">
-                        </div>
-                      </div>
-                    </form> <!--end form-->
-                <% end %> <!--end if-->
-              </div>
+                  </div>
+              <% end %> <!--end load comment-->
             </div>
-          </div> <!--end div_comment-->
-        </div> <!--end main_content-->
+
+
+            <div class="div_form_comment">
+              <!--form comment, if status is not pending-->
+              <% if t['status'] == 0 %>
+                  <!--start form-->
+                  <form id="comment_form" method="post">
+                    <div class="form-group ">
+                      <% if session[:user].nil? %>
+                          <label class="lb_form_comment">Name: Anonymous</label>
+                      <% else %>
+                          <label class="lb_form_comment">Name: <%= session[:user] %></label>
+                      <% end %>
+                      <div>
+                        <textarea name="comment_text_area" id="comment_text_area" rows="3" cols="48" class="form_control" placeholder="Add a comment"></textarea>
+                      </div>
+                      <input name="hidden_id_request" id="hidden_id_request" class="error_label" type="number" value="<%= t['id'] %>">
+                      <div>
+                        <label id="lb_comment" class="error_label"></label>
+                        <input type="button" name="commit" value="Post" class="btn btn-default btn_post" onclick="post_comment()">
+                      </div>
+                    </div>
+                  </form> <!--end form-->
+              <% end %> <!--end if-->
+            </div>
+
+
+          </div>
+        </div> <!--end div_comment-->
       </div> <!--end container detail-->
       </div>
 

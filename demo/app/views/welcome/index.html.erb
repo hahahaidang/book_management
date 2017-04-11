@@ -1,53 +1,63 @@
+<div class="visible-xs visible-sm  search_xs_sm row">
+  <%= form_tag '/welcome/search_result', class: 'form-inline', method: :get do %>
+      <div class="col-xs-10 col-sm-11 div_tf_search_mobile">
+        <%= search_field_tag 'tf_search', nil, class: 'form-control tf_search_xs_sm', placeholder: "Enter book's name", autocomplete: 'off' %>
+      </div>
+      <div class="col-xs-2 col-sm-1">
+        <%= submit_tag 'Search', class: 'btn btn-default form-control btn_mobile_search' %>
+      </div>
+  <% end %>
+</div>
 <!--List suggest-->
-<div id="div_list_suggestion" class="col-xs-8">
+<div id="div_list_suggestion" class="col-sm-12 col-md-8 col-lg-8">
   <h4><span class="glyphicon glyphicon-th-list"></span> Suggestion list</h4>
-    <% @collection_list_suggestion.each do |t| %>
-      <div class="col-xs-3">
-        <div class="div_item" >
+  <% @collection_list_suggestion.each do |t| %>
+      <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+        <div class="div_item">
           <div class='image_list'>
-            <% if t.image_link.blank?  %>
-                <a href="/welcome/detail/<%= t.id %>" >
-                  <img id = 'div_item_image' src="/assets/images/no_image.png">
+            <% if t.image_link.blank? %>
+                <a href="/welcome/detail/<%= t.id %>">
+                  <img id='div_item_image' src="/assets/images/no_image.png">
                 </a>
             <% else %>
-                <a href="/welcome/detail/<%= t.id %>" >
-                  <img id = 'div_item_image' src="<%= t.image_link%>">
+                <a href="/welcome/detail/<%= t.id %>">
+                  <img id='div_item_image' src="<%= t.image_link %>">
                 </a>
-            <% end  %>
+            <% end %>
           </div>
           <div class="item_content">
-                <label class="lb_bookname" title="<%= t.book.book_name %>">
-                  <%= t.book.book_name %>
-                </label>
-              <div>
-                  <% if @role == 0 %>
-                    <!--is member-->
-                    <% if t.liked == 0  %>
+            <label class="lb_bookname" title="<%= t.book.book_name %>">
+              <%= t.book.book_name %>
+            </label>
+            <div>
+              <% if @role == 0 %>
+                  <!--is member-->
+                  <% if t.liked == 0 %>
                       <!--Didnt like before-->
                       <button class="btn btn-default btn_like" onclick="like(<%= t.id %>)">
                         <span id="<%= t.id %>_request_like"><%= t.quantity_of_like %></span>
                         <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
                       </button>
-                    <% else %>
+                  <% else %>
                       <!--Liked-->
                       <div>
                         <span><%= t.quantity_of_like %></span>
                         <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
                       </div>
-                    <% end  %>
-                  <%else%>
-                      <!--admin or anonymous cant like-->
-                      <div>
-                        <span><%= t.quantity_of_like %></span>
-                        <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
-                      </div>
-                  <% end  %>
-              </div>
+                  <% end %>
+              <% else %>
+                  <!--admin or anonymous cant like-->
+                  <div>
+                    <span><%= t.quantity_of_like %></span>
+                    <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
+                  </div>
+              <% end %>
+            </div>
           </div>
         </div><!--end div_item-->
       </div>
-<% end %> <!--end each-->
-  <div class="page-button col-xs-12">
+  <% end %> <!--end each-->
+  <div class="page-button col-xs-12 col-md-12 col-lg-12">
     <%= will_paginate @collection_list_suggestion, renderer: BootstrapPagination::Rails %>
   </div>
 </div> <!--end div_list_suggestion-->
@@ -58,18 +68,18 @@
 
 <!--List most ranking-->
 
-<div class="col-xs-4" id="div_list_most_ranking">
+<div class="hidden-xs hidden-sm col-md-4 col-lg-4 .hidden-xs-down" id="div_list_most_ranking">
   <h4><span class="glyphicon glyphicon-heart"></span> Most favorite</h4>
-  <% @collection_most_ranking.each_with_index do | value,index | %>
-      <% if (index + 1) == 1  %>
+  <% @collection_most_ranking.each_with_index do |value, index| %>
+      <% if (index + 1) == 1 %>
           <!--best_item-->
-          <div id = 'best_item' class="row item_most_ranking">
+          <div id='best_item' class="row item_most_ranking">
             <a href="/welcome/detail/<%= value.id %>">
-              <div class="div_name_most_ranking col-xs-9">
+              <div class="div_name_most_ranking col-xs-9 col-md-9 col-lg-9">
                 <span class="span_index_most_ranking"><%= index+1 %></span>
                 <span title="<%= value.book.book_name %>" class="name_most_ranking"><%= value.book.book_name %></span>
               </div>
-              <div class="div_quantity_like_most_ranking col-xs-3">
+              <div class="div_quantity_like_most_ranking col-xs-3 col-md-3 col-lg-3">
                 <span><%= value.quantity_of_like %>
                   <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
                 </span>
@@ -77,20 +87,20 @@
             </a>
           </div>
       <% else %>
-      <div class="row item_most_ranking">
-        <a href="/welcome/detail/<%= value.id %>">
-          <div class="div_name_most_ranking col-xs-9">
-            <span class="span_index_most_ranking"><%= index+1 %></span>
-            <span title="<%= value.book.book_name %>" class="name_most_ranking"><%= value.book.book_name %></span>
-          </div>
-          <div class="div_quantity_like_most_ranking col-xs-3">
+          <div class="row item_most_ranking">
+            <a href="/welcome/detail/<%= value.id %>">
+              <div class="div_name_most_ranking col-xs-9 col-md-9 col-lg-9">
+                <span class="span_index_most_ranking"><%= index+1 %></span>
+                <span title="<%= value.book.book_name %>" class="name_most_ranking"><%= value.book.book_name %></span>
+              </div>
+              <div class="div_quantity_like_most_ranking col-xs-3 col-md-3 col-lg-3">
                 <span><%= value.quantity_of_like %>
                   <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
                 </span>
+              </div>
+            </a>
           </div>
-        </a>
-      </div>
-      <% end  %>
+      <% end %>
   <% end %>
 </div> <!--End div_list_most_ranking-->
 

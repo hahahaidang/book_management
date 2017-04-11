@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   match 'manage_book/delete/:id', via: [:get], controller: :manage_book, action: :delete
   match 'manage_book/myrequest_page', via: [:get], controller: :manage_book, action: :myrequest_page, as: 'myrequest_page'
   match 'manage_book/cancel_request/:id', via: [:get], controller: :manage_book, action: :cancel_request
+  match 'manage_book/modal_detail', via: [:post], controller: :manage_book, action: :modal_detail
 
 #suggest_list
   match 'suggest_list/suggest_list_page', via: [:get], controller: :suggest_list, action: :suggest_list_page, as: 'suggest_list_page'

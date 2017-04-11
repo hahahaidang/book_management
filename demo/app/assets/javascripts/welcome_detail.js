@@ -1,6 +1,8 @@
 init();
 event_hover_comment_box();
 
+
+
 function event_hover_comment_box(){
     $('.comment_text_area').hover(function(){
         $('.remove_comment_icon').css('display','block');

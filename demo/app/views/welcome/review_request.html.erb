@@ -7,35 +7,36 @@
 <div class="modal-body">
   <!--Suggest form-->
   <div class="div-suggest row">
-    <div class='form-group col-xs-4'>
+    <div class='form-group col-xs-12 col-sm-5 col-md-4 col-lg-4 div_image_review'>
       <% if params['tf_link_image'].blank?  %>
-          <img id = 'image' src="/assets/images/no_image.png">
+          <img id = 'image_in_review' src="/assets/images/no_image.png">
       <% else  %>
-          <img id = 'image' src="<%= params['tf_link_image']%>">
+          <img id = 'image_in_review' src="<%= params['tf_link_image']%>">
       <% end  %>
     </div>
-    <div id="main_content_form_review">
+    <div id="main_content_form_review" class="col-xs-12 col-sm-7 col-md-8 col-lg-8">
       <div class='form-group'>
-        <label class='form_label lb_name'>Name</label>
-        <label id='id_label_tf_bookname' title="<%= params['tf_book_name'] %>"><%= params['tf_book_name'] %></label>
+        <label>Name:</label>
+        <span id='id_label_tf_bookname' title="<%= params['tf_book_name'] %>"><%= params['tf_book_name'] %></span>
       </div>
       <div class='form-group'>
-        <label class='form_label lb_link'>Link</label>
-        <label id='id_label_tf_booklink' title="<%= params['tf_book_link'] %>"><a target="_blank" href="<%= params['tf_book_link'] %>"><%= params['tf_book_link'] %></a></label>
+        <label>Link:</label>
+        <span id='id_label_tf_booklink' title="<%= params['tf_book_link'] %>"><a target="_blank" href="<%= params['tf_book_link'] %>"><%= params['tf_book_link'] %></a></span>
       </div>
       <div class='form-group'>
-        <label class='form_label lb_price'>Price</label>
-        <label id='id_label_tf_bookprice'><%= params['tf_book_price'] %></label>
+        <label>Price:</label>
+        <span id='id_label_tf_bookprice'><%= params['tf_book_price'] %></span>
       </div>
       <div class='form-group'>
-        <label class='form_label lb_quantity'>Quantity</label>
-        <label id='id_label_tf_bookquantity'><%= params['tf_book_quantity'] %></label>
+        <label>Quantity:</label>
+        <span id='id_label_tf_bookquantity'><%= params['tf_book_quantity'] %></span>
       </div>
     </div>
     <!--alert div-->
-    <div id="div_success" class="alert alert-success div_hidden" role="alert"></div>
-    <div id="div_fail" class="alert alert-danger div_hidden" role="alert">Fail to create suggestion</div>
-
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div id="div_success" class="alert alert-success div_hidden" role="alert"></div>
+      <div id="div_fail" class="alert alert-danger div_hidden" role="alert">Fail to create suggestion</div>
+    </div>
 
     <div id="hidden_input">
             <%= text_field_tag 'tf_book_name', nil, class: 'form-control', id: 'id_tf_book_name', autocomplete: 'off', value: params['tf_book_name'] %>
