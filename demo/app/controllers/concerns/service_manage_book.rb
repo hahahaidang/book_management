@@ -68,7 +68,7 @@ module ServiceManageBook
         when 1
           conditions[:book] = Book.book_like input
       end
-      return @collection = Request.where(conditions).order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
+      return @collection = Request.where(conditions).where(status:0).order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
     end
   end
 
