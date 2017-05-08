@@ -94,11 +94,11 @@
                   <div class="form-group comment_text_area">
                     <% if c['user_id'].nil? %>
                         <strong>
-                          <div class="lb_comment_suggester">Anonymous</div>
+                          <div class="lb_comment_suggester"><span class="glyphicon glyphicon-user"></span> Anonymous</div>
                         </strong>
                     <% else %>
                         <strong>
-                          <div class="lb_comment_suggester"><%= c['user_name'] %></div>
+                          <div class="lb_comment_suggester"><span class="glyphicon glyphicon-user"></span> <%= c['user_name'] %></div>
                         </strong>
                     <% end %>
                     <% if @role == 1 %>
@@ -113,6 +113,11 @@
                         </span>
                   </div>
               <% end %> <!--end load comment-->
+              <!--If has comment to load-->
+              <div class="div_loadmore_comment">
+                <p class="load_more_link" onclick = "load_more_comment(<%= t['id'] %>)">Load more...</p>
+              </div>
+
             </div>
 
 
@@ -123,9 +128,9 @@
                   <form id="comment_form" method="post">
                     <div class="form-group ">
                       <% if session[:user].nil? %>
-                          <label class="lb_form_comment">Name: Anonymous</label>
+                          <label class="lb_form_comment"><span class="glyphicon glyphicon-user"></span> Anonymous</label>
                       <% else %>
-                          <label class="lb_form_comment">Name: <%= session[:user] %></label>
+                          <label class="lb_form_comment"><span class="glyphicon glyphicon-user"></span> <%= session[:user] %></label>
                       <% end %>
                       <div>
                         <textarea name="comment_text_area" id="comment_text_area" rows="3" cols="48" class="form_control" placeholder="Add a comment"></textarea>

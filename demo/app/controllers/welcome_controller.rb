@@ -90,7 +90,7 @@ class WelcomeController < ApplicationController
     return render status:500 if content.blank? || content.length > 255
     if func_post_cmt(userID,requestID,content)
       @comment = func_load_comment(requestID)
-      return render layout:false, template: "welcome/post_comment"
+      return render layout:false, template: "welcome/load_comment"
     end
   end
 

@@ -96,3 +96,24 @@ function delete_comment(commentID){
         .fail(function(msg){
         })
 }
+
+
+function load_more_comment(requestId){
+    //count the number of current comment
+    var count = $('.comment_text_area').size();
+    //load more 5 comment
+    var quantity_of_comment = count + 5;
+
+    $.ajax({
+        url: '/welcome/load_more_comment',
+        method: 'GET',
+        datatype: 'html',
+        data: {requestId: requestId, quantity_of_comment: quantity_of_comment}
+    })
+        .success(function(msg){
+            $('.div_load_comment').html(msg);
+            event_hover_comment_box();
+        })
+        .fail(function(msg){
+        })
+}

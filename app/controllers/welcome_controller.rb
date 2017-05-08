@@ -43,8 +43,15 @@ class WelcomeController < ApplicationController
 
   def detail
     request_id = params[:id]
-    @collection = func_load_detail(request_id,session[:user])
-    @comment = func_load_comment(request_id)
+
+    #default is 5
+    if params[:quantity_of_comment].nil?
+      quantity_of_comment = 5
+    else
+      quantity_of_comment = params[:quantity_of_comment]
+    end
+     @collection = func_load_detail(request_id, session[:user])
+     @comment = func_load_comment(request_id, quantity_of_comment)
   end
 
   #modal review request
@@ -89,9 +96,20 @@ class WelcomeController < ApplicationController
 
     return render status:500 if content.blank? || content.length > 255
     if func_post_cmt(userID,requestID,content)
-      @comment = func_load_comment(requestID)
-      return render layout:false, template: "welcome/post_comment"
+      @comment = func_load_comment(requestID,5)
+      return render layout:false, template: "welcome/load_comment"
     end
+  end
+
+  def load_more_comment
+    @requestId = params[:requestId].to_i
+    quantity_of_comment = params[:quantity_of_comment].to_i
+    if quantity_of_comment < Comment.where(request_id:@requestId).count
+      @hasLeft = true
+    end
+    @comment = func_load_comment(@requestId, quantity_of_comment)
+    return render layout:false, template: "welcome/load_comment"
+
   end
 
 
@@ -101,7 +119,7 @@ class WelcomeController < ApplicationController
       commentID = params[:comment_id]
       requestID = Comment.find(commentID).request_id
       if func_delete_comment(commentID)
-        @comment = func_load_comment(requestID)
+        @comment = func_load_comment(requestID,5)
         return render layout:false, template: "welcome/delete_comment"
       end
 

@@ -128,3 +128,12 @@ h3{
     margin-top: 10px;
     word-wrap: break-word;
 }
+.div_loadmore_comment{
+    margin-bottom: 10px;
+}
+.load_more_link{
+    color:#428bca;
+}
+.load_more_link:hover{
+    cursor: pointer;
+}

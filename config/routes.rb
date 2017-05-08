@@ -13,9 +13,11 @@ Rails.application.routes.draw do
   match 'welcome/suggest_form', via: [:post], controller: :welcome, action: :suggest_form, as: 'suggest_form'
   match 'welcome/create_request', via: [:post], controller: :welcome, action: :create_request, as: 'create_request'
   match 'welcome/like', via: [:post], controller: :welcome, action: :like
+#detail
   match 'welcome/detail/:id', via: [:get], controller: :welcome, action: :detail, as:'welcome_detail'
-  match 'welcome/delete_comment', via: [:post], controller: :welcome, action: :delete_comment
   match 'welcome/post_comment', via: [:post], controller: :welcome, action: :post_comment, as:'new_post_comment'
+  match 'welcome/delete_comment', via: [:post], controller: :welcome, action: :delete_comment
+  match 'welcome/load_more_comment', via: [:get], controller: :welcome, action: :load_more_comment
 
 #login
   match 'login/login_page', via: [:get], controller: :login, action: :login_page, as: 'login_page'

@@ -2,11 +2,11 @@
     <div class="form-group comment_text_area">
       <% if c['user_id'].nil? %>
           <strong>
-            <div class="lb_comment_suggester">Anonymous</div>
+            <div class="lb_comment_suggester"><span class="glyphicon glyphicon-user"></span> Anonymous</div>
           </strong>
       <% else %>
           <strong>
-            <div class="lb_comment_suggester"><%= c['user_name'] %></div>
+            <div class="lb_comment_suggester"><span class="glyphicon glyphicon-user"></span> <%= c['user_name'] %></div>
           </strong>
       <% end %>
       <% if @role == 1 %>
@@ -21,3 +21,8 @@
       </span>
     </div>
 <% end %> <!--end load comment-->
+<% if @hasLeft == true %>
+  <div class="div_loadmore_comment">
+    <p class="load_more_link" onclick = "load_more_comment(<%= @requestId %>)">Load more...</p>
+  </div>
+<% end  %>

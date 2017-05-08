@@ -69,14 +69,14 @@ module ServiceWelcome
     end
   end
 
-  def func_load_comment(requestID)
+  def func_load_comment(requestID, limit)
     sql = "select c.*, u.user_name
                       from comments c
                       left join users u
                       on c.user_id = u.id
                       where c.request_id='#{requestID}'
                       order by created_at DESC
-                      LIMIT 10"
+                      LIMIT #{limit}"
     return ActiveRecord::Base.connection.exec_query(sql)
   end
 
