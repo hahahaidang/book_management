@@ -1,0 +1,222 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require bootstrap
+ *= require_self
+ *= require awesomplete
+ */
+
+.div-content{
+  background-color: #F2F2F2;
+  margin-top: 50px;
+}
+
+.model-footer{
+  background-color: #e47b46;
+  text-align: center;
+
+}
+.model-footer span{
+  padding-right:  10px;
+  color : white;
+}
+
+#text-navbar, #text-navbar-label{
+  color: white;
+  font-family: PT Sans Caption;
+  font-size: 14px;
+}
+
+#text-navbar-label:hover{
+  color : black;
+}
+
+
+.main-nav{
+  background-color: #e47b46;
+}
+#text-navbar-logo{
+  color:white;
+  font-weight: 500;
+  font-size: 20px;
+  font-family: PT Sans Caption;
+}
+
+#btn_login_logout{
+  margin-top: -8px;
+}
+
+.awesomplete ul{
+  width: 245px;
+}
+.row{
+  margin: 0;
+}
+
+#lb_username{
+  color : white;
+  margin-top: -9px;
+  margin-right: -15px;
+  font-size: 14px;
+  background-color:  #e47b46;;
+}
+
+
+.lb_suggest_list{
+  font-weight: lighter !important;
+}
+.lb_suggest_list:focus, .lb_suggest:focus{
+  background-color: #ab9e9e !important;
+}
+.btn_dropdown:hover, #lb_username:hover{
+  color:black !important;
+}
+.btn_dropdown:focus{
+  background-color: #ab9e9e !important;
+  color: black !important;
+}
+.glyphicon-home, .glyphicon-plus, .glyphicon-edit,
+  .glyphicon-user, .glyphicon-log-in, .glyphicon-ok,
+  .glyphicon-log-out, .glyphicon-folder-open{
+  padding-right: 5px;
+}
+.btn_user:hover, .btn_user, .orange{
+  background-color: #e47b46 ;
+}
+.btn_user{
+  background-color: #e47b46 ;
+}
+
+.orange:active, .btn-group.open , .dropdown-toggle{
+  -webkit-box-shadow : none !important;;
+  box-shadow: none !important;
+}
+.dropdown-menu{
+}
+.dropdown_menu_desktop{
+  margin-top: 13px;
+  background-color: white;
+}
+.orange{
+  color:white;
+}
+
+#image{
+  height: 200px;
+  width: 200px;
+}
+.div_image_review{
+  max-width: 250px;
+  max-height: 300px;
+}
+#image_in_review{
+  height: 250px;
+  width: 100%;
+}
+#main_content_form_review{
+  margin-top: 5px;
+}
+
+#main_content_form_review label{
+  display: inline-block;
+}
+#main_content_form_review span{
+  max-width : 450px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+/*#main_content_form_review label{*/
+  /*max-width : 340px;*/
+  /*overflow: hidden;*/
+  /*text-overflow: ellipsis;*/
+  /*white-space: nowrap;*/
+/*}*/
+.lb_name{
+  padding-right: 33px;
+}
+.lb_link{
+  padding-right:  43px;
+}
+.lb_price{
+  padding-right:  35px;
+}
+.lb_quantity{
+  padding-right:  11px;
+}
+#div_success, #div_fail{
+  text-align: center;
+  margin-top: 30px;
+}
+#hidden_input{
+  display: none;
+}
+.div_hidden{
+  display:none;
+}
+#notification{
+  text-align: center;
+}
+#lb_notification{
+  margin-top: 100px;
+}
+.btn_next{
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.hidden_input{
+  display: none;
+}
+.error_label{
+  color:red;
+}
+.button_menu_mobile{
+  margin-top: 7px;
+}
+@media (max-width: 768px) {
+  .navbar-right{
+    float: right !important;
+  }
+  .dropdown_menu_mobile, .dropdown-menu{
+    right: 0;
+    left: auto;
+  }
+}
+.dropdown_menu_mobile{
+  background-color: rgba(72, 63, 63, 0.95);
+  margin-right: -16px;
+  margin-top: 8px;
+  min-width: 250px;
+  min-height: 250px;
+
+}
+.dropdown_menu_mobile li>a{
+  color: white;
+  margin-bottom: 10px;
+  padding-top: 15px;
+}
+.user_name{
+  padding-left: 20px;
+  color: white;
+  padding-top: 10px;
+}
+
+.div_blur{
+  background-color: rgba(255, 255, 255, 0.76);
+  position: fixed;
+  display: none;
+}
+h4{
+  margin-top: 25px;
+}

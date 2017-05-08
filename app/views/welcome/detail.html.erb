@@ -1,0 +1,202 @@
+<div class="row">
+  <% @collection.each do |t| %> <!--start each-->
+      <div class="container_detail">
+        <div class="div_image col-xs-12 col-sm-5 col-md-5 col-lg-3">
+          <% if t['image_link'].blank? %> <!--show image default or not-->
+              <img id='image' src="/assets/images/no_image.png">
+          <% else %>
+              <img id='image' src="<%= t['image_link'] %>">
+          <% end %> <!--end show image-->
+          <div class=" form-group div_like_icon">
+            <% if @role == 0 %> <!--check role-->
+                <!--is member-->
+                <% if t['liked'] == 0 %>
+                    <!--Didnt like before-->
+                    <button class="btn btn-default btn_like" onclick="like(<%= t['id'] %>)">
+                      <span id="<%= t['id'] %>_request_like"><%= t['quantity_of_like'] %></span>
+                      <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
+                    </button>
+                <% else %>
+                    <!--Liked-->
+                    <div>
+                      <span><%= t['quantity_of_like'] %></span>
+                      <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
+                    </div>
+                <% end %>
+            <% else %>
+                <!--admin or anonymous cant like-->
+                <div>
+                  <span><%= t['quantity_of_like'] %></span>
+                  <span id="like_icon" class="glyphicon glyphicon-thumbs-up"></span>
+                </div>
+            <% end %> <!--end check role-->
+          </div> <!--end div_like_icon-->
+        </div>
+
+        <div class="main_content col-xs-12 col-sm-7 col-md-7 col-lg-9">
+          <div class='form-group'>
+            <h3 title="<%= t['book_name'] %>"><%= t['book_name'] %></h3>
+          </div>
+          <hr id="hrr">
+          <div class='form-group '>
+            <label class='lb_suggester'>Suggester:</label>
+            <span><%= t['user_name'] %></span>
+          </div>
+          <div class='form-group'>
+            <label class='lb_link'>Link:</label>
+            <div class="div_link">
+              <span class="content_link" title="<%= t['book_link'] %>"><a target="_blank" href="<%= t['book_link'] %>"><%= t['book_link'] %></a></span>
+            </div>
+          </div>
+          <div class='form-group '>
+            <label class=' lb_price '>Price:</label>
+            <span><%= t['book_price'] %></span>
+          </div>
+          <div class='form-group '>
+            <label class=' lb_quantity '>Quantity:</label>
+            <span><%= t['quantity'] %></span>
+          </div>
+          <div class='form-group '>
+            <label class=' lb_status '>Status:</label>
+            <% if t['status'] == 0 %> <!--check status-->
+                <span class="content_status">Pending</span>
+                <% if @role ==1 %>
+                    <button class="btn btn-success" onclick="call_approve_modal()">Approve</button>
+                    <button class="btn btn-danger" onclick="call_cancel_modal()">Cancel</button>
+                <% end %>
+            <% else
+                 if t['status'] == 1 %>
+                    <span class="content_status" id="green">Approved</span>
+                <% else %>
+                    <span class="content_status" id="red">Canceled</span>
+                <% end %>
+            <% end %> <!--end check status-->
+          </div>
+          <% if t['status'] == 1 %>
+              <label id='green' class='lb_admin_comment'><span class="glyphicon glyphicon-ok"></span>Approved by admin:</label>
+              <span><%= t['admin_comment'] %></span>
+          <% end %>
+          <% if t['status'] == 2 %>
+              <label id='red' class='lb_admin_comment'><span></span>Cancel by admin:</label>
+              <span><%= t['admin_comment'] %></span>
+          <% end %>
+        </div> <!--end main_content-->
+
+        <!--Comment-->
+        <div class="div_comment col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="comment_div_form">
+            <!--if have no comment-->
+            <% if (t['status'] == 0) || (t['status'] > 0 && !@comment.blank?) %>
+                <h4>Comment</h4>
+            <% end %>
+            <div class="div_load_comment">
+              <% @comment.each do |c| %> <!--start load comment-->
+                  <div class="form-group comment_text_area">
+                    <% if c['user_id'].nil? %>
+                        <strong>
+                          <div class="lb_comment_suggester">Anonymous</div>
+                        </strong>
+                    <% else %>
+                        <strong>
+                          <div class="lb_comment_suggester"><%= c['user_name'] %></div>
+                        </strong>
+                    <% end %>
+                    <% if @role == 1 %>
+                        <form method="post">
+                          <button type="button"  class="remove_comment_icon" title="Remove this" onclick="delete_comment(<%= c['id'] %>)">
+                            x
+                          </button>
+                        </form>
+                    <% end  %>
+                    <span class="form_control content_comment">
+                          <%= c['content'] %>
+                        </span>
+                  </div>
+              <% end %> <!--end load comment-->
+            </div>
+
+
+            <div class="div_form_comment">
+              <!--form comment, if status is not pending-->
+              <% if t['status'] == 0 %>
+                  <!--start form-->
+                  <form id="comment_form" method="post">
+                    <div class="form-group ">
+                      <% if session[:user].nil? %>
+                          <label class="lb_form_comment">Name: Anonymous</label>
+                      <% else %>
+                          <label class="lb_form_comment">Name: <%= session[:user] %></label>
+                      <% end %>
+                      <div>
+                        <textarea name="comment_text_area" id="comment_text_area" rows="3" cols="48" class="form_control" placeholder="Add a comment"></textarea>
+                      </div>
+                      <input name="hidden_id_request" id="hidden_id_request" class="error_label" type="number" value="<%= t['id'] %>">
+                      <div>
+                        <label id="lb_comment" class="error_label"></label>
+                        <input type="button" name="commit" value="Post" class="btn btn-default btn_post" onclick="post_comment()">
+                      </div>
+                    </div>
+                  </form> <!--end form-->
+              <% end %> <!--end if-->
+            </div>
+
+
+          </div>
+        </div> <!--end div_comment-->
+      </div> <!--end container detail-->
+      </div>
+
+
+      <div class="modal fade" id="modal_approve" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Approve request</h4>
+            </div>
+            <div class="modal-body">
+              <%= form_tag("/manage_book/approve", method: :post) do %>
+                  <div class="form-group comment_text_area_modal">
+                    <%= text_area_tag 'text_area_comment', nil, rows: 4, cols: 34, class: 'form_control', placeholder: 'Leave a comment' %>
+                    <%= text_field_tag 'tf_request_id', nil, class: 'form-control', id: 'id_tf_request_id', value: t['id'] %>
+                  </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <%= submit_tag 'Approve Request', class: 'btn btn-success btn_modal_approve' , onclick: 'return approve_request()' %>
+            </div>
+              <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modal_cancel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog " role="document">
+          <div class="modal-content modal-sm">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Cancel Request</h4>
+            </div>
+            <div class="modal-body">
+              <%= form_tag("/manage_book/deny", method: :post) do %>
+                  <div class="form-group comment_text_area_modal">
+                    <%= text_area_tag 'text_area_comment', nil, rows: 4, cols: 34, class: 'form_control', placeholder: 'Leave a comment' %>
+                    <%= text_field_tag 'tf_request_id', nil, class: 'form-control', id: 'id_tf_request_id', value: t['id'] %>
+                  </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <%= submit_tag 'Cancel Request', class: 'btn btn-danger btn_modal_deny' , onclick: 'return deny_request()' %>
+                  </div>
+              <% end %>
+              </div>
+        </div>
+      </div>
+
+
+
+  <% end %> <!--end each-->
+
+  <%= javascript_include_tag 'welcome_detail' %>

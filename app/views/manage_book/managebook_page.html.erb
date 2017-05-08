@@ -1,0 +1,60 @@
+<h1>BOOK MANAGEMENT</h1>
+<% if !@collection.blank? %>
+    <div class='div_managebook_page '>
+      <table class='table table-striped table-bordered' id="table">
+        <thead class='thead-default'>
+        <tr>
+          <th>#</th>
+          <th>Book</th>
+          <th>Quantity</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @collection.each_with_index do |value, index| %>
+            <!-- 1st page -->
+            <% if @page < 2 %>
+                <tr>
+                  <td><%= index %></td>
+            <% else %>
+            <!-- From 2nd page -->
+                <% index = index+(@page-1)*10 %>
+                <tr>
+                  <td><%= index %></td>
+            <% end%>
+                  <td title="<%= value.book_name %>" id="td_book_name">
+                    <a href="#" onclick="call_modal_detail(<%= value.id %>)"><%= value.book_name %></a>
+                  </td>
+                  <td><%= value.book_quantity %></td>
+                  <td>
+                    <div class="func-center">
+                      <a href='/manage_book/delete/<%= value.id %>' onclick='delete_book()' type='button'>
+                        <span class="glyphicon glyphicon-remove text-danger"></span>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+<% else %>
+    <div id="notification">
+      <label id="lb_notification">No book to load.</label>
+    </div>
+<% end %>
+
+<div class="page-button">
+  <%= will_paginate @collection, renderer: BootstrapPagination::Rails %>
+</div>
+
+
+<!--start modal-->
+<div class="modal fade" id="modal_detail" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-xs" role="document">
+    <div class="modal-content">
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+<!-- end modal -->
+<%= javascript_include_tag 'managebook' %>

@@ -1,0 +1,19 @@
+
+<div class="div-login col-xs-offset-1 col-xs-8 col-sm-offset-3 col-sm-6 col-md-offset-3 col-md-6 col-lg-offset-5 col-lg-4">
+  <%= form_tag('sign_in', method: :post) do %>
+      <div class="form-group">
+        <label for="lbUsr">Username:</label>
+        <%= text_field_tag 'tf_username', nil, placeholder: 'Enter username', class: 'form-control form-inline', id: 'id_tf_username'%>
+        <label class='error_label label' id='id_label_tf_username'></label>
+      </div>
+      <div class="form-group">
+        <label for="lbPass">Password:</label>
+        <%= password_field_tag 'tf_password', nil, placeholder: 'Enter password', class: 'form-control', id: 'id_tf_password', autocomplete: 'off' %>
+        <label class='error_label label' id='id_label_tf_password'></label>
+      </div>
+      <label id='result'><%= flash[:notice] %></label><br>
+      <%= submit_tag 'Sign in', class: 'btn btn-primary', onclick: 'return check_input()' %>
+      <br/><br/>
+  <% end %>
+</div>
+<%= javascript_include_tag 'login' %>

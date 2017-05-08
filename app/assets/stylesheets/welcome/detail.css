@@ -1,0 +1,130 @@
+
+.main-nav{
+    padding-bottom: 5px;
+}
+#image{
+    height: 255px;
+    width: 100%;
+}
+
+
+.div_image{
+    float: left;
+    padding-right: 20px;
+    overflow: hidden;
+    max-width: 400px;
+    max-height: 300px;
+
+}
+.container_detail{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.lb_link{
+    padding-right: 46px;
+}
+.lb_price{
+    padding-right: 40px;
+}
+.lb_quantity{
+    padding-right: 18px;
+}
+.lb_suggester{
+    padding-right: 5px;
+}
+.lb_status{
+    padding-right: 31px;
+}
+.content_link a {
+    display: inline-block;
+    line-height: 1em;
+    overflow: hidden;
+    width: 350px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#hrr{
+    border-top: 1px solid #bdbdbd;
+    margin-top: 10px;
+}
+.div_link{
+    display: inline;
+    padding-top: 2px;
+}
+.div_like_icon{
+    margin-top: 10px;
+    text-align: center;
+}
+
+#red{
+    color: red;
+}
+#green{
+    color:green;
+}
+#like_icon{
+    color:dodgerblue;
+
+}
+.lb_comment_suggester{
+    display: inline-block;
+    color: #e47b46;
+}
+.lb_form_comment{
+    color: #e47b46;
+
+}
+.comment_text_area{
+    display: block;
+    width: 350px;
+    padding: 7px 7px 7px 7px;
+    border-bottom-width: 1px;
+    border-bottom-style:dotted;
+    border-bottom-color: #e0d6d6;
+}
+
+.btn_post{
+    display: block;
+}
+.btn_modal_approve{
+    margin-left: 20px;
+    display: inline;
+}
+#id_tf_request_id{
+    display: none;
+}
+.error_label{
+    display: none;
+    color : red;
+}
+.remove_comment_icon{
+    color: black;
+    float: right;
+    display: none;
+    border: none;
+    background: none;
+    margin-top: -17px;
+
+}
+.remove_comment_icon:hover{
+    text-decoration: none;
+    color: red;
+
+}
+.content_comment{
+    display: block;
+    max-width: 360px;
+    word-wrap:break-word;
+}
+.lb_form_comment{
+    display:block;
+}
+.no_comment{
+    padding-left: 7px;
+}
+h3{
+    margin-top: 10px;
+    word-wrap: break-word;
+}

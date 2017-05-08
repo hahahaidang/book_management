@@ -1,0 +1,2 @@
+module ManageBookHelper
+end

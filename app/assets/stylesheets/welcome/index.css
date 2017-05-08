@@ -1,0 +1,130 @@
+
+#green{
+    color:green;
+}
+.page-button{
+    text-align: center;
+    font-size: medium;
+}
+#table{
+    text-align : center;
+    width: 80%;
+}
+th{
+    text-align: center;
+}
+label{
+    text-align: center;
+    font-size: large;
+    font-size: 15px;
+}
+#td_book_name{
+    max-width : 190px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+h1{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+
+
+.div_item{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: block;
+    min-height: 220px;
+}
+
+.div_item:hover{
+    background-color: #e2e2e2;
+}
+.btn_like{
+    margin-left: 10px;
+}
+.lb_bookname{
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}
+.image_list{
+    text-align: center;
+}
+#like_icon{
+    color:dodgerblue;
+}
+.item_content{
+    text-align: center;
+}
+.quantity_like{
+    position: absolute;
+    font-size: 15px;
+}
+#div_item_image{
+    height: 110px;
+    width: 110px;
+}
+.page-button{
+    margin-top: 20px;
+}
+
+.div_name_most_ranking{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+.span_index_most_ranking{
+    font-size: 24px;
+}
+.div_quantity_like_most_ranking{
+    margin-top: 10px;
+    text-align: right;
+}
+.item_most_ranking{
+    height:70px;
+    border-bottom-width: 1px;
+    border-bottom-style:dotted;
+    border-bottom-color: #e0d6d6;
+    background-color: #e6e6e6;
+
+}
+.item_most_ranking{
+    padding-top: 20px;
+}
+h4{
+    color: #e47b46;
+}
+
+.btn_like:hover{
+    background-color: #a5c5e0;
+}
+
+#div_list_most_ranking a{
+    color:black
+}
+#div_list_most_ranking a:hover{
+    text-decoration: none;
+    color: #e47b46;
+}
+.glyphicon-th-list{
+    padding-right: 5px;
+}
+
+.btn_mobile_search{
+    margin-left: -20px;
+    min-width: 80px;
+}
+.search_xs_sm{
+    margin-top: 10px;
+}
+.tf_search_xs_sm{
+    width: 100% !important;
+}
+.div_tf_search_mobile{
+    margin-left: -10px;
+}
