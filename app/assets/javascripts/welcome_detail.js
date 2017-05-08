@@ -83,37 +83,62 @@ function post_comment(){
 }
 
 function delete_comment(commentID){
-    $.ajax({
-        url: '/welcome/delete_comment',
-        method: 'POST',
-        datatype: 'html',
-        data: {comment_id: commentID}
-    })
-        .success(function(msg){
-            $('.div_load_comment').html(msg);
-            event_hover_comment_box();
-        })
-        .fail(function(msg){
-        })
+    if (confirm('Are you sure?')){
+        $.ajax({
+                url: '/welcome/delete_comment',
+                method: 'POST',
+                datatype: 'html',
+                data: {comment_id: commentID}
+            })
+            .success(function(msg){
+                $('.div_load_comment').html(msg);
+                event_hover_comment_box();
+            })
+            .fail(function(msg){
+            })
+    }else{
+        event.preventDefault();
+    }
+
+
 }
 
 
 function load_more_comment(requestId){
     //count the number of current comment
     var count = $('.comment_text_area').size();
-    //load more 5 comment
+    //load more 5 comments
     var quantity_of_comment = count + 5;
-
-    $.ajax({
-        url: '/welcome/load_more_comment',
-        method: 'GET',
-        datatype: 'html',
-        data: {requestId: requestId, quantity_of_comment: quantity_of_comment}
-    })
-        .success(function(msg){
-            $('.div_load_comment').html(msg);
-            event_hover_comment_box();
-        })
-        .fail(function(msg){
-        })
+    var ajax =  new CommonAjax('/welcome/load_more_comment', 'GET',
+                                {requestId: requestId, quantity_of_comment: quantity_of_comment}, 'html', null,
+                                //successCallback
+                                function(data){
+                                    {
+                                        $('.div_load_comment').html(data);
+                                        event_hover_comment_box();
+                                    }
+                                 }
+                                ,null);
+    ajax.send();
 }
+
+
+//function load_more_comment(requestId){
+//    //count the number of current comment
+//    var count = $('.comment_text_area').size();
+//    //load more 5 comment
+//    var quantity_of_comment = count + 5;
+//
+//    $.ajax({
+//        url: '/welcome/load_more_comment',
+//        method: 'GET',
+//        datatype: 'html',
+//        data: {requestId: requestId, quantity_of_comment: quantity_of_comment}
+//    })
+//        .success(function(msg){
+//            $('.div_load_comment').html(msg);
+//            event_hover_comment_box();
+//        })
+//        .fail(function(msg){
+//        })
+//}

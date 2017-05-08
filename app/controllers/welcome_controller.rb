@@ -43,15 +43,9 @@ class WelcomeController < ApplicationController
 
   def detail
     request_id = params[:id]
-
-    #default is 5
-    if params[:quantity_of_comment].nil?
-      quantity_of_comment = 5
-    else
-      quantity_of_comment = params[:quantity_of_comment]
-    end
      @collection = func_load_detail(request_id, session[:user])
-     @comment = func_load_comment(request_id, quantity_of_comment)
+     @comment = func_load_comment(request_id, 5)
+     @hasLeft = func_has_left_comment(request_id,5)
   end
 
   #modal review request
@@ -104,9 +98,9 @@ class WelcomeController < ApplicationController
   def load_more_comment
     @requestId = params[:requestId].to_i
     quantity_of_comment = params[:quantity_of_comment].to_i
-    if quantity_of_comment < Comment.where(request_id:@requestId).count
-      @hasLeft = true
-    end
+    #check if has comment left
+    @hasLeft = func_has_left_comment(@requestId, quantity_of_comment)
+
     @comment = func_load_comment(@requestId, quantity_of_comment)
     return render layout:false, template: "welcome/load_comment"
 

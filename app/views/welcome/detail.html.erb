@@ -114,9 +114,11 @@
                   </div>
               <% end %> <!--end load comment-->
               <!--If has comment to load-->
-              <div class="div_loadmore_comment">
-                <p class="load_more_link" onclick = "load_more_comment(<%= t['id'] %>)">Load more...</p>
-              </div>
+              <% if  !(@comment.blank?) && @hasLeft%>
+                <div class="div_loadmore_comment">
+                  <p class="load_more_link" onclick = "load_more_comment(<%= t['id'] %>)">Load more...</p>
+                </div>
+              <% end  %>
 
             </div>
 
@@ -205,3 +207,4 @@
   <% end %> <!--end each-->
 
   <%= javascript_include_tag 'welcome_detail' %>
+  <%= javascript_include_tag 'common_ajax' %>

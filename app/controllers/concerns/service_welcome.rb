@@ -142,4 +142,11 @@ module ServiceWelcome
   def func_delete_comment(commentID)
     return Comment.destroy(commentID)
   end
+
+
+  def func_has_left_comment(requestId, quantityOfComment)
+    if quantityOfComment < Comment.where(request_id:requestId).count
+      return true
+    end
+  end
 end
