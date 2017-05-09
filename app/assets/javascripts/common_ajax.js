@@ -1,4 +1,4 @@
-var CommonAjax = function (url, method, data, dataType, funcBeforeSend, funcSuccess, funcError) {
+var CommonAjax = function (url, method, dataType, data, funcBeforeSend, funcSuccess, funcError) {
     this.BeforeSend = funcBeforeSend;
     this.send = function(){
         $.ajax({

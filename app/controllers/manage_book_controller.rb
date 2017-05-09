@@ -9,7 +9,18 @@ class ManageBookController < ApplicationController
     if @role == 0
       #default status is 0
       params[:status].nil? ? inputStatus = 0 : inputStatus = params[:status]
-      @collection = func_load_myrequest(session[:user], inputStatus)
+      @collection = func_load_myrequest(session[:user], inputStatus, 16)
+    else
+      redirect_to index_page_path
+    end
+  end
+
+  def filter_myrequest
+    if @role == 0
+      inputStatus = params[:status]
+      params[:limit].nil? ? limit = 20 : limit = params[:limit]
+      @collection = func_load_myrequest(session[:user], inputStatus, limit)
+      return render layout:false, template: "manage_book/loadmore_myrequest"
     else
       redirect_to index_page_path
     end
@@ -46,8 +57,6 @@ class ManageBookController < ApplicationController
     end
   end
 
-
-
   def management_detail_page
     #is admin
     if @role==1
@@ -73,7 +82,6 @@ class ManageBookController < ApplicationController
       #only request has status = 0 can be approved
       if Request.find(id).status == 0
         redirect_to :back if func_approve(id,comment)
-
 
       #status isn't equal 0, redirect to approve_page
       else

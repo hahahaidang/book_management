@@ -40,7 +40,7 @@ function like(id) {
 }
 
 function testAjax(){
-    var ajax =  new CommonAjax('/welcome/like','POST',{id:275},null,null,function(data){
+    var ajax =  new CommonAjax('/welcome/like','POST',null,{id:275},null,function(data){
         {
             console.log('success');
         }

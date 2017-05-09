@@ -42,7 +42,6 @@ function init() {
         get_bookname('#tf_search');
         resize_screen();
         awesomplete_insert_book();
-        set_height_default();
     })
 }
 
@@ -78,7 +77,7 @@ function set_height_default() {
     var totalWidth = $(window).width();
     var heightHeader = $('.navbar-header').height();
     var heightFooter = $('.model-footer').height();
-    var newHeight = totalHeight - heightFooter - heightHeader - 20; //20 is margin of header and footer
+    var newHeight = totalHeight - heightFooter - heightHeader;
     $('.div-content').css("min-height", newHeight);
     $('.div_blur').css('min-height', totalHeight);
     $('.div_blur').css('min-width', totalWidth);

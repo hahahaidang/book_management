@@ -40,6 +40,8 @@ Rails.application.routes.draw do
   match 'manage_book/update', via: [:post], controller: :manage_book, action: :update
   match 'manage_book/delete/:id', via: [:get], controller: :manage_book, action: :delete
   match 'manage_book/myrequest_page', via: [:get], controller: :manage_book, action: :myrequest_page, as: 'myrequest_page'
+  match 'manage_book/filter_myrequest', via: [:get], controller: :manage_book, action: :filter_myrequest
+
   match 'manage_book/cancel_request/:id', via: [:get], controller: :manage_book, action: :cancel_request
   match 'manage_book/modal_detail', via: [:post], controller: :manage_book, action: :modal_detail
 

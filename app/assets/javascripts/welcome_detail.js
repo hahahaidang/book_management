@@ -109,16 +109,20 @@ function load_more_comment(requestId){
     var count = $('.comment_text_area').size();
     //load more 5 comments
     var quantity_of_comment = count + 5;
-    var ajax =  new CommonAjax('/welcome/load_more_comment', 'GET',
-                                {requestId: requestId, quantity_of_comment: quantity_of_comment}, 'html', null,
-                                //successCallback
-                                function(data){
-                                    {
-                                        $('.div_load_comment').html(data);
-                                        event_hover_comment_box();
-                                    }
-                                 }
-                                ,null);
+    $('.waiting_div').css( 'display','block');
+    $('.waiting_div').css( 'z-index','1000');
+    var ajax =  new CommonAjax('/welcome/load_more_comment', 'GET','html',
+        {requestId: requestId, quantity_of_comment: quantity_of_comment}, null,
+        //successCallback
+        function(data){
+            {
+                $('.waiting_div').css( 'display','none');
+                $('.waiting_div').css( 'z-index','-1');
+                $('.div_load_comment').html(data);
+                event_hover_comment_box();
+            }
+        },
+        null);
     ajax.send();
 }
 

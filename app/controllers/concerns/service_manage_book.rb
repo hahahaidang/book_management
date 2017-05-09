@@ -32,9 +32,9 @@ module ServiceManageBook
     end
   end
 
-  def func_load_myrequest(sessionUSer, inputStatus)
+  def func_load_myrequest(sessionUSer, inputStatus, limit)
     userID = User.find_by_user_name(sessionUSer).id
-    return Request.my_request(userID, inputStatus).paginate(:page => params[:page], :per_page => 10)
+      return Request.my_request(userID, inputStatus).limit(limit)
   end
 
   def func_cancel_request(userID, requestID)

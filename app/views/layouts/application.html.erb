@@ -1,7 +1,7 @@
 <%= render 'layouts/header' %>
 
 <body>
-<nav class="navbar-default main-nav navbar-fixed-top">
+<nav class="navbar-default main-nav navbar-fixed-top navbar-header">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
       <a id="text-navbar-logo" class="navbar-brand" >Book Management</a>
@@ -150,6 +150,9 @@
 
 <div class='div-body row'>
   <div class="div_blur" onclick="hide_div_blur()"></div>
+  <div class="waiting_div">
+    <!--<img src="/assets/images/waiting.gif">-->
+  </div>
   <div class="div-content container-fluid col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <%= yield %>
   </div>

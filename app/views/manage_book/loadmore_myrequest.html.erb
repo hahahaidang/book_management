@@ -1,0 +1,116 @@
+<h1>MY REQUEST</h1>
+<% if !@collection.blank? %>
+<div class="visible-xs">
+    <div class='filter_form'>
+        <span>Filter by</span>
+        <select name="status_for_mobile" id="status_for_mobile" onchange="func_onchange()">
+          <option value="0">Pending</option>
+          <option value="1">Approved</option>
+          <option value="2">Denied</option>
+        </select>
+    </div>
+    <% @collection.each do |t|  %>
+    <div class="div_item col-xs-6">
+        <div class="delete_button">
+            <a href="/manage_book/cancel_request/<%= t.id %>" title="Cancel your request"><span class="glyphicon glyphicon-trash" onclick="delete_item()"></span></a>
+        </div>
+        <div class='image_list'>
+            <% if t.image_link.blank? %>
+            <a href="/welcome/detail/<%= t.id %>">
+                <img id='div_item_image' src="/assets/images/no_image.png">
+            </a>
+            <% else %>
+            <a href="/welcome/detail/<%= t.id %>">
+                <img id='div_item_image' src="<%= t.image_link %>">
+            </a>
+            <% end %>
+        </div>
+        <div class="item_content">
+            <% if t.status == 0 %>
+            <label class="lb_bookname" title="<%= t.book.book_name %>">
+                <%= t.book.book_name %>
+            </label>
+            <% end %>
+            <% if t.status == 1 %>
+            <label class="lb_bookname" id="green" title="<%= t.book.book_name %>">
+                <%= t.book.book_name %>
+            </label>
+            <% end %>
+            <% if t.status == 2 %>
+            <label class="lb_bookname" id="red" title="<%= t.book.book_name %>">
+                <%= t.book.book_name %>
+            </label>
+            <% end %>
+            <label class="time">
+                <%= t.created_at.to_i*1000 %>
+            </label>
+        </div>
+    </div><!--end div_item-->
+    <% end  %>
+
+</div>
+
+
+<div class="div_myrequest hidden-xs">
+    <div class='filter_form'>
+        <span>Filter by</span>
+        <select name="status_for_desktop" id="status_for_desktop" onchange="func_onchange()">
+            <option value="0">Pending</option>
+            <option value="1">Approved</option>
+            <option value="2">Denied</option>
+        </select>
+        <%#= form_tag '/manage_book/myrequest_page', method: 'get' do %>
+        <!--<span>Filter by</span>-->
+        <!--<%#= select_tag(:status_for_desktop, options_for_select([['Pending', 0], ['Approved', 1], ['Denied', 2]])) %>-->
+        <!--<button type="submit" class="glyphicon glyphicon-filter filter_button"></button>-->
+        <%# end %>
+    </div>
+    <table class='table table-striped table-bordered' id="table">
+        <thead class='thead-default'>
+        <tr>
+            <th>#</th>
+            <th>Book</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @collection.each_with_index do |value, index| %>
+        <tr>
+            <td><%= index + 1 %></td>
+            <td id="td_book_name" title='<%= value.book.book_name %>'>
+                <a href="/welcome/detail/<%= value.id %>"><%= value.book.book_name %></a></td>
+            <td><%= value.quantity %></td>
+            <% if value.status == 0 %>
+            <td>Pending</td>
+            <% else
+            if value.status == 1 %>
+            <td id="green">Approved</td>
+            <% else %>
+            <td id="red">Canceled</td>
+            <% end %>
+            <% end %>
+            <td class="time">
+                <%= value.created_at.to_i*1000 %>
+            </td>
+            <% if value.status == 0 %>
+            <!--Only request's status is pending-->
+            <td>
+                <a href="/manage_book/cancel_request/<%= value.id %>" title="Cancel your request"><span class="glyphicon glyphicon-trash"></span></a>
+            </td>
+            <% end %>
+        </tr>
+        <% end %>
+        </tbody>
+    </table>
+    <% else %>
+    <div id="notification">
+        <label id="lb_notification">You have no request.</label>
+    </div>
+
+    <% end %>
+</div>
+
+
+
