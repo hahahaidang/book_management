@@ -312,7 +312,7 @@ function get_bookname(id_tf) {
     $.ajax({
             url: '/suggest/list_book',
             method: 'POST',
-            datatype: 'json',
+            datatype: 'json'
         })
         .done(function (msg) {
         })

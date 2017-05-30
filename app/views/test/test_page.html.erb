@@ -1,16 +1,12 @@
 
-<%#= form_for @form_for, method:'get',  url: {action: "result_page"}, as: 'testForm' do |f| %>
+<%= form_for @form_for, method:'get',  url: {action: "result_page"}, as: 'testForm' do |f| %>
   <!--Status:-->
-  <%#= f.text_field :status %>
+  <%= f.text_field :status %>
   <!--<br> Quantity:-->
-  <%#= f.text_field :quantity %>
-  <%#= f.submit "Post" %>
-<%# end  %>
+  <%= f.text_field :quantity %>
+  <%= f.submit "Post" %>
+<% end  %>
 
-<button onclick="testAjax()">TestAjax</button>
 
-<img src="/assets/images/no_image.png">
+<%= @const %>
 
-<%= javascript_include_tag 'test' %>
-
-<%= javascript_include_tag 'common_ajax' %>

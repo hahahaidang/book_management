@@ -1,7 +1,13 @@
+require "#{Rails.root}/app/controllers/concerns/constants.rb"
+
+
+
 class TestController < ApplicationController
+
   def test_page
-    # @form_for = Request.new(params[:testForm])
-    collection = Book.all
+    @form_for = Request.new(params[:testForm])
+    @const = Constants::MAX_LENGTH_USERNAME
+
 
   end
 
@@ -9,10 +15,18 @@ class TestController < ApplicationController
     @object = Request.new(params.require(:testForm).permit(:status, :quantity))
     @object.save
     # params.require(:testForm1).permit(:status, :quantity)
-    # @status = @object[:status]
+    # if (@status < Constants::QUANTITY_TEST)
+    #   @status = 3
+    # end
+
+    @const = Constants::QUANTITY_TEST
+    @status = @object[:status]
+    @quantity = @object[:quantity]
     # @abc = @testForm.new(params[:testForm])
     # @abc = params[:testForm][:status]
     # @a = @abc.status
   end
+
+
 
 end

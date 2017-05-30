@@ -1,4 +1,5 @@
 require 'will_paginate/array'
+require "#{Rails.root}/app/controllers/concerns/constants.rb"
 include ServiceWelcome
 
 class WelcomeController < ApplicationController
@@ -46,6 +47,8 @@ class WelcomeController < ApplicationController
      @collection = func_load_detail(request_id, session[:user])
      @comment = func_load_comment(request_id, 5)
      @hasLeft = func_has_left_comment(request_id,5)
+
+
   end
 
   #modal review request
@@ -88,7 +91,7 @@ class WelcomeController < ApplicationController
     content = params['comment_text_area']
     requestID = params['hidden_id_request']
 
-    return render status:500 if content.blank? || content.length > 255
+    return render status:500 if content.blank? || content.length > Constants::MAX_LENGTH_COMMENT
     if func_post_cmt(userID,requestID,content)
       @comment = func_load_comment(requestID,5)
       return render layout:false, template: "welcome/load_comment"
@@ -129,7 +132,7 @@ class WelcomeController < ApplicationController
       #validation
       #bookname is blank
       return render status:500 if params['tf_book_name'].strip.blank?
-      return render status:500 if params['tf_book_link'].length > 600
+      return render status:500 if params['tf_book_link'].length > Constants::MAX_LENGTH_BOOK_LINK
       return render status:500 if bookPrice == 0.0 || bookPrice < 0
       return render status:500 if params['tf_book_quantity'].to_i <= 0
     end

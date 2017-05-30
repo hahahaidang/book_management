@@ -1,4 +1,5 @@
 include ServiceManageBook
+require "#{Rails.root}/app/controllers/concerns/constants.rb"
 
 class ManageBookController < ApplicationController
   before_action :check_permission
@@ -9,7 +10,7 @@ class ManageBookController < ApplicationController
     if @role == 0
       #default status is 0
       params[:status].nil? ? inputStatus = 0 : inputStatus = params[:status]
-      @collection = func_load_myrequest(session[:user], inputStatus, 16)
+      @collection = func_load_myrequest(session[:user], inputStatus, 20)
     else
       redirect_to index_page_path
     end
@@ -156,10 +157,9 @@ class ManageBookController < ApplicationController
   def before_update
     name = params['tf_book_name']
     quantity = params['tf_book_quantity'].to_i
-
     #validation
     return render status:500 if name.blank?
-    return render status:500 if name.length > 255
+    return render status:500 if name.length > Constants::MAX_LENGTH_BOOK_NAME
     return render status:500 if quantity < 0 || quantity.blank?
   end
 end

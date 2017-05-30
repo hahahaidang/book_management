@@ -1,4 +1,5 @@
 require 'digest/sha1'
+require "#{Rails.root}/app/controllers/concerns/constants.rb"
 include ServiceLogin
 class LoginController < ApplicationController
   before_action :before_sign_in, only:[:sign_in]
@@ -28,12 +29,13 @@ class LoginController < ApplicationController
 
   def before_sign_in
     usr = params['tf_username']
+
     #validation
     if usr.blank?
       flash[:notice] = 'Username must not be blank!'
       return redirect_to :back
     end
-    if (usr.length < 4) || (usr.length > 16)
+    if (usr.length < Constants::MIN_LENGTH_USERNAME) || (usr.length > Constants::MAX_LENGTH_COMMENT)
       flash[:notice] = 'Username must greater than 3 and less than 16!'
       return redirect_to :back
     end

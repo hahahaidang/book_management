@@ -6,8 +6,16 @@ var CommonAjax = function (url, method, dataType, data, funcBeforeSend, funcSucc
             method: method,
             data: data,
             dataType: dataType,
-            success: funcSuccess,
-            error: funcError
+            success: function(response){
+                if (funcSuccess!= null && funcSuccess instanceof Function){
+                    return funcSuccess(response);
+                }
+            },
+            error: function(response){
+                if (funcError!= null && funcError instanceof Function){
+                    return funcError(response);
+                }
+            }
         })
     }
 
