@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 #momentjs
 gem 'momentjs-rails'
+gem 'json', '> 1.8.6'
 
 
 #will_paginate
