@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20170324010342) do
     t.integer  "status",           limit: 4
     t.integer  "quantity",         limit: 4
     t.float    "book_price",       limit: 24
-    t.text     "book_link",        limit: 65535
+    t.integer  "like",             limit: 4
     t.datetime "date_approve"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false

@@ -80,6 +80,23 @@ module ServiceWelcome
     return ActiveRecord::Base.connection.exec_query(sql)
   end
 
+
+  # def load_comment_test(requestID, limit)
+  #     client = Mysql2::Client
+  #     sql = "select c.*, u.user_name
+  #                     from comments c
+  #                     left join users u
+  #                     on c.user_id = u.id
+  #                     where c.request_id= ?
+  #                     order by created_at DESC
+  #                     LIMIT ?"
+  #     # open connection
+  #     con = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "abc")
+  #     logger.info con.class
+  #     prepare_statement = con.prepare(sql)
+  #     return prepare_statement.execute(requestID, limit)
+  # end
+
   def func_create_request(userID,bookLink,bookPrice,quantity_on_request,bookName,linkImage)
     #insert exist
     if Book.find_by_book_name(bookName)

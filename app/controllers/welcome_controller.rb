@@ -127,13 +127,13 @@ class WelcomeController < ApplicationController
 
 
   private
+    #validation
     def before_create
-      bookPrice = params['tf_book_price'].to_f
-      #validation
       #bookname is blank
-      return render status:500 if params['tf_book_name'].strip.blank?
-      return render status:500 if params['tf_book_link'].length > Constants::MAX_LENGTH_BOOK_LINK
-      return render status:500 if bookPrice == 0.0 || bookPrice < 0
-      return render status:500 if params['tf_book_quantity'].to_i <= 0
+      return render status:500 if params['tf_book_name'].strip.blank? ||
+          params['tf_book_link'].length > Constants::MAX_LENGTH_BOOK_LINK ||
+          params['tf_book_price'].to_f <= 0  ||
+          params['tf_book_quantity'].to_i <= 0
     end
+
 end

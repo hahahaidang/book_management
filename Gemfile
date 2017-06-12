@@ -31,7 +31,7 @@ gem 'will_paginate', '~> 3.1.0'
 #bootstrap with scss
 gem 'bootstrap3-rails', '~>3.2'
 #mysql2
-gem 'mysql2', '~> 0.3.13'
+gem 'mysql2', '~> 0.3.18'
 #bootstrap paginate
 gem 'will_paginate-bootstrap'
 #awesome complete
